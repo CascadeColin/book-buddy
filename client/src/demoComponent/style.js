@@ -7,4 +7,4 @@ they are stored in a variable as a string so we can import this directly into JS
 
 Think of this as your CSS file for Tailwind-specific styling.  For animations and custom CSS, see the "custom.css" file
 */
-const header = 'text-3xl font-bold text-center'
+export const header = 'text-3xl font-bold text-center'
