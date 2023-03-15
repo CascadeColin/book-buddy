@@ -23,11 +23,11 @@ const userProfileSchema = new Schema({
         type: Number,
         default: 0,
     },
-    goaldate: {
+    goalDate: {
         type:Date,
         required: false,
     },
-    bookcompleted: {
+    bookCompleted: {
         type: Number,
         default: 0,
     },
