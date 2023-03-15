@@ -19,6 +19,18 @@ const userProfileSchema = new Schema({
         required: true,
         minlength: 8,
     },
+    bookGoal: {
+        type: Number,
+        default: 0,
+    },
+    goaldate: {
+        type:Date,
+        required: false,
+    },
+    bookcompleted: {
+        type: Number,
+        default: 0,
+    },
 });
 
 // pre-save middle ware for password creation
