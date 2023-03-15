@@ -1,4 +1,5 @@
 const router = require("express").Router();
+// package that allows for fetch to be used in Node
 const fetch = require("node-fetch");
 
 // any routing related to fetching books will go here
@@ -16,3 +17,21 @@ const fetch = require("node-fetch");
 /*  const bookDetailsFetchURL = "https://openlibrary.org/books/$ISBN.json" WHERE $ISBN === the book's ISBN (as fetched by searchBookByTitleFetchURL).
 RETURNS an object that contains all of the data that we need, and more  */
 /*  reference:  https://openlibrary.org/dev/docs/api/books  */
+
+
+/* 
+router.get("/book", async (req,res) {
+    try {
+        const bookTitle = req.body
+        const searchTitle = helper function to convert "title of the book" to "title+of+the+book"
+        const isbnArray = await fetch(`https://openlibrary.org/search.json?title=${searchTitle}`)
+        // hardcode isbnArray[0] to be used - we can get fancy later
+        const isbn = access isbnArray[0] object and get string value of ISBN
+        const bookDetails = await fetch(`https://openlibrary.org/books/${isbn}.json`)
+        *access 'bookDetails' and send the data to DB.  DB will store data, Apollo *will be used to connect DB to front-end to render data
+    } catch (err) {
+        console.error(err)
+    }
+})
+
+*/
