@@ -1,6 +1,8 @@
-const {Schema, model } = require("mongoose");
+//const {Schema, model } = require("mongoose");
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
-const bookProfileSchema = new Schema({
+const bookSchema = new Schema({
     title: {
         type: String,
         required: true,
@@ -9,13 +11,13 @@ const bookProfileSchema = new Schema({
     author: {
         type: String,
         required: true,
-        uniqure: true,
+        //unique: true, do we need author to be unique? May have many books by same author
     },
     desc: {
         type: String,
         required: false,
-        minlength: 8,
     },
+    //url string for image
     bookCover: {
         type: String,
         required: false,
@@ -50,6 +52,6 @@ const bookProfileSchema = new Schema({
     },
 });
 
-const bookProfile = model("bookProfile", bookProfileSchema);
+const Book = mongoose.model("Book", bookSchema);
 
-module.exports = bookProfile
+module.exports = Book;
