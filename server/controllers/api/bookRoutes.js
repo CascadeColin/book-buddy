@@ -1,7 +1,7 @@
 const router = require("express").Router();
 // package that allows for fetch to be used in Node
 const fetch = require("node-fetch");
-
+const { bookTitleStrToURL } = require("../../utils/apiHelpers");
 // any routing related to fetching books will go here
 
 /******  START PSEUDOCODE  ******/
@@ -11,27 +11,37 @@ const fetch = require("node-fetch");
 /*  we can add functionality to search by author as well  */
 /*  reference:  https://openlibrary.org/dev/docs/api/search  */
 
-/*  const bookCoverFetchURL = "https://covers.openlibrary.org/b/isbn/$value-$size.jpg" WHERE '$value' === the book's ISBN (required to be able to search) && $size === size of the image (S, M, or L).  We will probably always use "L".  */
+/*
+TODO: can possibly scrap this, as it's included in `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data` in all test cases so far
+
+const bookCoverFetchURL = "https://covers.openlibrary.org/b/isbn/$value-$size.jpg" WHERE '$value' === the book's ISBN (required to be able to search) && $size === size of the image (S, M, or L).  We will probably always use "L".  */
 /*  reference:  https://openlibrary.org/dev/docs/api/covers  */
 
-/*  const bookDetailsFetchURL = "https://openlibrary.org/books/$ISBN.json" WHERE $ISBN === the book's ISBN (as fetched by searchBookByTitleFetchURL).
+/*  
+TODO: can possibly scrap this, as it's included in `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data` in all test cases so far
+
+const bookDetailsFetchURL = "https://openlibrary.org/books/$ISBN.json" WHERE $ISBN === the book's ISBN (as fetched by searchBookByTitleFetchURL).
 RETURNS an object that contains all of the data that we need, and more  */
 /*  reference:  https://openlibrary.org/dev/docs/api/books  */
 
+/*
+`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data` WHERE 'isbn' === the string we get from `https://openlibrary.org/search.json?title=${searchTitle}`
+reference: https://openlibrary.org/dev/docs/api/books
+*/
 
-/* 
-router.get("/book", async (req,res) {
+router.get("/book", async (req,res) => {
     try {
         const bookTitle = req.body
-        const searchTitle = helper function to convert "title of the book" to "title+of+the+book"
+        const searchTitle = bookTitleStrToURL(bookTitle)
+
+        // returns an array of books that match the searched title
         const isbnArray = await fetch(`https://openlibrary.org/search.json?title=${searchTitle}`)
+        console.log(isbnArray)
         // hardcode isbnArray[0] to be used - we can get fancy later
-        const isbn = access isbnArray[0] object and get string value of ISBN
-        const bookDetails = await fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`)
-        *access 'bookDetails' and send the data to DB.  DB will store data, Apollo *will be used to connect DB to front-end to render data
+        // const isbn = access isbnArray[0] object and get string value of ISBN
+        // const bookDetails = await fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`)
+        // *access 'bookDetails' and send the data to DB.  DB will store data, Apollo *will be used to connect DB to front-end to render data
     } catch (err) {
         console.error(err)
     }
 })
-
-*/
