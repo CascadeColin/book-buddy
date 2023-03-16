@@ -1,7 +1,7 @@
 const router = require("express").Router();
 // package that allows for fetch to be used in Node
 const fetch = require("node-fetch");
-const { bookTitleStrToURL } = require("../../utils/apiHelpers");
+const bookTitleStrToURL = require("../../utils/apiHelpers");
 // any routing related to fetching books will go here
 
 /******  START PSEUDOCODE  ******/
@@ -12,13 +12,13 @@ const { bookTitleStrToURL } = require("../../utils/apiHelpers");
 /*  reference:  https://openlibrary.org/dev/docs/api/search  */
 
 /*
-TODO: can possibly scrap this, as it's included in `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data` in all test cases so far
+TODO: can possibly scrap this, as it's included in `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data` in all tempUntilServerRuns cases so far
 
 const bookCoverFetchURL = "https://covers.openlibrary.org/b/isbn/$value-$size.jpg" WHERE '$value' === the book's ISBN (required to be able to search) && $size === size of the image (S, M, or L).  We will probably always use "L".  */
 /*  reference:  https://openlibrary.org/dev/docs/api/covers  */
 
 /*  
-TODO: can possibly scrap this, as it's included in `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data` in all test cases so far
+TODO: can possibly scrap this, as it's included in `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data` in all tempUntilServerRuns cases so far
 
 const bookDetailsFetchURL = "https://openlibrary.org/books/$ISBN.json" WHERE $ISBN === the book's ISBN (as fetched by searchBookByTitleFetchURL).
 RETURNS an object that contains all of the data that we need, and more  */
@@ -29,19 +29,39 @@ RETURNS an object that contains all of the data that we need, and more  */
 reference: https://openlibrary.org/dev/docs/api/books
 */
 
-router.get("/book", async (req,res) => {
-    try {
-        const bookTitle = req.body
-        const searchTitle = bookTitleStrToURL(bookTitle)
+// router.get("/book", async (req,res) => {
+//     try {
+//         const bookTitle = req.body
+//         const searchTitle = bookTitleStrToURL(bookTitle)
 
+//         // returns an array of books that match the searched title
+//         const isbnArray = await fetch(`https://openlibrary.org/search.json?title=${searchTitle}`)
+//         console.log(isbnArray)
+//         // hardcode isbnArray[0] to be used - we can get fancy later
+//         // const isbn = access isbnArray[0] object and get string value of ISBN
+//         // const bookDetails = await fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`)
+//         // *access 'bookDetails' and send the data to DB.  DB will store data, Apollo *will be used to connect DB to front-end to render data
+//     } catch (err) {
+//         console.error(err)
+//     }
+// })
+
+async function tempUntilServerRuns() {
+    try {
+        const bookTitle = "lord of the rings"
+        const searchTitle = bookTitleStrToURL(bookTitle)
         // returns an array of books that match the searched title
-        const isbnArray = await fetch(`https://openlibrary.org/search.json?title=${searchTitle}`)
-        console.log(isbnArray)
-        // hardcode isbnArray[0] to be used - we can get fancy later
-        // const isbn = access isbnArray[0] object and get string value of ISBN
-        // const bookDetails = await fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`)
-        // *access 'bookDetails' and send the data to DB.  DB will store data, Apollo *will be used to connect DB to front-end to render data
+        const titleData = await fetch(`https://openlibrary.org/search.json?title=${searchTitle}`)
+        const titleRes = await titleData.json()
+        // gets the isbn of the first matching book - can refine this later after getting MVP
+        const isbn = titleRes.docs[0].isbn[0]
+        const bookData = await fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`)
+        const bookRes = await bookData.json()
+        console.log(bookRes)
+        // send this data to the database
     } catch (err) {
-        console.error(err)
+        console.log(err)
     }
-})
+}
+
+tempUntilServerRuns()
