@@ -32,10 +32,6 @@ type User {
     bookCommentCreator: String
   }
 
-  type Checkout {
-    session: ID
-  }
-
   type Auth {
     token: ID
     user: User
