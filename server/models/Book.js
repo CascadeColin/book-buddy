@@ -3,6 +3,11 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const bookSchema = new Schema({
+    createdBy: {
+        type: String,
+        required: true,
+        trim: true,
+    },
     title: {
         type: String,
         required: true,
@@ -45,11 +50,20 @@ const bookSchema = new Schema({
         minlength: 0,
         maxlength: 5,
     },
-    bookComment: {
-        type: String,
-        required: false,
-        minlength: 4,
-    },
+    bookComment: [
+        {
+            commentText: {
+            type: String,
+            required: false,
+            minlength: 4,
+            maxlength: 280,
+            },
+            bookCommentCreator: {
+            type: String,
+            required: true,    
+            },
+        },
+    ]
 });
 
 const Book = mongoose.model("Book", bookSchema);

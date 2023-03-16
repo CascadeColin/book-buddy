@@ -1,7 +1,19 @@
 const typeDefs = `#graphql
 
+type User {
+    _id: ID
+    name: String
+    email: String
+    password: String
+    bookGoal: Int
+    goalDate: String
+    bookCompleted: Int
+    Books: [Book]
+  }
+  
   type Book {
     _id: ID
+    createdBy: String
     title: String
     author: String
     desc: String
@@ -10,23 +22,14 @@ const typeDefs = `#graphql
     isRead: Boolean
     toRead: Boolean
     isReading: Boolean
-    bookRating: Number
-    bookComment: String
+    bookRating: Int
+    bookComment: [bookComment]
     }
 
-  type User {
+  type bookComment {
     _id: ID
-    name: String
-    email: String
-    password: String
-    bookGoal: Number
-    goalDate: Date
-    bookCompleted: Number
-    Books: [Book]
-  }
-
-  type Checkout {
-    session: ID
+    commentText: String
+    bookCommentCreator: String
   }
 
   type Auth {
@@ -35,20 +38,20 @@ const typeDefs = `#graphql
   }
 
   type Query {
-    categories: [Category]
-    products(category: ID, name: String): [Product]
-    product(_id: ID!): Product
-    user: User
-    order(_id: ID!): Order
-    checkout(products: [ID]!): Checkout
+    users: [User]
+    user(name: String!): User
+    books(name: String): [Book]
+    book(bookId: ID!): Book
+    me: User
   }
 
   type Mutation {
     addUser(name: String!, email: String!, password: String!): Auth
-    addBook(products: [ID]!): Order
-    updateUser(name: String, email: String, password: String): User
-    updateBook(_id: ID!, quantity: Int!): Product
     login(email: String!, password: String!): Auth
+    addBook(title: String!): Book
+    addBookComment(bookId: ID!, commentText: String!): Book
+    removeBook(title: String!): Book
+    removeBookComment(bookId: ID!, commentText: String!): Book
   }
 `;
 
