@@ -1,4 +1,5 @@
-const {AuthenticationError} = require("apollo-server-express");
+// const {AuthenticationError} = require("apollo-server-express");
+const { GraphQLError } = require("graphql");
 const {User, Book} = require("../models");
 const {signToken} = require ("../utils/auth")
 
@@ -22,7 +23,11 @@ const resolvers = {
         if (context.user) {
         return User.findOne({_id: context.user_id }).populate("books");
         }
-        throw new AuthenticationError("Please log in to view your Bookcase!")
+        throw new GraphQLError("Please log in to view your Bookcase!", {
+          extensions: {
+            code: "UNAUTHENTICATED"
+          }
+        })
       },
 
     },
@@ -37,13 +42,21 @@ const resolvers = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError("Sorry, No User found with the Email Provided!");
+        throw new GraphQLError("Sorry, No User found with the Email Provided!", {
+          extensions: {
+            code: "UNAUTHENTICATED",
+          },
+        });
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError("Incorrect password or Username. Haha! Get some Prevagen Fool!");
+        throw new GraphQLError("Incorrect password or Username. Haha! Get some Prevagen Fool!", {
+          extensions: {
+            code: "UNAUTHENTICATED",
+          },
+        });
       }
 
       const token = signToken(user);
@@ -73,7 +86,11 @@ const resolvers = {
 
         return book;
       }
-      throw new AuthenticationError("Please log in to Add/Remove to your Bookcase!");
+      throw new GraphQLError("Please log in to Add/Remove to your Bookcase!", {
+        extensions: {
+          code: "UNAUTHENTICATED",
+        },
+      });
     },
     addBookComment: async (parent, { bookId, commentText }, context) => {
       if (context.user) {
@@ -90,7 +107,11 @@ const resolvers = {
           }
         );
       }
-      throw new AuthenticationError("Please log in to Add/Remove to your Bookcase!");
+      throw new GraphQLError("Please log in to Add/Remove to your Bookcase!", {
+        extensions: {
+          code: "UNAUTHENTICATED",
+        },
+      });
     },
     removeBook: async (parent, { bookId }, context) => {
       if (context.user) {
@@ -106,7 +127,11 @@ const resolvers = {
 
         return book;
       }
-      throw new AuthenticationError("Please log in to Add/Remove to your Bookcase!");
+      throw new GraphQLError("Please log in to Add/Remove to your Bookcase!", {
+        extensions: {
+          code: "UNAUTHENTICATED",
+        },
+      });
     },
     removeBookComment: async (parent, { bookId, bookcommentId }, context) => {
       if (context.user) {
@@ -123,7 +148,11 @@ const resolvers = {
           { new: true }
         );
       }
-      throw new AuthenticationError("Please log in to Add/Remove to your Bookcase!");
+      throw new GraphQLError("Please log in to Add/Remove to your Bookcase!", {
+        extensions: {
+          code: "UNAUTHENTICATED",
+        },
+      });
     },
   },
 }
