@@ -1,16 +1,18 @@
 const typeDefs = `#graphql
 
-TODO:
   type Book {
     _id: ID
-    name: String
-    description: String
-    image: String
-    quantity: Int
-    price: Float
-    category: Category
-  }
-
+    title: String
+    author: String
+    desc: String
+    bookCover: String
+    isbn: String
+    isRead: Boolean
+    toRead: Boolean
+    isReading: Boolean
+    bookRating: Number
+    bookComment: String
+    }
 
   type User {
     _id: ID
@@ -23,7 +25,6 @@ TODO:
     Books: [Book]
   }
 
-TODO: why do they have this? what is it for
   type Checkout {
     session: ID
   }
@@ -33,7 +34,6 @@ TODO: why do they have this? what is it for
     user: User
   }
 
-TODO:
   type Query {
     categories: [Category]
     products(category: ID, name: String): [Product]
@@ -43,11 +43,10 @@ TODO:
     checkout(products: [ID]!): Checkout
   }
 
-TODO:
   type Mutation {
-    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    addUser(name: String!, email: String!, password: String!): Auth
     addBook(products: [ID]!): Order
-    updateUser(firstName: String, lastName: String, email: String, password: String): User
+    updateUser(name: String, email: String, password: String): User
     updateBook(_id: ID!, quantity: Int!): Product
     login(email: String!, password: String!): Auth
   }

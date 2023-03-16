@@ -1,14 +1,13 @@
 //const {Schema, model } = require("mongoose");
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const bcrypt = require("bcrpyt");
+const bcrypt = require("bcrypt");
 const Book = require("./Book");
 
 const userSchema = new Schema({
   name: {
     type: String,
     required: true,
-    //unique: true, don't think name should be unique could be 2 john smiths just need unique email?
     trim: true,
   },
   email: {
