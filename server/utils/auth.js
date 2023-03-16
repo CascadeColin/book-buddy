@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 
+//FIXME: put secret in .env
 const secret = "mysupersecretsssooosss"
 const exp = "6h"
 
@@ -24,8 +25,9 @@ module.exports = {
 
         return req;
     },
-    signToken: function ({email, username, _id} ) {
-        const payload = { email, username, _id};
+    //name was firstName look at this if there are any errors
+    signToken: function ({name, email, _id} ) {
+        const payload = { name, email, _id};
         return jwt.sign({data:payload}, secret, {expiresIn:exp})
     }
 }
