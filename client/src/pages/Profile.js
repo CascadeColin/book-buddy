@@ -1,5 +1,4 @@
 import React from 'react';
-import Nav from '../components/Nav';
 import ReadingGoal from '../components/ReadingGoal';
 import CurrentlyReading from '../components/CurrentlyReading';
 import { Plant } from '../components/Images';
@@ -16,13 +15,9 @@ export default function Profile() {
     return (
         <>
             <div style={styles.body}>
-
-            <nav>
-                <Nav />
-            </nav>
             <body>
                 {/*Book Shelf with randomized saved books*/}
-                <ProfBookShelf />
+                {/* <ProfBookShelf /> */}
                 
                 {/*Currently reading section, with book cover, title, author, rating button, finished button*/}
                 <CurrentlyReading />
