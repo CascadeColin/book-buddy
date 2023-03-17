@@ -63,7 +63,7 @@ const resolvers = {
 
       return { token, user };
     },
-    addBook: async (parent, { title }, context) => {
+    addBook: async (parent, {  title, author, desc, bookCover, isbn, isRead, toRead, isReading,bookRating, bookComment }, context) => {
       if (context.user) {
         const book = await Book.create({
           createdBy: context.user.name,
