@@ -1,11 +1,21 @@
-import Bob from './BobImages'
+import React from 'react';
+import Bob from './Images';
+
+import '../assets/css/fonts.css';
 
 const styles = {
     nav: {
         backgroundColor: '#E4CFBC'
+    },
+    fontPrint: {
+        fontFamily: 'Italiana'
+    },
+    fontCursive: {
+        fontFamily: 'Italianno'
     }
 }
 
+{/*Add Login authentication...function showNav() if(Auth.loggedin)*/}
 export default function Nav(){
     return(
         <>
@@ -13,8 +23,8 @@ export default function Nav(){
                 <div>
                     <Bob />
                     <heading>
-                        <h1>Book</h1>
-                        <h2>Buddy</h2>
+                        <h1 style={styles.fontPrint}>Book</h1>
+                        <h2 style={styles.fontCursive}>Buddy</h2>
                     </heading>
                 </div>
                 <ul>
