@@ -22,8 +22,10 @@ export default function ReadingGoal() {
                 <h1 style={styles.fontCursive}>Reading Goal:</h1>
                 {/* this syntax will most likely need to be changed once the queries are made */}
                     <div style={styles.fontPrint}>
-                    <h2>{readingGoal} books</h2>
-                    <h2>by {goalDate}</h2>
+                    {/* reading goal number query */}
+                    <h2>___ books</h2>
+                    {/* reading goal date query */}
+                    <h2>by ___</h2>
                     </div>
                 {/*on click, have the 'new reading goal' modal pop up*/}
                 <button style={styles.fontCursive}>Update Your Reading Goal</button>
