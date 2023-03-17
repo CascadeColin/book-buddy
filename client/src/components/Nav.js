@@ -6,6 +6,7 @@ const styles = {
     }
 }
 
+{/*Add Login authentication...function showNav() if(Auth.loggedin)*/}
 export default function Nav(){
     return(
         <>
