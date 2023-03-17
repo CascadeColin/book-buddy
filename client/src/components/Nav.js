@@ -1,5 +1,6 @@
 import React from 'react';
 import Bob from './Images';
+import AddBooks from './AddBooks';
 
 import '../assets/css/fonts.css';
 
@@ -29,14 +30,14 @@ export default function Nav(){
                 </div>
                 <ul>
                     <li>
-                        {/*my books page*/}
+                        {/*my books page - add routes by Claire to this*/}
                         <a href="">
-                        My Books
+                            My Books
                         </a>
                     </li>
                     <li>
                         {/*add books modal*/}
-                        Add Books
+                        <AddBooks />
                     </li>
                     <li>
                         {/*logout*/}
