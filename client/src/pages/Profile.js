@@ -1,4 +1,6 @@
+import React from 'react';
 import Nav from '../components/Nav';
+import { Plant } from '../components/Images';
 
 import '../assets/css/fonts.css';
 
@@ -18,7 +20,8 @@ export default function Profile() {
             </nav>
             <body>
                 {/*Book Shelf with randomized saved books*/}
-
+                <ProfBookShelf />
+                
                 {/*Currently reading section, with book cover, title, author, rating button, finished button*/}
                 <CurrentlyReading />
 

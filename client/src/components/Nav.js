@@ -1,4 +1,5 @@
-import Bob from './BobImages';
+import React from 'react';
+import Bob from './Images';
 
 import '../assets/css/fonts.css';
 
