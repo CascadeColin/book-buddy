@@ -15,7 +15,7 @@ export function Plant(){
         <img  
         className='ShelfPlant'
         src={require('../assets/images/ShelfPlant.png')}
-        alt='NavBar BOB'
+        alt='NavBar Plant'
     />
     )
 }

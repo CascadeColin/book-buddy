@@ -3,8 +3,9 @@ import { test } from './style'
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink, } from '@apollo/client';
-// import SearchBooks from './pages/SearchBooks';
-// import SavedBooks from './pages/SavedBooks';
+// import myBooks from './pages/myBooks';
+import MyBooks from './pages/MyBooks';
+import Profile from './pages/Profile';
 import Navbar from './components/Nav';
 import { setContext } from '@apollo/client/link/context';
 
@@ -41,15 +42,15 @@ function App() {
       <>
         <Navbar />
         <Routes>
-          {/* <Route 
+          <Route 
             path='/' 
-            element={<SearchBooks />} 
-          />
-          <Route forceRefresh={true}
-            path='/saved' 
-            element={<SavedBooks />} 
+            element={<Profile />} 
           />
           <Route 
+            path='/mybooks' 
+            element={<MyBooks />} 
+          />
+          {/* <Route 
             path='*'
             element={<h1 className='display-2'>Wrong page!</h1>}
           /> */}
