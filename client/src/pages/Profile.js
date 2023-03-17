@@ -1,5 +1,7 @@
 import React from 'react';
 import Nav from '../components/Nav';
+import ReadingGoal from '../components/ReadingGoal';
+import CurrentlyReading from '../components/CurrentlyReading';
 import { Plant } from '../components/Images';
 
 import '../assets/css/fonts.css';
