@@ -1,8 +1,16 @@
-import Bob from './BobImages'
+import Bob from './BobImages';
+
+import '../assets/css/fonts.css';
 
 const styles = {
     nav: {
         backgroundColor: '#E4CFBC'
+    },
+    fontPrint: {
+        fontFamily: 'Italiana'
+    },
+    fontCursive: {
+        fontFamily: 'Italianno'
     }
 }
 
@@ -14,8 +22,8 @@ export default function Nav(){
                 <div>
                     <Bob />
                     <heading>
-                        <h1>Book</h1>
-                        <h2>Buddy</h2>
+                        <h1 style={styles.fontPrint}>Book</h1>
+                        <h2 style={styles.fontCursive}>Buddy</h2>
                     </heading>
                 </div>
                 <ul>

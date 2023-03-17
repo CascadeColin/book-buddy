@@ -1,9 +1,18 @@
-import Nav from '../components/Nav'
+import Nav from '../components/Nav';
 
+import '../assets/css/fonts.css';
+
+const styles = {
+    body: {
+        backgroundColor: '#FCF3EB',
+    }
+}
 
 export default function Profile() {
     return (
         <>
+            <div style={styles.body}>
+
             <nav>
                 <Nav />
             </nav>
@@ -16,6 +25,8 @@ export default function Profile() {
                 {/*Reading goal modal*/}
                 <ReadingGoal />
             </body>
+
+            </div>
         </>
     )
 }
