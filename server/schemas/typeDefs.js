@@ -2,7 +2,7 @@ const typeDefs = `#graphql
 
 type User {
     _id: ID
-    name: String
+    userName: String
     email: String
     password: String
     bookGoal: Int
@@ -39,14 +39,14 @@ type User {
 
   type Query {
     users: [User]
-    user(name: String!): User
-    books(name: String): [Book]
+    user(userName: String!): User
+    books(userName: String): [Book]
     book(bookId: ID!): Book
     me: User
   }
 
   type Mutation {
-    addUser(name: String!, email: String!, password: String!): Auth
+    addUser(userName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addBook(title: String!): Book
     addBookComment(bookId: ID!, commentText: String!): Book
