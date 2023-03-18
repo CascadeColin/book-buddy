@@ -6,7 +6,7 @@ type User {
     email: String
     password: String
     bookGoal: Int
-    goalDate: String
+    goalDate: Date
     bookCompleted: Int
     Books: [Book]
   }
@@ -46,7 +46,7 @@ type User {
   }
 
   type Mutation {
-    addUser(userName: String!, email: String!, password: String!, bookGoal: Number): Auth
+    addUser(userName: String!, email: String!, password: String!, bookGoal: Number, goalDate: Date): Auth
     login(email: String!, password: String!): Auth
     addBook(title: String!): Book
     addBookComment(bookId: ID!, commentText: String!): Book
@@ -55,5 +55,5 @@ type User {
     updateBookRating(bookRating: Number): Book 
   }
 `;
-
+//TODO: Need a way to update book boolean fields -  mutation
 module.exports = typeDefs;
