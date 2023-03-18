@@ -89,7 +89,6 @@ db.once("open", async () => {
     userName: "Pamela Washington",
     email: "pamela@testmail.com",
     password: "password12345",
-    goalDate: 2023-06-30,
     bookGoal: 45,
     bookCompleted: 2,
    books: [book[0], book[1], book[2]],

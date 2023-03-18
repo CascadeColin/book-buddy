@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-//FIXME: Kim will fix this
+//FIXME: 
 
 // export const QUERY_PRODUCTS = gql`
 //   query getProducts($category: ID) {

@@ -46,12 +46,13 @@ type User {
   }
 
   type Mutation {
-    addUser(userName: String!, email: String!, password: String!): Auth
+    addUser(userName: String!, email: String!, password: String!, bookGoal: Number): Auth
     login(email: String!, password: String!): Auth
     addBook(title: String!): Book
     addBookComment(bookId: ID!, commentText: String!): Book
     removeBook(title: String!): Book
     removeBookComment(bookId: ID!, commentText: String!): Book
+    updateBookRating(bookRating: Number): Book 
   }
 `;
 

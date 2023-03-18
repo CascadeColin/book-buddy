@@ -7,6 +7,8 @@ import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink, } from '@a
 import MyBooks from './pages/MyBooks';
 import Profile from './pages/Profile';
 import Navbar from './components/Nav';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 import { setContext } from '@apollo/client/link/context';
 
 const httpLink = createHttpLink({
@@ -50,6 +52,14 @@ function App() {
             path='/mybooks' 
             element={<MyBooks />} 
           />
+          <Route 
+            path="/login" 
+            element={<Login />} 
+          />
+          <Route 
+            path="/signup" 
+            element={<Signup />} 
+          />    
           {/* <Route 
             path='*'
             element={<h1 className='display-2'>Wrong page!</h1>}
