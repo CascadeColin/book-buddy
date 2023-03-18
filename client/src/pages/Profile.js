@@ -15,7 +15,7 @@ export default function Profile() {
     return (
         <>
             <div style={styles.body}>
-            <body>
+            <div>
                 {/*Book Shelf with randomized saved books*/}
                 {/* <ProfBookShelf /> */}
                 
@@ -24,7 +24,7 @@ export default function Profile() {
 
                 {/*Reading goal modal*/}
                 <ReadingGoal />
-            </body>
+            </div>
 
             </div>
         </>
