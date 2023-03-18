@@ -2,146 +2,112 @@ const db = require("./connection");
 const { User, Book } = require("../models");
 
 db.once("open", async () => {
- 
 
-  
+  const book = [
+    {
+      createdBy: "Pamela Washington",
+      title: "The Hobbit",
+      author: '"J.R.R. Tolkien"',
+      desc: "In a hole in the ground there lived a hobbit. Not a nasty diry wet hole, filled with ends of worms and an oozy smell...",
+      bookCover: "https://covers.openlibrary.org/b/id/2341310-L.jpg",
+      isbn: "0261103318",
+      isRead: false,
+      toRead: true,
+      isReading: true,
+      bookRating: 5,
+      bookComment: [
+        {
+          commentText: "Reading Ninja recommended this book!",
+          bookCommentCreator: "Pamela Washington",
+        },
+      ],
+    },
+    {
+      createdBy: "Pamela Washington",
+      title: "House of Flame and Shadow",
+      author: "Sarah J. Maas",
+      desc: "Source title: House of Flame and Shadow (Crescent City, 3)",
+      bookCover: "https://covers.openlibrary.org/b/id/13525139-L.jpg",
+      isbn: "1635574102",
+      bookComment: [
+        {
+          commentText: "Read this again!",
+          bookCommentCreator: "Pamela Washington",
+        },
+      ],
+    },
+    {
+      createdBy: "Pamela Washington",
+      title: "Hello Beautiful",
+      author: "Ann Napolitano",
+      desc: "No description available",
+      bookCover: "",
+      isbn: "0593597265",
+      isRead: true,
+      toRead: false,
+      isReading: false,
+      bookRating: 0,
+      bookComment: [
+        {
+          commentText: "This book is awesome",
+          bookCommentCreator: "Pamela Washington",
+        },
+      ],
+    },
+    {
+      createdBy: "Reading Ninja",
+      title: "The inheritance games",
+      author: "Jennifer Lynn Barnes",
+      desc: "No description available",
+      bookCover: "https://covers.openlibrary.org/b/id/12897763-L.jpg",
+      isbn: "8380089456",
+      isRead: true,
+      toRead: false,
+      isReading: false,
+      bookRating: 0,
+      bookComment: [
+        {
+          commentText: "Chapter 7 was the best.",
+          bookCommentCreator: "Reading Ninja",
+        },
+      ],
+    },
+    {
+      createdBy: "Reading Ninja",
+      title: "Atomic Habits",
+      author: "James Clear",
+      desc: "Source title: Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones",
+      bookCover: "https://covers.openlibrary.org/b/id/12539702-L.jpg",
+      isbn: "9781804220207",
+    },
+  ];
+
+
   await User.deleteMany();
 
   await User.create({
-    firstName: "Pamela",
-    lastName: "Washington",
+    userName: "Pamela Washington",
     email: "pamela@testmail.com",
     password: "password12345",
-    orders: [
-      {
-        products: [products[0]._id, products[0]._id, products[1]._id],
-      },
-    ],
+    bookGoal: 45,
+    bookCompleted: 2,
+   books: [book[0], book[1], book[2]],
   });
 
   await User.create({
-    firstName: "Elijah",
-    lastName: "Holt",
+    userName: "Speed Reader",
     email: "eholt@testmail.com",
     password: "password12345",
   });
 
+  await User.create({
+    userName: "Reading Ninja",
+    email: "ninja@testmail.com",
+    password: "password12345",
+    books: [book[3], book[4]],
+  });
+
   console.log("users seeded");
-  await Product.deleteMany();
-
-  const products = await Product.insertMany([
-    {
-      name: "Tin of Cookies",
-      description:
-        "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
-      image: "cookie-tin.jpg",
-      category: categories[0]._id,
-      price: 2.99,
-      quantity: 500,
-    },
-    {
-      name: "Canned Coffee",
-      description:
-        "Praesent sed lacinia mauris. Nulla congue nibh magna, at feugiat nunc scelerisque quis. Donec iaculis rutrum vulputate. Suspendisse lectus sem, vulputate ac lectus sed, placerat consequat dui.",
-      image: "canned-coffee.jpg",
-      category: categories[0]._id,
-      price: 1.99,
-      quantity: 500,
-    },
-    {
-      name: "Toilet Paper",
-      category: categories[1]._id,
-      description:
-        "Donec volutpat erat erat, sit amet gravida justo sodales in. Phasellus tempus euismod urna. Proin ultrices nisi ut ipsum congue, vitae porttitor libero suscipit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam lacinia a nisi non congue.",
-      image: "toilet-paper.jpg",
-      price: 7.99,
-      quantity: 20,
-    },
-    {
-      name: "Handmade Soap",
-      category: categories[1]._id,
-      description:
-        "Praesent placerat, odio vel euismod venenatis, lectus arcu laoreet felis, et fringilla sapien turpis vestibulum nisl.",
-      image: "soap.jpg",
-      price: 3.99,
-      quantity: 50,
-    },
-    {
-      name: "Set of Wooden Spoons",
-      category: categories[1]._id,
-      description:
-        "Vivamus ut turpis in purus pretium mollis. Donec turpis odio, semper vel interdum ut, vulputate at ex. Duis dignissim nisi vel tortor imperdiet finibus. Aenean aliquam sagittis rutrum.",
-      image: "wooden-spoons.jpg",
-      price: 14.99,
-      quantity: 100,
-    },
-    {
-      name: "Camera",
-      category: categories[2]._id,
-      description:
-        "Vestibulum risus metus, luctus non tortor quis, tincidunt consectetur ex. Nullam vitae lobortis ligula, ut sagittis massa. Curabitur consectetur, tellus at pulvinar venenatis, erat augue cursus erat, eu ullamcorper eros lectus ultrices ipsum. Integer rutrum, augue vitae auctor venenatis, turpis turpis elementum orci, at sagittis risus mi a leo.",
-      image: "camera.jpg",
-      price: 399.99,
-      quantity: 30,
-    },
-    {
-      name: "Tablet",
-      category: categories[2]._id,
-      description:
-        "In sodales, ipsum quis ultricies porttitor, tellus urna aliquam arcu, eget venenatis purus ligula ut nisi. Fusce ut felis dolor. Mauris justo ante, aliquet non tempus in, tempus ac lorem. Aliquam lacinia dolor eu sem eleifend ultrices. Etiam mattis metus metus. Sed ligula dui, placerat non turpis vitae, suscipit volutpat elit. Phasellus sagittis, diam elementum suscipit fringilla, libero mauris scelerisque ex, ac interdum diam erat non sapien.",
-      image: "tablet.jpg",
-      price: 199.99,
-      quantity: 30,
-    },
-    {
-      name: "Tales at Bedtime",
-      category: categories[3]._id,
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare diam quis eleifend rutrum. Aliquam nulla est, volutpat non enim nec, pharetra gravida augue. Donec vitae dictum neque. Pellentesque arcu lorem, fringilla non ligula ac, tristique bibendum erat. Ut a semper nibh. Quisque a mi et mi tempor ultricies. Maecenas eu ipsum eu enim hendrerit accumsan at euismod urna.",
-      image: "bedtime-book.jpg",
-      price: 9.99,
-      quantity: 100,
-    },
-    {
-      name: "Spinning Top",
-      category: categories[4]._id,
-      description:
-        "Ut vulputate hendrerit nibh, a placerat elit cursus interdum.",
-      image: "spinning-top.jpg",
-      price: 1.99,
-      quantity: 1000,
-    },
-    {
-      name: "Set of Plastic Horses",
-      category: categories[4]._id,
-      description:
-        "Sed a mauris condimentum, elementum enim in, rhoncus dui. Phasellus lobortis leo odio, sit amet pharetra turpis porta quis.",
-      image: "plastic-horses.jpg",
-      price: 2.99,
-      quantity: 1000,
-    },
-    {
-      name: "Teddy Bear",
-      category: categories[4]._id,
-      description:
-        "Vestibulum et erat finibus erat suscipit vulputate sed vitae dui. Ut laoreet tellus sit amet justo bibendum ultrices. Donec vitae felis vestibulum, congue augue eu, finibus turpis.",
-      image: "teddy-bear.jpg",
-      price: 7.99,
-      quantity: 100,
-    },
-    {
-      name: "Alphabet Blocks",
-      category: categories[4]._id,
-      description:
-        "Morbi consectetur viverra urna, eu fringilla turpis faucibus sit amet. Suspendisse potenti. Donec at dui ac sapien eleifend hendrerit vel sit amet lectus.",
-      image: "alphabet-blocks.jpg",
-      price: 9.99,
-      quantity: 600,
-    },
-  ]);
-
-  console.log("products seeded");
-
 
   process.exit();
 });
