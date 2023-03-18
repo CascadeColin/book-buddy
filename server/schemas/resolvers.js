@@ -52,7 +52,7 @@ const resolvers = {
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new GraphQLError("Incorrect password or userName. Haha! Get some Prevagen Fool!", {
+        throw new GraphQLError("Incorrect password or email. Haha! Get some Prevagen Fool!", {
           extensions: {
             code: "UNAUTHENTICATED",
           },

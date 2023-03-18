@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-//TODO: Kim will fix
+//TODO: 
 
 export const LOGIN = gql`
   mutation login($email: String!, $password: String!) {
@@ -31,23 +31,25 @@ export const LOGIN = gql`
 //   }
 // `;
 
-// export const ADD_USER = gql`
-//   mutation addUser(
-//     $firstName: String!
-//     $lastName: String!
-//     $email: String!
-//     $password: String!
-//   ) {
-//     addUser(
-//       firstName: $firstName
-//       lastName: $lastName
-//       email: $email
-//       password: $password
-//     ) {
-//       token
-//       user {
-//         _id
-//       }
-//     }
-//   }
-// `;
+export const ADD_USER = gql`
+  mutation addUser(
+    $userName: String!
+    $email: String!
+    $password: String!
+    $bookGoal: Number
+    $goalDate: Date
+  ) {
+    addUser(
+      userName: $userName
+      email: $email
+      password: $password
+      bookGoal: $bookGoal
+      goalDate: $goalDate
+    ) {
+      token
+      user {
+        _id
+      }
+    }
+  }
+`;
