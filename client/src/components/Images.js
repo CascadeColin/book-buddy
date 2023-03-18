@@ -2,8 +2,9 @@ import React from 'react';
 
 const styles ={
     bob: {
-        width: '115px',
+        width: '100px',
         height: '70px',
+        marginTop: '5px'
     }
 }
 
