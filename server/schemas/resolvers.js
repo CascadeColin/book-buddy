@@ -9,11 +9,11 @@ const resolvers = {
       users: async () => {
         return User.find().populate("books");
       },
-      user: async (parent, {name}) => {
-        return User.findOne({name}).populate("books");
+      user: async (parent, {userName}) => {
+        return User.findOne({userName}).populate("books");
       },
-      books: async (parent, {name}) => {
-        const params = name ? {name} : {};
+      books: async (parent, {userName}) => {
+        const params = userName ? {userName} : {};
         return Book.find(params).sort({ title: asc});//how to sort via alpha or whatever the group wants//
       },
       book: async (parent, {bookId}) => {
@@ -33,8 +33,8 @@ const resolvers = {
     },
 
   Mutation:  {
-    addUser: async (parent, { name, email, password }) => {
-      const user = await User.create({ name, email, password });
+    addUser: async (parent, { userName, email, password }) => {
+      const user = await User.create({ userName, email, password });
       const token = signToken(user);
       return { token, user };
     },
@@ -52,7 +52,7 @@ const resolvers = {
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new GraphQLError("Incorrect password or Username. Haha! Get some Prevagen Fool!", {
+        throw new GraphQLError("Incorrect password or email. Haha! Get some Prevagen Fool!", {
           extensions: {
             code: "UNAUTHENTICATED",
           },
@@ -63,10 +63,10 @@ const resolvers = {
 
       return { token, user };
     },
-    addBook: async (parent, { title }, context) => {
+    addBook: async (parent, {  title, author, desc, bookCover, isbn, isRead, toRead, isReading,bookRating, bookComment }, context) => {
       if (context.user) {
         const book = await Book.create({
-          createdBy: context.user.name,
+          createdBy: context.user.userName,
           title,
           author,
           desc,
@@ -98,7 +98,7 @@ const resolvers = {
           { _id: bookId },
           {
             $addToSet: {
-              bookComment: {commentText, bookCommentCreator: context.user.name},
+              bookComment: {commentText, bookCommentCreator: context.user.userName},
             },
           },
           {
@@ -117,7 +117,7 @@ const resolvers = {
       if (context.user) {
         const book = await Book.findOneAndDelete({
           _id: bookId,
-          createdBy: context.user.name,
+          createdBy: context.user.userName,
         });
 
         await User.findOneAndUpdate(
@@ -141,7 +141,7 @@ const resolvers = {
             $pull: {
               bookComments: {
                 _id: bookcommentId,
-                bookCommentCreator: context.user.name,
+                bookCommentCreator: context.user.userName,
               },
             },
           },
