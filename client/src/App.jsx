@@ -3,7 +3,7 @@ import { test } from './style'
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink, } from '@apollo/client';
-// import myBooks from './pages/myBooks';
+//import myBooks from './pages/myBooks';
 import MyBooks from './pages/MyBooks';
 import Profile from './pages/Profile';
 import Navbar from './components/Nav';
@@ -59,7 +59,7 @@ function App() {
           <Route 
             path="/signup" 
             element={<Signup />} 
-          />    
+          />
           {/* <Route 
             path='*'
             element={<h1 className='display-2'>Wrong page!</h1>}
