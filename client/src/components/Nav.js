@@ -7,17 +7,22 @@ import '../assets/css/fonts.css';
 import '../assets/css/nav.css';
 const styles = {
     nav: {
-        backgroundColor: '#E4CFBC'
+        backgroundColor: '#E4CFBC',
+        marginBottom: '-20px',
     },
     fontPrint: {
-        fontFamily: 'italiana'
+        fontFamily: 'italiana',
+        fontSize: '2rem',
     },
     fontCursive: {
         fontFamily: 'Italianno'
     },
     tab: {
-        textIndent: '40px',
-        fontFamily: 'Italianno'
+        fontFamily: 'Italianno',
+        fontSize: '2.5rem',
+        position: 'relative',
+        top: '-19px',
+        left: '8px',
     },
 }
 
@@ -29,7 +34,7 @@ export default function Nav(){
                 <div className="headerWithBob">
                     <Bob />
                     <div className="Header">
-                        <h1 style={styles.fontPrint}>Book</h1>
+                        <h1 style={styles.fontPrint}>B o o k</h1>
                         <h2 style={styles.tab}>Buddy</h2>
                     </div>
                 
