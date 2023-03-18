@@ -1,7 +1,7 @@
 const router = require("express").Router();
 // package that allows for fetch to be used in Node
 const fetch = require("node-fetch");
-const { bookTitleStrToURL, regexGen } = require("../../utils/apiHelpers");
+const { bookTitleStrToURL, bookFilter } = require("../../utils/apiHelpers");
 // any routing related to fetching books will go here
 
 /******  START PSEUDOCODE  ******/
@@ -46,41 +46,84 @@ reference: https://openlibrary.org/dev/docs/api/books
 //     }
 // })
 
+
 async function tempUntilServerRuns() {
   try {
-    const bookTitle = "lord of the rings";
-    const {regex, charLimit} = regexGen(bookTitle)
-    console.log(regex, charLimit)
+    // TODO: remove this in production.  code used to measure performance of function
+    const startTime = new Date().getTime();
+
+    const bookTitle = "the holy bible";
+    const {regex, charLimit} = bookFilter(bookTitle)
+    console.log("regex: ", regex)
+    console.log("charLimit: ", charLimit)
     const searchTitle = bookTitleStrToURL(bookTitle);
     // returns an array of books that match the searched title
     const titleData = await fetch(
       `https://openlibrary.org/search.json?title=${searchTitle}`
     );
     const titleRes = await titleData.json();
-    const isbnArr = titleRes.docs[0].isbn;
+    
+    // limit docs.length to 5
+    titleRes.docs.splice(5, Infinity)
+    
+    // find an index of docs arr that has an isbn arr
+    let i = 0
+    let isbnArr;
+    // skip docs that don't have an isbn property, break loop when isbnArr gets defined
+    while (i < titleRes.docs.length) {
+      if (!titleRes.docs[i].isbn) {
+        i++
+        continue
+      } 
+      isbnArr = titleRes.docs[i].isbn
+      break
+      // TODO: add error handling for if no ISBN array is found
+    }
+    // const isbnArr = titleRes.docs[2].isbn;
 
-    // removes all indexes after 20 - eliminates edge case where page would hang due to iterating through hundreds of array indexes
-    isbnArr.splice(20, Infinity);
+    // removes all indexes after 10 - eliminates edge case where page would hang due to iterating through hundreds of array indexes
+    isbnArr.splice(10, Infinity);
 
-    let i = 0;
-    while (i < isbnArr.length) {
+    let j = 0;
+    while (j < isbnArr.length) {
       const bookData = await fetch(
         `https://openlibrary.org/api/books?bibkeys=ISBN:${isbnArr[i]}&format=json&jscmd=data`
       );
       const bookRes = await bookData.json();
+
+      // skips empty objects
+      if (Object.keys(bookRes).length === 0) {
+        j++
+        continue
+      }
+
       // dynamically creates object key to match what is returned by Open Library
       const isbn = Object.keys(bookRes);
-      console.log(bookRes[isbn].title.toLowerCase());
-      // if user-provided title matches 'regex' and is <= 'charLimit', use that index
+      const searchParameter = bookRes[isbn].title.toLowerCase()
+      // if (searchParameter.match(regex) && searchParameter.length <= charLimit) {
+      if (searchParameter.match(regex)) {  
+        const exec = regex.exec(searchParameter)
+        console.log(searchParameter.length)
+        console.log(exec)
+        console.log("Matching Result: ", searchParameter)
+        break
+      }
+      // IDEA 1: if user-provided title matches 'regex' and is <= 'charLimit', use that index
+
+      // IDEA 2: bookTitle.split(' ') to get array of user-provided words.  If X% of arr index matches regex, then it passes and gets used
 
       // iterator if index did not match
-      i++;
+      j++;
     }
-
-    if (i === isbnArr.length) {
+    // return this all the way to front end and do nothing with DB if function gets this far
+    if (j === isbnArr.length) {
       console.log("No book found by that title!");
     }
 
+    // TODO: remove this in production.  code used to measure performance of function
+    const endTime = new Date().getTime();
+    console.log(`Runtime: ${(endTime/1000)-(startTime/1000)} seconds`)
+    
     // gets the isbn of the first matching book - can refine this later after getting MVP
     // const isbn = titleRes.docs[0].isbn[0]
     // const bookData = await fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`)
