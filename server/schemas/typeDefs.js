@@ -2,11 +2,11 @@ const typeDefs = `#graphql
 
 type User {
     _id: ID
-    name: String
+    userName: String
     email: String
     password: String
     bookGoal: Int
-    goalDate: String
+    goalDate: Date
     bookCompleted: Int
     Books: [Book]
   }
@@ -39,20 +39,21 @@ type User {
 
   type Query {
     users: [User]
-    user(name: String!): User
-    books(name: String): [Book]
+    user(userName: String!): User
+    books(userName: String): [Book]
     book(bookId: ID!): Book
     me: User
   }
 
   type Mutation {
-    addUser(name: String!, email: String!, password: String!): Auth
+    addUser(userName: String!, email: String!, password: String!, bookGoal: Number, goalDate: Date): Auth
     login(email: String!, password: String!): Auth
     addBook(title: String!): Book
     addBookComment(bookId: ID!, commentText: String!): Book
     removeBook(title: String!): Book
     removeBookComment(bookId: ID!, commentText: String!): Book
+    updateBookRating(bookRating: Number): Book 
   }
 `;
-
+//TODO: Need a way to update book boolean fields -  mutation
 module.exports = typeDefs;
