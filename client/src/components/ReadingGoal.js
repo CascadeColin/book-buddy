@@ -12,7 +12,7 @@ const styles = {
         fontSize: '1.5rem',
         fontFamily: 'Italiana',
         marginRight: '100px',
-        marginBottom: '100px'
+        marginBottom: '50px'
     },
     title: {
         fontFamily: 'Italianno',
@@ -26,6 +26,7 @@ const styles = {
     },
     button: {
         fontFamily: 'Italianno',
+        color: 'white',
     }
 }
 
@@ -42,7 +43,7 @@ export default function ReadingGoal() {
                     <h2 style={styles.bookDate}>by ___</h2>
                     </div>
                 {/*on click, have the 'new reading goal' modal pop up*/}
-                <button style={styles.button}>New Goal</button>
+                <button style={styles.button} className='bg-vdarkPurple px-4'>New Goal</button>
             </div>
         </>
     )

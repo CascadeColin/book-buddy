@@ -12,10 +12,14 @@ const styles = {
         backgroundColor: '#E4CFBC',
         marginBottom: '-20px',
         fontFamily: 'Italiana',
+        fontSize: '1.25rem'
     },
     fontCursive: {
         fontFamily: 'Italianno',
-        fontSize: '1.20rem',
+        fontSize: '1.5rem',
+        position: 'relative',
+        top: '10px',
+        right: '8px'
     },
     tab: {
         fontFamily: 'Italianno',
@@ -43,17 +47,24 @@ export default function Nav(){
                         <h2 style={styles.tab}>Buddy</h2>
                     </div>
 
-                    <ul className="navOptions md:flex-shrink-0 space-x-3">
-                        <li className='flex flex-row'>
+                    <ul className="navOptions md:flex-shrink-0 space-x-20">
+                        <li>
                             {/*my books page - add routes by Claire to this*/}
                             <Link to="/mybooks">
-                                <h1 style={styles.fontCursive}>My</h1>
+                                <h1 style={styles.fontCursive}>
+                                My
+                                </h1>
                                 Books
                             </Link>
                         </li>
                         <li>
                             {/*add books modal*/}
-                            {/* <AddBooks /> */}
+                            <Link>
+                                <h1 style={styles.fontCursive}>
+                                Add
+                                </h1>
+                                Books
+                            </Link>
                         </li>
                         <li>
                             {/*logout*/}

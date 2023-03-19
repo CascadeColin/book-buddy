@@ -5,7 +5,7 @@ import '../assets/css/fonts.css';
 const styles = {
     main: {
         position: 'relative',
-        top: '200px',
+        top: '225px',
         fontFamily: 'Italiana',
         fontSize: '1.25rem'
     },
@@ -19,7 +19,8 @@ const styles = {
         fontSize: '1.5rem',
         position: 'relative',
         top: '70px',
-        left: '325px'
+        left: '325px',
+        color: 'white',
     },
     bookInfo: {
         position: 'relative',
@@ -54,9 +55,9 @@ export default function CurrentlyReading() {
 
                     <div style={styles.button} className="space-x-4">
                          {/* automatically move this book to the 'already read' book shelf. Also, if they've finsihed, do we want to prompt them to choose their next book?*/}
-                        <button>Finished!</button>
+                        <button className='bg-vdarkPurple px-3'>Finished!</button>
                         {/* pop up the rating modal! */}
-                        <button>Rate Me</button>
+                        <button className='bg-vdarkPurple px-3'>Rate Me</button>
                     </div>
             </div>
         </>
