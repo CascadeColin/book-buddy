@@ -59,13 +59,16 @@ export default function Nav(){
                         </li>
                         <li>
                             {/*add books modal*/}
-                            <Link>
+                            <Link >
                                 <h1 style={styles.fontCursive}>
                                 Add
                                 </h1>
                                 Books
                             </Link>
                         </li>
+                        {/* <li>
+                             <AddBooks />
+                        </li> */}
                         <li>
                             {/*logout*/}
                             <Link to='/login'>
