@@ -2,8 +2,8 @@ import React from 'react';
 
 const styles ={
     bob: {
-        width: '100px',
-        height: '70px',
+        maxWidth: '100px',
+        maxHeight: '70px',
         marginTop: '5px'
     }
 }
