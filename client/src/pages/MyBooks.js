@@ -10,10 +10,12 @@ const SearchBooks = () => {
 
   return (
 <div>
-
-<p>testing</p>
-<Plant />
-<Bookshelf></Bookshelf>
+  <div m-0>
+    <div class = "w-32 m-0">
+    {/* <Plant /> */}
+    </div>
+    <Bookshelf></Bookshelf>
+  </div>
 </div>
 
 );
