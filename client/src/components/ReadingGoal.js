@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useQuery } from '@apollo/client';
 
 {/*will have to import the queries for reading goal number and reading goal date */}
 
@@ -6,29 +7,43 @@ import '../assets/css/fonts.css';
 const styles = {
     main: {
         backgroundColor: '#73557D',
-    },
-    fontCursive: {
-        fontFamily: 'Italianno',
-    },
-    fontPrint: {
+        color: 'white',
+        textAlign: 'center',
+        fontSize: '1.5rem',
         fontFamily: 'Italiana',
+        marginRight: '100px',
+        marginBottom: '50px'
+    },
+    title: {
+        fontFamily: 'Italianno',
+        fontSize: '3rem',
+    },
+    bookNumber: {
+        fontSize: '3rem',
+    },
+    bookDate: {
+        fontSize: '2.5rem',
+    },
+    button: {
+        fontFamily: 'Italianno',
+        color: 'white',
     }
 }
 
 export default function ReadingGoal() {
     return(
         <>
-            <div style={styles.main}>
-                <h1 style={styles.fontCursive}>Reading Goal:</h1>
+            <div style={styles.main} className='w-4/12 p-4'>
+                <h1 style={styles.title}>Reading Goal:</h1>
                 {/* this syntax will most likely need to be changed once the queries are made */}
-                    <div style={styles.fontPrint}>
+                    <div>
                     {/* reading goal number query */}
-                    <h2>___ books</h2>
+                    <h2 style={styles.bookNumber}>___ books</h2>
                     {/* reading goal date query */}
-                    <h2>by ___</h2>
+                    <h2 style={styles.bookDate}>by ___</h2>
                     </div>
                 {/*on click, have the 'new reading goal' modal pop up*/}
-                <button style={styles.fontCursive}>Update Your Reading Goal</button>
+                <button style={styles.button} className='bg-vdarkPurple px-4'>New Goal</button>
             </div>
         </>
     )
