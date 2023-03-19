@@ -6,7 +6,7 @@ type User {
     email: String
     password: String
     bookGoal: Int
-    goalDate: Date
+    goalDate: String
     bookCompleted: Int
     Books: [Book]
   }
@@ -46,13 +46,15 @@ type User {
   }
 
   type Mutation {
-    addUser(userName: String!, email: String!, password: String!, bookGoal: Number, goalDate: Date): Auth
+    addUser(userName: String!, email: String!, password: String!, bookGoal: Int, goalDate: String): Auth
+    addBookGoal(bookGoal:Int): Auth
+    addGoalDate(bookGoal:String): Auth
     login(email: String!, password: String!): Auth
     addBook(title: String!): Book
     addBookComment(bookId: ID!, commentText: String!): Book
     removeBook(title: String!): Book
     removeBookComment(bookId: ID!, commentText: String!): Book
-    updateBookRating(bookRating: Number): Book 
+    updateBookRating(bookRating: Int): Book 
   }
 `;
 //TODO: Need a way to update book boolean fields -  mutation

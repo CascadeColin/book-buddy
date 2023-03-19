@@ -63,6 +63,47 @@ const resolvers = {
 
       return { token, user };
     },
+
+    // need to update user.bookGoal and  .goalDate in model specifically
+
+    // addBookGoal: async (parent, args, context) => {
+    //   if (context.user) {
+    //     return await User.findByIdAndUpdate(context.user._id, args, {
+    //       new: true,
+    //     })
+    // }
+
+    // addGoalDate: async (parent, args, context) => {
+    //   if (context.user) {
+    //     return await User.findByIdAndUpdate(context.user._id, args, {
+    //       new: true,
+    //     })
+    // }
+
+    // updateBookStatus: async (parent, {bookId, toRead, isReading, bookRating }, context) => {
+    //   if (context.user) {
+    //     return Book.findOneAndUpdate(
+    //       { _id: bookId },
+    //       {
+    //         $addToSet: {
+    //           isRead: {},
+    //           isReading: {},
+    //           bookRating: {},
+    //         },
+    //       },
+    //       {
+    //         new: true,
+    //         runValidators: true,
+    //       }
+    //     );
+    //   }
+    //   throw new GraphQLError("Please log in to Add/Remove to your Bookcase!", {
+    //     extensions: {
+    //       code: "UNAUTHENTICATED",
+    //     },
+    //   });
+    // },
+
     addBook: async (parent, {  title, author, desc, bookCover, isbn, isRead, toRead, isReading,bookRating, bookComment }, context) => {
       if (context.user) {
         const book = await Book.create({
