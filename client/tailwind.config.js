@@ -12,6 +12,11 @@ module.exports = {
         darkPurple: '#73557D',
         vdarkPurple: '#251A45',
         lightGreen: '#C3C6BD',
+      },
+      // fonts are imported directly into 'public/index.html' - tailwind is able to "see" it from there using react
+      fontFamily: {
+        italiana: ['Italiana', 'serif'],
+        italianno: ['Italianno', 'cursive']
       }
     },
   },

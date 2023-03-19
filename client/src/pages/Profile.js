@@ -4,18 +4,12 @@ import CurrentlyReading from '../components/CurrentlyReading';
 import ProfBookShelf from '../components/ProfBookShelf'
 import { Plant } from '../components/Images';
 
-import '../assets/css/fonts.css';
-
-const styles = {
-    body: {
-        backgroundColor: '#FCF3EB',
-    }
-}
+// import '../assets/css/fonts.css';
 
 export default function Profile() {
     return (
         <>
-            <div style={styles.body} className='max-h-screen'>
+            <div className='max-h-screen bg-body'>
             <div>
                 <div>
                     {/*Book Shelf with randomized saved books*/}
