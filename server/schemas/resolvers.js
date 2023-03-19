@@ -7,7 +7,10 @@ const resolvers = {
   Query: {
     // Do we need a query for multiple users, or even user if we just need to Auth "me"? I'll add to make sure it doesnt cause issues
       users: async () => {
-        return User.find().populate("books");
+        return User.find().populate({
+          path: "",
+          populate: "books",
+        });
       },
       user: async (parent, {userName}) => {
         return User.findOne({userName}).populate("books");
