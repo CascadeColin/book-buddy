@@ -6,7 +6,8 @@ type User {
     email: String
     password: String
     bookGoal: Int
-    goalDate: Date
+    # "Date" would be a custom type -> easier to use unix timestamp and convert it
+    goalDate: Int
     bookCompleted: Int
     Books: [Book]
   }
@@ -46,13 +47,15 @@ type User {
   }
 
   type Mutation {
-    addUser(userName: String!, email: String!, password: String!, bookGoal: Number, goalDate: Date): Auth
+    addUser(userName: String!, email: String!, password: String!, bookGoal: Int, goalDate: String , Books:[ID]): Auth
+    addBookGoal(bookGoal:Int): Auth
+    addGoalDate(bookGoal:String): Auth
     login(email: String!, password: String!): Auth
-    addBook(title: String!): Book
+    addBook(title: String!, author:String!, desc: String, bookCover:String, isbn:String, isRead:Boolean, toRead:Boolean, isReading:Boolean, bookRating:Int!): Book
     addBookComment(bookId: ID!, commentText: String!): Book
     removeBook(title: String!): Book
     removeBookComment(bookId: ID!, commentText: String!): Book
-    updateBookRating(bookRating: Number): Book 
+    updateBookRating(bookRating: Int): Book 
   }
 `;
 //TODO: Need a way to update book boolean fields -  mutation

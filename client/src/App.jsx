@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import Navbar from './components/Nav';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import AddBooks from './pages/AddBooks';
 import { setContext } from '@apollo/client/link/context';
 
 const httpLink = createHttpLink({
@@ -51,6 +52,10 @@ function App() {
           <Route 
             path='/mybooks' 
             element={<MyBooks />} 
+          />
+          <Route 
+            path='/addbooks' 
+            element={<AddBooks />} 
           />
           <Route 
             path="/login" 
