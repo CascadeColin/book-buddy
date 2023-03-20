@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import Bob from './Images';
-import AddBooks from './AddBooks';
+import AddBooks from '../pages/AddBooks';
 import { Link } from 'react-router-dom';
 
 
@@ -58,17 +58,13 @@ export default function Nav(){
                             </Link>
                         </li>
                         <li>
-                            {/*add books modal*/}
-                            <Link >
+                            <Link to='/addbooks'>
                                 <h1 style={styles.fontCursive}>
                                 Add
                                 </h1>
                                 Books
                             </Link>
                         </li>
-                        {/* <li>
-                             <AddBooks />
-                        </li> */}
                         <li>
                             {/*logout*/}
                             <Link to='/login'>

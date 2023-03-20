@@ -25,7 +25,7 @@
 
 //   return (
 //     <div>
-//       <Button onClick={handleOpen}>Open modal</Button>
+//       <button onClick={handleOpen}>Open modal</button>
 //       <Modal
 //         open={open}
 //         onClose={handleClose}
