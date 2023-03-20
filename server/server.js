@@ -1,4 +1,5 @@
 const express = require("express");
+const bodyParser = require('body-parser')
 // Import the ApolloServer class
 const { ApolloServer } = require("@apollo/server");
 const { expressMiddleware } = require("@apollo/server/express4");
@@ -6,6 +7,7 @@ const {
   ApolloServerPluginDrainHttpServer,
 } = require("@apollo/server/plugin/drainHttpServer");
 const http = require("http");
+const routes = require("./controllers");
 
 const { authMiddleware } = require("./utils/auth");
 
@@ -26,6 +28,11 @@ const server = new ApolloServer({
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+// needed for API
+app.use(express.text());
+app.use(bodyParser.json())
+app.use(routes);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
