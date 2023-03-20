@@ -15,7 +15,8 @@ function Signup(props) {
         email: formState.email,
         password: formState.password,
         userName: formState.userName,
-        lastName: formState.lastName,
+        bookGoal: formState.bookGoal,
+        goalDate: formState.goalDate,
       },
     });
     const token = mutationResponse.data.addUser.token;
@@ -67,7 +68,7 @@ function Signup(props) {
           />
         </div>
         <div className="flex-row space-between my-2">
-          <label htmlFor="pwd">How many Books do you plan to read?:</label>
+          <label htmlFor="pwd">How many books do you plan to read?:</label>
           <input
             placeholder="#"
             name="bookGoal"
@@ -79,7 +80,7 @@ function Signup(props) {
           <div className="flex-row space-between my-2">
           <label htmlFor="pwd">What is the date you want to reach this goal by?:</label>
           <input
-            placeholder="YYYY-MM-DD"
+            placeholder="DD-MM-YYYY"
             name="goalDate"
             type="goalDate"
             id="goalDate"
