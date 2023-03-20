@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require('body-parser')
+const cors = require('cors')
 // Import the ApolloServer class
 const { ApolloServer } = require("@apollo/server");
 const { expressMiddleware } = require("@apollo/server/express4");
@@ -30,6 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // needed for API
+app.use(cors())
 app.use(express.text());
 app.use(bodyParser.json())
 app.use(routes);

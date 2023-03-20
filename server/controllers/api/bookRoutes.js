@@ -113,7 +113,7 @@ router.post("/newbook", async (req,res) => {
         // send status back to front end
         if (newBook) {
           console.log("Book created successfully!")
-          res.status(200).send("Book created successfully!")
+          res.status(200).json(JSON.stringify("Book created successfully!"))
         }
 
         // ends the loop
@@ -126,14 +126,12 @@ router.post("/newbook", async (req,res) => {
 
     if (i === isbnArr.length) {
       console.log("No book found by that title!");
+      res.status(404)
     }
 
-    // gets the isbn of the first matching book - can refine this later after getting MVP
-    // const isbn = titleRes.docs[0].isbn[0]
-    // const bookData = await fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`)
-    // const bookRes = await bookData.json()
-    // console.log(bookRes)
-    // send this data to the database
+    // something is wrong if it gets this far
+    console.log("Something went wrong!")
+    res.status(500)
   } catch (err) {
     console.log(err);
   }

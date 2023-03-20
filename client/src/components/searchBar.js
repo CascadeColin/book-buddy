@@ -35,27 +35,25 @@ const SearchForBooks = () => {
     const getAllBooksURL = "http://localhost:3001/api/books/allbooks";
     try {
       console.log(searchInput)
-      const data = await fetch(newBookURL, {
+      const res = await fetch(newBookURL, {
         method: "POST",
-        mode: "no-cors",
         body: searchInput.toLowerCase().trim(),
         headers: { "Content-Type": "text/plain" },
       });
 
-      await data;
-      console.log(data)
+      const data = await res;
 
       // if a book is found
       // FIXME: render the page with all books from db
-      if (res.status === 200) {
+      if (data.status === 200) {
         //TODO: update array that renders all book objects
         const bookData = fetch(getAllBooksURL, {
           method: "GET",
-          mode: "no-cors",
           headers: { "Content-Type": "application/json" },
         });
         // setSearchBooks to refresh array with new book entry
         setSearchBooks(bookData);
+        console.log(`book arr: ${searchBooks}`)
       } else {
         // TODO: decide how to handle bad requests
         // We have discussed manually entering books.  We can render a conditional error message.  For now, setting it to do nothing.
