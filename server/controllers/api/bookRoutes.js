@@ -2,6 +2,8 @@ const router = require("express").Router();
 // package that allows for fetch to be used in Node
 const fetch = require("node-fetch");
 const { bookTitleStrToURL, regexGen } = require("../../utils/apiHelpers");
+const { Book } = require('../../models/')
+
 // any routing related to fetching books will go here
 
 /******  START PSEUDOCODE  ******/
@@ -46,11 +48,20 @@ reference: https://openlibrary.org/dev/docs/api/books
 //     }
 // })
 
-async function tempUntilServerRuns() {
+router.get("/allbooks", async (req,res) => {
   try {
-    const bookTitle = "lord of the rings";
-    const {regex, charLimit} = regexGen(bookTitle)
-    console.log(regex, charLimit)
+    const findAllBooks = await Book.find()
+    console.log(findAllBooks)
+    res.status(200).json(findAllBooks)
+  } catch(err) {
+    console.log(err)
+  }
+})
+
+router.post("/newbook", async (req,res) => {
+  try {
+    const bookTitle = req.body;
+    const {regex} = regexGen(bookTitle)
     const searchTitle = bookTitleStrToURL(bookTitle);
     // returns an array of books that match the searched title
     const titleData = await fetch(
@@ -68,10 +79,46 @@ async function tempUntilServerRuns() {
         `https://openlibrary.org/api/books?bibkeys=ISBN:${isbnArr[i]}&format=json&jscmd=data`
       );
       const bookRes = await bookData.json();
+
+      // throws out bad entries and iterates to next index - all ISBNs are between 10 and 13 chars
+      if (isbnArr[i].length < 10 || isbnArr[i].length > 13) {
+        i++
+        continue
+      }
+
       // dynamically creates object key to match what is returned by Open Library
-      const isbn = Object.keys(bookRes);
-      console.log(bookRes[isbn].title.toLowerCase());
+      const dynamicISBN = Object.keys(bookRes);
+      const search = bookRes[dynamicISBN].title.toLowerCase()
       // if user-provided title matches 'regex' and is <= 'charLimit', use that index
+
+      // if it passes regex check, create a new Book
+      if (search.match(regex)) {
+        const weHaveAWinner = bookRes[dynamicISBN]
+        console.log(weHaveAWinner)
+        const dataStoreObj = {
+          createdBy: "currentUser TODO: update possible",
+          title: weHaveAWinner.title,
+          author: weHaveAWinner.authors[0].name,
+          desc: "TODO: this will require logic I haven't written yet",
+          bookCover: weHaveAWinner.cover.large,
+          isbn: isbnArr[i],
+          isRead: false,
+          toRead: true,
+          isReading: false,
+          bookRating: 0,
+          bookComment: []
+        }
+        const newBook = await Book.create(dataStoreObj)
+
+        // send status back to front end
+        if (newBook) {
+          console.log("Book created successfully!")
+          res.status(200).send("Book created successfully!")
+        }
+
+        // ends the loop
+        break
+      }
 
       // iterator if index did not match
       i++;
@@ -90,6 +137,6 @@ async function tempUntilServerRuns() {
   } catch (err) {
     console.log(err);
   }
-}
+})
 
-tempUntilServerRuns();
+module.exports = router;

@@ -1,118 +1,127 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from "react";
 
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 
-// these instances will need to match our API 
-import { saveBook, searchApiBooks } from '';
-import { saveBooks, getSavedBooks } from '';
+// these instances will need to match our API
+// import { saveBook, searchApiBooks } from '';
+// import { saveBooks, getSavedBooks } from '';
 
+// TODO: set up fetch requests with internal Express API
 
 const SearchForBooks = () => {
-    // NEED TO MATCH OUR API 
-    const [searchBooks, setSearchBooks] = useState([]);
+  // NEED TO MATCH OUR API
 
-    const [searchInput, setSearchInput] = useState('');
-  
-    
-    const [savedBooks, setSavedBooks] = useState(getSavedBook());
-  
-   
-    useEffect(() => {
-      return () => saveBook(savedBooks);
-    });
-  
-    
-    const handleFormSubmit = async (event) => {
-      event.preventDefault();
-  
-      if (!searchInput) {
-        return false;
-      }
-  
-      try {
-        const response = await searchApiBooks(searchInput);
-  
-        if (!response.ok) {
-          throw new Error('something went wrong!');
-        }
-  
-        const { items } = await response.json();
-  
-        const bookData = items.map((book) => ({
-          bookId: book.id,
-          authors: book.volumeInfo.authors || ['No author to display'],
-          title: book.volumeInfo.title,
-          image: book.volumeInfo.imageLinks?.thumbnail || '',
-        }));
-  
+  // returned books array from db
+  const [searchBooks, setSearchBooks] = useState([]);
+  // variable for performing a search
+  const [searchInput, setSearchInput] = useState("");
+
+  // const [savedBooks, setSavedBooks] = useState(getSavedBook());
+  const [savedBooks, setSavedBooks] = useState("placeholder");
+
+  // useEffect(() => {
+  //   return () => saveBook(savedBooks);
+  // }, []);
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    // if nothing is entered, return without doing anything
+    if (!searchInput) {
+      return;
+    }
+
+    // TODO: URLs are for development only.  will need to figure out the proper URL paths for Heroku
+    const newBookURL = "http://localhost:3001/api/books/newbook";
+    const getAllBooksURL = "http://localhost:3001/api/books/allbooks";
+    try {
+      console.log(searchInput)
+      const data = await fetch(newBookURL, {
+        method: "POST",
+        mode: "no-cors",
+        body: searchInput.toLowerCase().trim(),
+        headers: { "Content-Type": "text/plain" },
+      });
+
+      await data;
+      console.log(data)
+
+      // if a book is found
+      // FIXME: render the page with all books from db
+      if (res.status === 200) {
+        //TODO: update array that renders all book objects
+        const bookData = fetch(getAllBooksURL, {
+          method: "GET",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+        });
+        // setSearchBooks to refresh array with new book entry
         setSearchBooks(bookData);
-        setSearchInput('');
-      } catch (err) {
-        console.error(err);
+      } else {
+        // TODO: decide how to handle bad requests
+        // We have discussed manually entering books.  We can render a conditional error message.  For now, setting it to do nothing.
+        return;
       }
-    };
-  
-    
-    const handleSaveBook = async (bookId) => {
-      
-      const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
-  
+      // clear the searchbox
+      setSearchInput("");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleSaveBook = async (bookId) => {
+    // const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
+    const bookToSave = "temporary";
+
     //   we need our Auth logic
-      const token = Auth.loggedIn() ? Auth.getToken() : null;
-  
-      if (!token) {
-        return false;
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const response = await saveBook(bookToSave, token);
+
+      if (!response.ok) {
+        throw new Error("something went wrong!");
       }
-  
-      try {
-        const response = await saveBook(bookToSave, token);
-  
-        if (!response.ok) {
-          throw new Error('something went wrong!');
-        }
-  
-        
-        setSavedBooks([...savedBooks, bookToSave.bookId]);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-  
-    return (
-      <>
-        <div className='text-light bg-dark'>
-          <div>
-            <h1>Search for Books</h1>
-            <div onSubmit={handleFormSubmit}>
-              <div>
-                <div xs={12} md={8}>
-                  <div
-                    name='searchInput'
-                    value={searchInput}
-                    onChange={(e) => setSearchInput(e.target.value)}
-                    type='text'
-                    size='lg'
-                    placeholder='What Book Awaits You?'
-                  />
-                </div>
-                <button xs={12} md={4}>
-                  <div type='submit' variant='success' size='lg'>
-                    Submit
-                  </div>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-  
+
+      setSavedBooks([...savedBooks, bookToSave.bookId]);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  return (
+    <>
+      <div className="text-white">
         <div>
-          <h2>
-            {searchedBooks.length
-              ? `Viewing ${searchedBooks.length} results:`
-              : 'Search for a book to begin'}
-          </h2>
-          <div>
-            {searchedBooks.map((book) => {
+          <h1>Search for Books</h1>
+          <form onSubmit={handleFormSubmit}>
+            <input
+              type="text"
+              size="lg"
+              name="searchInput"
+              value={searchInput}
+              placeholder="What Book Awaits You?"
+              onChange={(e) => setSearchInput(e.target.value)}
+            />
+            <button type="submit" variant="success" size="lg">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div className="text-white">
+        <h2>
+          {searchBooks.length
+            ? `Viewing ${searchBooks.length} results:`
+            : "Search for a book to begin"}
+        </h2>
+        <div>
+          <p>This is where Book array will be mapped</p>
+          {searchBooks.map((book) => {
               return (
                 <div key={book.bookId} border='dark'>
                   {book.image ? (
@@ -135,11 +144,10 @@ const SearchForBooks = () => {
                 </div>
               );
             })}
-          </div>
         </div>
-      </>
-    );
-  };
-  
-  export default SearchForBooks;
-  
+      </div>
+    </>
+  );
+};
+
+export default SearchForBooks;
