@@ -7,17 +7,17 @@ const resolvers = {
   Query: {
     // Do we need a query for multiple users, or even user if we just need to Auth "me"? I'll add to make sure it doesnt cause issues
       users: async () => {
-        return User.find().populate({
-          path: "",
-          populate: "books",
-        });
+        return User.find().populate(
+          
+        "books"
+        );
       },
       user: async (parent, {userName}) => {
         return User.findOne({userName}).populate("books");
       },
       books: async (parent, {userName}) => {
         const params = userName ? {userName} : {};
-        return Book.find(params).sort({ title: asc});//how to sort via alpha or whatever the group wants//
+        return Book.find(params);//how to sort via alpha or whatever the group wants//
       },
       book: async (parent, {bookId}) => {
         return Book.findOne({_id: bookId});
@@ -67,7 +67,6 @@ const resolvers = {
       return { token, user };
     },
 
-    // need to update user.bookGoal and  .goalDate in model specifically
 
     // addBookGoal: async (parent, args, context) => {
     //   if (context.user) {
@@ -83,7 +82,7 @@ const resolvers = {
     //     })
     // }
 
-    // updateBookStatus: async (parent, {bookId, toRead, isReading, bookRating }, context) => {
+    // updateBookStatus: async (parent, {bookId, toRead, isReading }, context) => {
     //   if (context.user) {
     //     return Book.findOneAndUpdate(
     //       { _id: bookId },
@@ -91,6 +90,27 @@ const resolvers = {
     //         $addToSet: {
     //           isRead: {},
     //           isReading: {},
+    //         },
+    //       },
+    //       {
+    //         new: true,
+    //         runValidators: true,
+    //       }
+    //     );
+    //   }
+    //   throw new GraphQLError("Please log in to Add/Remove to your Bookcase!", {
+    //     extensions: {
+    //       code: "UNAUTHENTICATED",
+    //     },
+    //   });
+    // }
+
+        // updateBookRating: async (parent, {bookRating }, context) => {
+    //   if (context.user) {
+    //     return Book.findOneAndUpdate(
+    //       { _id: bookId },
+    //       {
+    //         $addToSet: {
     //           bookRating: {},
     //         },
     //       },
