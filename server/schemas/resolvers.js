@@ -132,16 +132,43 @@ const resolvers = {
     }
     },
 
-    updateBookStatus: async (parent, {bookId, toRead, isReading, isRead }, context) => {
+    // updateToRead: async (parent, args, content) => {
+    //   Book.find({"book._id": id}).where("isReading").equals(false).updateOne(
+    //     {
+    //       $set {
+    //         "isReading": true,
+    //       }
+    //     },(err,msg) => {
+    //       if(err) throw err;
+    //       res.send(msg);
+    //     }
+    //   )
+
+    // }
+
+    updateBookStatus: async (parent, {bookId, bookStatusValue }, context) => {
       if (context.user) {
+        const updateBook = { 
+          toRead: true,
+          isReading: false,
+          isRead: false,
+        }
+        if (bookStatusValue==="isReading"){
+          updateBook.toRead=false
+          updateBook.isRead=false
+          updateBook.isReading=true
+        }
+        if (bookStatusValue==="isRead"){
+          updateBook.isReading=false
+          updateBook.toRead=false
+          updateBook.isRead=true
+        }
         return Book.findOneAndUpdate(
           { _id: bookId },
           {},
           {
-            $push: {
-              toRead: {},
-              isRead: {},
-              isReading: {},
+            $Set: {
+              updateBook
             },
           },
           {
@@ -149,13 +176,16 @@ const resolvers = {
             runValidators: true,
           }
         );
-      }
+
       throw new GraphQLError("Please log in to Add/Remove to your Bookcase!", {
         extensions: {
           code: "UNAUTHENTICATED",
         },
       });
-    },
+    }
+  },
+
+  
   
 
         updateBookRating: async (parent, {bookRating }, context) => {

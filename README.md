@@ -12,10 +12,11 @@
 * [Questions](#questions)
 * [License](#license)
 * [Deployed](#deployed)
+* [Image](#image)
 
 
 ## Description
-A collaberation project that showcases knowledge of REACT, MERN, amd Apollo Servers to create a App that allows users to log in and have a booklist they can add/delete books to. 
+A collaberation project that showcases knowledge of REACT, MERN, amd Apollo Servers to create a App that allows users to log in to our Website and search a Open API Library to add books they are interested into their Booklist, and update book reading goals 
 
 ## Install
 NPM packages apollo-server-express, bcrypt, express, graphQL, jswebtoken, mongoose, @apollo/server
@@ -31,18 +32,11 @@ NaN
 
 ## Questions
 Please reach out to us though our GitHub or via our E-mail with any questions or concerns you may have <br/>
-nicolesoccer9@comcast.net <br/>
-[github.com/nrose19](https://github.com/nrose19)
-Claire.bain3@gmail.com <br/>
-[github.com/Clairebain3](https://github.com/Clairebain3)
-Kmvanwyk@msn.com<br/>
-[github.com/vanwykkim](https://github.com/vanwykkim)
-rasvindra@hotmail.com <br/>
-[github.com/rasvindra](https://github.com/rasvindra)
-colin.marshall94@gmail.com <br/>
-[github.com/CascadeColin](https://github.com/CascadeColin)
-
-
+Nicole Cohen: nicolesoccer9@comcast.net / [github.com/nrose19](https://github.com/nrose19)<br/>
+Claire Bain: Claire.bain3@gmail.com / [github.com/Clairebain3](https://github.com/Clairebain3)<br/>
+Kim Van Wyk: Kmvanwyk@msn.com / [github.com/vanwykkim](https://github.com/vanwykkim)<br/>
+Ravi Nagi: rasvindra@hotmail.com / [github.com/rasvindra](https://github.com/rasvindra)<br/>
+Colin Marshall: colin.marshall94@gmail.com / [github.com/CascadeColin](https://github.com/CascadeColin)<br/>
 
 ## License
 MIT
@@ -50,4 +44,5 @@ MIT
 ## Deployed
 <!-- deployed link -->
 
-![](assets/images/"image of deployed app")
+## Image
+![](./client/public/book-buddy-capture.PNG)
