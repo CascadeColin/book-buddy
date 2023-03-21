@@ -36,15 +36,6 @@ const styles = {
 
 
 export default function CurrentlyReading() {
-    const button = 'Rate Me!'
-    const ratingTitle = 'Rate This Book:'
-    const rateIt = 'Rate It!'
-    const ratingInfo = () => {
-        
-    }
-    const saveRating = () => {
-
-    }
     return (
         <>
             <div 
@@ -72,13 +63,7 @@ export default function CurrentlyReading() {
                         {/* pop up the rating modal! */}
                         <button type='button' 
                         className="bg-vdarkPurple text-white hover:bg-medPurple font-bold uppercase text-md px-2 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
-                            <Modal
-                                buttonName={button}
-                                modalTitle={ratingTitle}
-                                modalFunction={rateIt}
-                                modalInformation={ratingInfo}
-                                onClickInfo={saveRating}
-                            />
+                            <Rating />
                         </button>
                     </div>
             </div>
