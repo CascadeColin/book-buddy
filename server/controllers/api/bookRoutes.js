@@ -1,7 +1,7 @@
 const router = require("express").Router();
 // package that allows for fetch to be used in Node
 const fetch = require("node-fetch");
-const { bookTitleStrToURL, regexGen } = require("../../utils/apiHelpers");
+const { bookTitleStrToURL, regexGen, addDesc } = require("../../utils/apiHelpers");
 const { Book } = require('../../models/')
 
 // any routing related to fetching books will go here
@@ -51,9 +51,18 @@ reference: https://openlibrary.org/dev/docs/api/books
 router.get("/allbooks", async (req,res) => {
   try {
     const findAllBooks = await Book.find()
-    console.log(findAllBooks)
     res.status(200).json(findAllBooks)
   } catch(err) {
+    console.log(err)
+  }
+})
+
+// NOTE: not intended for production at the moment.  Just an easy way to clear the books table.  Use this route in Insomia
+router.delete("/deleteallbooks", async (req,res) => {
+  try {
+    const deleteBooks = await Book.deleteMany({})
+    res.status(200).json({message: "all books deleted!"})
+  } catch (err) {
     console.log(err)
   }
 })
@@ -89,17 +98,17 @@ router.post("/newbook", async (req,res) => {
       // dynamically creates object key to match what is returned by Open Library
       const dynamicISBN = Object.keys(bookRes);
       const search = bookRes[dynamicISBN].title.toLowerCase()
-      // if user-provided title matches 'regex' and is <= 'charLimit', use that index
-
+      // TEST: seeing how addDesc() holds up
+      // console.log("Book Desc Test: ", addDesc(bookRes[dynamicISBN]))
+      
       // if it passes regex check, create a new Book
       if (search.match(regex)) {
         const weHaveAWinner = bookRes[dynamicISBN]
-        console.log(weHaveAWinner)
         const dataStoreObj = {
           createdBy: "currentUser TODO: update possible",
           title: weHaveAWinner.title,
           author: weHaveAWinner.authors[0].name,
-          desc: "TODO: this will require logic I haven't written yet",
+          desc: addDesc(weHaveAWinner),
           bookCover: weHaveAWinner.cover.large,
           isbn: isbnArr[i],
           isRead: false,
@@ -128,10 +137,6 @@ router.post("/newbook", async (req,res) => {
       console.log("No book found by that title!");
       res.status(404)
     }
-
-    // something is wrong if it gets this far
-    console.log("Something went wrong!")
-    res.status(500)
   } catch (err) {
     console.log(err);
   }

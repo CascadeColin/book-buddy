@@ -85,7 +85,8 @@ const SearchForBooks = () => {
                 <img src={book.bookCover} alt={`Book Cover for ${book.title}`} />
                 <p>Title: {book.title}</p>
                 <p>Author: {book.author}</p>
-                <p>Description: {book.desc}</p>
+                {/* I hardcoded the description 'type' into addDesc() on the server side - no need to add it here */}
+                <p>{book.desc}</p>
                 {/* apparently you can convert a boolean to a string using toString() - was a total guess lol */}
                 <p>Have I read it? {book.isRead.toString()}</p>
                 <p>Am I reading it now? {book.isReading.toString()}</p>
