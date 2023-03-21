@@ -1,6 +1,5 @@
 const express = require("express");
 const bodyParser = require('body-parser')
-const cors = require('cors')
 // Import the ApolloServer class
 const { ApolloServer } = require("@apollo/server");
 const { expressMiddleware } = require("@apollo/server/express4");
@@ -31,13 +30,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // needed for API
-// const corsOptions = {
-//   "origin": "*",
-//   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-//   "preflightContinue": false,
-//   "optionsSuccessStatus": 200
-// }
-// app.use(cors(corsOptions))
 app.use((req, res, next) => {
   res.append('Access-Control-Allow-Origin', ['*']);
   res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
