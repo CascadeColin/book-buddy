@@ -48,7 +48,7 @@ export default function Modal(props) {
                 <div className="relative p-6 flex-auto">
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
                     {/* MODAL INFORMATION (MAIN BODY) */}
-                    {props.modalInformation}
+                    {props.modalInformation()}
                   </p>
                 </div>
                 {/*footer*/}
@@ -67,7 +67,7 @@ export default function Modal(props) {
                   >
                     {/* FINAL BUTTON (SAVE INFORMATION?) does this need to be a submit? */}
                     <h1
-                    onClick={() => {props.onClickInfo}}
+                    onClick={() => {props.onClickInfo()}}
                     >{props.modalFunction}</h1>
                   </button>
                 </div>
