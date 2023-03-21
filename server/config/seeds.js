@@ -107,6 +107,25 @@ db.once("open", async () => {
     books: [book[3], book[4]],
   });
 
+  await Book.create({
+      createdBy: "Pamela Washington",
+      title: "The Hobbit",
+      author: '"J.R.R. Tolkien"',
+      desc: "In a hole in the ground there lived a hobbit. Not a nasty diry wet hole, filled with ends of worms and an oozy smell...",
+      bookCover: "https://covers.openlibrary.org/b/id/2341310-L.jpg",
+      isbn: "0261103318",
+      isRead: false,
+      toRead: true,
+      isReading: true,
+      bookRating: 5,
+      bookComment: [
+        {
+          commentText: "Reading Ninja recommended this book!",
+          bookCommentCreator: "Pamela Washington",
+        },
+      ],
+  });
+  
   console.log("users seeded");
 
   process.exit();
