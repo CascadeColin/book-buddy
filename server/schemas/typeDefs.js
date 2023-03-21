@@ -53,7 +53,7 @@ type User {
     login(email: String!, password: String!): Auth
     addBook(title: String!, author:String!, desc: String, bookCover:String, isbn:String, isRead:Boolean, toRead:Boolean, isReading:Boolean, bookRating:Int!): Book
     addBookComment(bookId: ID!, commentText: String!): Book
-    updateBookStatus(bookId:ID!, isRead: Boolean, isReading:Boolean, toRead: Boolean): Book
+    updateBookStatus(bookId:ID!, bookStatusValue:String): Book
     removeBook(title: String!): Book
     removeBookComment(bookId: ID!, commentText: String!): Book
     updateBookRating(bookRating: Int): Book 

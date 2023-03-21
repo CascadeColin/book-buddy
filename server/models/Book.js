@@ -33,17 +33,14 @@ const bookSchema = new Schema({
     },
     isRead: {
         type: Boolean,
-        required:false,
         default: false,
     },
     toRead: {
         type: Boolean,
-        required: true,
         default: true,
     },
     isReading: {
         type: Boolean,
-        required: false,
         default: false,
     },
     bookRating: {
