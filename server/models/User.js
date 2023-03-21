@@ -29,7 +29,7 @@ const userSchema = new Schema({
     default: 0,
   },
   goalDate: {
-    type: Date,
+    type: String,
     required: false,
   },
   bookCompleted: {

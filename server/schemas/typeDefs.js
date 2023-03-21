@@ -6,8 +6,7 @@ type User {
     email: String
     password: String
     bookGoal: Int
-    # "Date" would be a custom type -> easier to use unix timestamp and convert it
-    goalDate: Int
+    goalDate: String
     bookCompleted: Int
     Books: [Book]
   }
@@ -60,4 +59,5 @@ type User {
   }
 `;
 //TODO: Need a way to update book boolean fields -  mutation
+//FIXME: probably should make DATE a string and validate it using REGEX
 module.exports = typeDefs;
