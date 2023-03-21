@@ -36,7 +36,10 @@ const userSchema = new Schema({
     type: Number,
     default: 0,
   },
-  books: [Book.schema],
+  books: [{
+      type: Schema.Types.ObjectId,
+      ref: "Book"
+  }],
 });
 
 // pre-save middle ware for password creation

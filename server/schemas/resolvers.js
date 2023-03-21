@@ -4,36 +4,78 @@ const {User, Book} = require("../models");
 const {signToken} = require ("../utils/auth")
 
 const resolvers = {
-  Query: {
-    // Do we need a query for multiple users, or even user if we just need to Auth "me"? I'll add to make sure it doesnt cause issues
-      users: async () => {
-        return User.find().populate(
+  // Query: {
+  //   // Do we need a query for multiple users, or even user if we just need to Auth "me"? I'll add to make sure it doesnt cause issues
+  //     users: async () => {
+  //       return User.find().populate(
           
-        "books"
-        );
-      },
-      user: async (parent, {userName}) => {
-        return User.findOne({userName}).populate("books");
-      },
-      books: async (parent, {userName}) => {
-        const params = userName ? {userName} : {};
-        return Book.find(params);//how to sort via alpha or whatever the group wants//
-      },
-      book: async (parent, {bookId}) => {
-        return Book.findOne({_id: bookId});
-      },
-      me: async (parent, args, context) => {
-        if (context.user) {
-        return User.findOne({_id: context.user_id }).populate("books");
-        }
-        throw new GraphQLError("Please log in to view your Bookcase!", {
-          extensions: {
-            code: "UNAUTHENTICATED"
-          }
-        })
-      },
+  //       "books"
+  //       );
+  //     },
+  //     user: async (parent, {userName}) => {
+  //       return User.findOne({userName}).populate("books");
+  //     },
+  //     books: async (parent, {userName}) => {
+  //       const params = userName ? {userName} : {};
+  //       return Book.find(params);//how to sort via alpha or whatever the group wants//
+  //     },
+  //     book: async (parent, {bookId}) => {
+  //       return Book.findOne({_id: bookId});
+  //     },
+  //     me: async (parent, args, context) => {
+  //       if (context.user) {
+  //       return User.findOne({_id: context.user_id }).populate("books");
+  //       }
+  //       throw new GraphQLError("Please log in to view your Bookcase!", {
+  //         extensions: {
+  //           code: "UNAUTHENTICATED"
+  //         }
+  //       })
+  //     },
 
-    },
+  //   },
+
+    Query: {
+      // Do we need a query for multiple users, or even user if we just need to Auth "me"? I'll add to make sure it doesnt cause issues
+        users: async () => {
+          return await User.find();
+        },
+
+        user: async (parent, {userName}) => {
+          return User.findOne({userName}).populate("books");
+        },
+
+        books: async (parent, {user, userName}) => {
+          const params = {};
+          if (user) {
+            params.user = user;
+          }
+
+          if (userName) {
+            params.userName = {
+              $regex: userName,
+            };
+          }
+
+          return await Book.find(params).populate("user")
+        },
+
+        book: async (parent, {bookId}) => {
+          return Book.findOne({_id: bookId});
+        },
+
+        me: async (parent, args, context) => {
+          if (context.user) {
+          return User.findOne({_id: context.user_id }).populate("books");
+          }
+          throw new GraphQLError("Please log in to view your Bookcase!", {
+            extensions: {
+              code: "UNAUTHENTICATED"
+            }
+          })
+        },
+  
+      },
 
   Mutation:  {
     addUser: async (parent, { userName, email, password }) => {
@@ -68,64 +110,68 @@ const resolvers = {
     },
 
 
-    // addBookGoal: async (parent, args, context) => {
-    //   if (context.user) {
-    //     return await User.findByIdAndUpdate(context.user._id, args, {
-    //       new: true,
-    //     })
-    // }
+    addBookGoal: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findByIdAndUpdate(context.user._id, args, {
+          new: true,
+        })
+    }
+    },
 
-    // addGoalDate: async (parent, args, context) => {
-    //   if (context.user) {
-    //     return await User.findByIdAndUpdate(context.user._id, args, {
-    //       new: true,
-    //     })
-    // }
+    addGoalDate: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findByIdAndUpdate(context.user._id, args, {
+          new: true,
+        })
+    }
+    },
 
-    // updateBookStatus: async (parent, {bookId, toRead, isReading }, context) => {
-    //   if (context.user) {
-    //     return Book.findOneAndUpdate(
-    //       { _id: bookId },
-    //       {
-    //         $addToSet: {
-    //           isRead: {},
-    //           isReading: {},
-    //         },
-    //       },
-    //       {
-    //         new: true,
-    //         runValidators: true,
-    //       }
-    //     );
-    //   }
-    //   throw new GraphQLError("Please log in to Add/Remove to your Bookcase!", {
-    //     extensions: {
-    //       code: "UNAUTHENTICATED",
-    //     },
-    //   });
-    // }
+    updateBookStatus: async (parent, {bookId, toRead, isReading, isRead }, context) => {
+      if (context.user) {
+        return Book.findOneAndUpdate(
+          { _id: bookId },
+          {
+            $addToSet: {
+              toRead: {},
+              isRead: {},
+              isReading: {},
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      throw new GraphQLError("Please log in to Add/Remove to your Bookcase!", {
+        extensions: {
+          code: "UNAUTHENTICATED",
+        },
+      });
+    },
+  
 
-        // updateBookRating: async (parent, {bookRating }, context) => {
-    //   if (context.user) {
-    //     return Book.findOneAndUpdate(
-    //       { _id: bookId },
-    //       {
-    //         $addToSet: {
-    //           bookRating: {},
-    //         },
-    //       },
-    //       {
-    //         new: true,
-    //         runValidators: true,
-    //       }
-    //     );
-    //   }
-    //   throw new GraphQLError("Please log in to Add/Remove to your Bookcase!", {
-    //     extensions: {
-    //       code: "UNAUTHENTICATED",
-    //     },
-    //   });
-    // },
+        updateBookRating: async (parent, {bookRating }, context) => {
+      if (context.user) {
+        return Book.findOneAndUpdate(
+          { _id: bookId },
+          {
+            $addToSet: {
+              bookRating: {},
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      throw new GraphQLError("Please log in to Add/Remove to your Bookcase!", {
+        extensions: {
+          code: "UNAUTHENTICATED",
+        },
+      });
+    },
 
     addBook: async (parent, {  title, author, desc, bookCover, isbn, isRead, toRead, isReading,bookRating, bookComment }, context) => {
       if (context.user) {
@@ -156,6 +202,7 @@ const resolvers = {
         },
       });
     },
+
     addBookComment: async (parent, { bookId, commentText }, context) => {
       if (context.user) {
         return Book.findOneAndUpdate(
@@ -177,6 +224,7 @@ const resolvers = {
         },
       });
     },
+
     removeBook: async (parent, { bookId }, context) => {
       if (context.user) {
         const book = await Book.findOneAndDelete({
@@ -197,6 +245,7 @@ const resolvers = {
         },
       });
     },
+    
     removeBookComment: async (parent, { bookId, bookcommentId }, context) => {
       if (context.user) {
         return Book.findOneAndUpdate(
