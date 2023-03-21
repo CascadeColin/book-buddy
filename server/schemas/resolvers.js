@@ -84,8 +84,8 @@ const resolvers = {
       },
 
   Mutation:  {
-    addUser: async (parent, { userName, email, password }) => {
-      const user = await User.create({ userName, email, password });
+    addUser: async (parent, { userName, email, password, bookGoal, goalDate }) => {
+      const user = await User.create({ userName, email, password, bookGoal, goalDate });
       const token = signToken(user);
       return { token, user };
     },
@@ -210,6 +210,8 @@ const resolvers = {
       });
     },
 
+    // FRAGILE - WILL BREAK IF TOUCHED ;-)
+    // seriously though, don't touch it
     addBook: async (parent, {  title, author, desc, bookCover, isbn, isRead, toRead, isReading,bookRating, bookComment }, context) => {
       if (context.user) {
         const book = await Book.create({
@@ -226,9 +228,10 @@ const resolvers = {
           bookComment,
         });
 
+        // TEST: maybe an _id instead for Book
         await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $push: { books: book._id } }
+          { userName: context.user.userName },
+          { $push: { books: book } }
         );
 
         return book;
