@@ -38,27 +38,33 @@ const resolvers = {
     Query: {
       // Do we need a query for multiple users, or even user if we just need to Auth "me"? I'll add to make sure it doesnt cause issues
         users: async () => {
-          return await User.find();
+          return await User.find().populate("books");
         },
 
         user: async (parent, {userName}) => {
           return User.findOne({userName}).populate("books");
         },
 
-        books: async (parent, {user, userName}) => {
-          const params = {};
-          if (user) {
-            params.user = user;
-          }
-
-          if (userName) {
-            params.userName = {
-              $regex: userName,
-            };
-          }
-
-          return await Book.find(params).populate("user")
+        books: async (parent, {userName, createdBy}) => {
+        const params = userName ? {userName} : {};
+        return await Book.find(params);
         },
+        //how to sort via alpha or whatever the group wants//
+        // books: async (parent, {user, userName}) => {
+        //   console.log(user, userName)
+        //   const params = {};
+        //   if (user) {
+        //     params.createdBy = userName;
+        //   }
+
+        //   if (userName) {
+        //     params.createdBy = {
+        //       $regex: userName,
+        //     };
+        //   }
+
+        //   return await Book.find(params).populate("books")
+        // },
 
         book: async (parent, {bookId}) => {
           return Book.findOne({_id: bookId});
@@ -130,8 +136,9 @@ const resolvers = {
       if (context.user) {
         return Book.findOneAndUpdate(
           { _id: bookId },
+          {},
           {
-            $addToSet: {
+            $push: {
               toRead: {},
               isRead: {},
               isReading: {},
@@ -191,7 +198,7 @@ const resolvers = {
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { books: book._id } }
+          { $push: { books: book._id } }
         );
 
         return book;
