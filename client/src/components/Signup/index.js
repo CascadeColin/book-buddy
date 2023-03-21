@@ -70,9 +70,9 @@ function Signup(props) {
           <input
             style={styles.inputBox}
             placeholder="Enter your user name"
-            name="MyUserName"
+            name="userName"
             type="text"
-            id="myUserName"
+            id="userName"
             onChange={handleChange}
           />
         </div>
