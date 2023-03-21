@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
+import Modal from './Modal';
 
 {/*will have to import the queries for reading goal number and reading goal date */}
 
@@ -31,6 +32,7 @@ const styles = {
 }
 
 export default function ReadingGoal() {
+    const goal = 'New Goal'
     return(
         <>
             <div style={styles.main} className='w-4/12 p-4'>
@@ -43,7 +45,9 @@ export default function ReadingGoal() {
                     <h2 style={styles.bookDate}>by ___</h2>
                     </div>
                 {/*on click, have the 'new reading goal' modal pop up*/}
-                <button style={styles.button} className='bg-vdarkPurple px-4'>New Goal</button>
+                <button style={styles.button} className='bg-vdarkPurple px-4'>
+                    <Modal buttonName={goal}/>
+                </button>
             </div>
         </>
     )
