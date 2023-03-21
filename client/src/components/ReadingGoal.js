@@ -30,9 +30,19 @@ const styles = {
 }
 
 export default function ReadingGoal() {
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormState({
+          ...formState,
+          [name]: value,
+        });
+      };
     const goal = 'New Goal'
     const title = 'New Reading Goal:'
     const add = 'Add Goal'
+    const saveGoal = () => {
+        // this will have to be saved info from query/resolver?
+    }
     const modalInfo = () =>{
         return(
             <>
@@ -45,6 +55,16 @@ export default function ReadingGoal() {
                         name="bookGoal"
                         type="bookGoal"
                         id="bookGoal"
+                        onChange={handleChange}
+                    />
+                    <p>
+                        When do you want to reach your goal?
+                    </p>
+                    <input
+                        placeholder="YYYY-MM-DD"
+                        name="goalDate"
+                        type="goalDate"
+                        id="goalDate"
                         onChange={handleChange}
                     />
                 </div>
@@ -69,6 +89,7 @@ export default function ReadingGoal() {
                     modalTitle={title} 
                     modalFunction={add}
                     modalInformation={modalInfo}
+                    onClickInfo={saveGoal}
                     />
                 </button>
             </div>
