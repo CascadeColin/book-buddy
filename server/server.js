@@ -9,6 +9,7 @@ const {
 } = require("@apollo/server/plugin/drainHttpServer");
 const http = require("http");
 const routes = require("./controllers");
+require('dotenv').config()
 
 const { authMiddleware } = require("./utils/auth");
 
