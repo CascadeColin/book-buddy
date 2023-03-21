@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 //TODO: add mutations for other updates like goal update, books etc
 
 export const LOGIN = gql`
@@ -11,7 +11,6 @@ export const LOGIN = gql`
     }
   }
 `;
-
 
 export const ADD_USER = gql`
   mutation addUser(
@@ -32,6 +31,42 @@ export const ADD_USER = gql`
       user {
         _id
       }
+    }
+  }
+`;
+
+export const ADD_BOOK = gql`
+  mutation Mutation(
+    $title: String!
+    $author: String!
+    $bookRating: Int!
+    $desc: String
+    $bookCover: String
+    $isbn: String
+    $isRead: Boolean
+    $toRead: Boolean
+    $isReading: Boolean
+  ) {
+    addBook(
+      title: $title
+      author: $author
+      bookRating: $bookRating
+      desc: $desc
+      bookCover: $bookCover
+      isbn: $isbn
+      isRead: $isRead
+      toRead: $toRead
+      isReading: $isReading
+    ) {
+      title
+      author
+      desc
+      bookCover
+      isbn
+      isRead
+      toRead
+      isReading
+      bookRating
     }
   }
 `;
