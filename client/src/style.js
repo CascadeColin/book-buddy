@@ -1,0 +1,1 @@
+export const test = 'text-3xl font-bold text-center'
