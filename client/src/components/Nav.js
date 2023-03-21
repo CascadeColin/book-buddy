@@ -29,7 +29,7 @@ const styles = {
         left: '8px',
     },
     navTabs: {
-        paddingLeft: '55rem',
+        paddingLeft: '45rem',
     }
 }
 
@@ -47,31 +47,43 @@ export default function Nav(){
               <h2 style={styles.tab}>Buddy</h2>
             </div>
 
-            <ul
-              style={styles.navTabs}
-              className="flex flex-row justify-end items-center md:flex-shrink-0 space-x-20"
-            >
-              <li>
-                {/*my books page - add routes by Claire to this*/}
-                <Link to="/mybooks">
-                  <h1 style={styles.fontCursive}>My</h1>
-                  Books
-                </Link>
-              </li>
-              <li>
-                <Link to="/addbooks">
-                  <h1 style={styles.fontCursive}>Add</h1>
-                  Books
-                </Link>
-              </li>
-              <li>
-                <a href="/" onClick={() => Auth.logout()}>
-                  Logout
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </>
+                    <ul style={styles.navTabs}className="flex flex-row justify-end items-center md:flex-shrink-0 space-x-20">
+                        <li>
+                            {/*my books page - add routes by Claire to this*/}
+                            <Link to="/">
+                                <h1 style={styles.fontCursive}>
+                                My
+                                </h1>
+                                Profile
+                            </Link>
+                        </li>
+                        <li>
+                            {/*my books page - add routes by Claire to this*/}
+                            <Link to="/mybooks">
+                                <h1 style={styles.fontCursive}>
+                                My
+                                </h1>
+                                Books
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='/addbooks'>
+                                <h1 style={styles.fontCursive}>
+                                Add
+                                </h1>
+                                Books
+                            </Link>
+                        </li>
+                        <li>
+                            {/*logout*/}
+                            <Link to='/login'>
+                                Logout
+                            </Link>
+                        </li>
+                    </ul>
+                
+                </div>
+            </nav>
+        </>
     );
 }

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
+import Rating from './Rating';
+import Modal from './Modal';
 
 import '../assets/css/fonts.css';
 const styles = {
     main: {
-        position: 'relative',
-        top: '225px',
         fontFamily: 'Italiana',
         fontSize: '1.25rem'
     },
@@ -36,9 +36,14 @@ const styles = {
 
 
 export default function CurrentlyReading() {
+    const button = 'Rate Me!'
+    const ratingTitle = 'Rate This Book:'
+    const rateIt = 'Rate It!'
     return (
         <>
-            <div style={styles.main} className='w-6/12 m-6'>
+            <div 
+            style={styles.main} 
+            className='w-6/12 m-6'>
                     <h1 style={styles.title}>C u r r e n t l y - R e a d i n g</h1> 
 
                     {/* insert currentlyReadingCover */}
@@ -55,9 +60,18 @@ export default function CurrentlyReading() {
 
                     <div style={styles.button} className="space-x-4">
                          {/* automatically move this book to the 'already read' book shelf. Also, if they've finsihed, do we want to prompt them to choose their next book?*/}
-                        <button className='bg-vdarkPurple px-3'>Finished!</button>
+                        <button type='button' className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                            Finished!
+                        </button>
                         {/* pop up the rating modal! */}
-                        <button className='bg-vdarkPurple px-3'>Rate Me</button>
+                        <button type='button' 
+                        className="bg-vdarkPurple text-white hover:bg-medPurple font-bold uppercase text-md px-2 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                            <Modal
+                                buttonName={button}
+                                modalTitle={ratingTitle}
+                                modalFunction={rateIt}
+                            />
+                        </button>
                     </div>
             </div>
         </>
