@@ -16,8 +16,6 @@ import HomePage from "./pages/HomePage";
 import AddBooks from "./pages/AddBooks";
 import { setContext } from "@apollo/client/link/context";
 
-//temporary
-import Login from './components/Login';
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -56,7 +54,6 @@ function App() {
             <Route path="/mybooks" element={<MyBooks />} />
             <Route path="/addbooks" element={<AddBooks />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/login" element={<Login />} />
             {/* <Route 
             path='*'
             element={<h1 className='display-2'>Wrong page!</h1>}

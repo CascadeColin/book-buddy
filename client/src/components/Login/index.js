@@ -56,15 +56,16 @@ function Login(props) {
 
 
   return (
-    <div style={styles.main} className="w-4/12 p-4">
+    <div style={styles.main} className="w-4/12 p-4 mt-20">
       <h2 style={styles.title}>Login</h2>
       <form onSubmit={handleFormSubmit}>
         <div className="flex-row space-between my-2">
-          <label style={styles.loginText} htmlFor="email" class="mr-2">
+          <label style={styles.loginText} htmlFor="email" className="mr-2">
             Email address:
           </label>
           <input
             style={styles.inputBox}
+            placeholder="Enter your email address"
             name="email"
             type="email"
             id="email"
@@ -72,7 +73,7 @@ function Login(props) {
           />
         </div>
         <div className="flex-row space-between my-2">
-          <label htmlFor="pwd" class="mr-2">
+          <label htmlFor="pwd" className="mr-2">
             Password:
           </label>
           <input

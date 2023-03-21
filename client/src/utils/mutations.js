@@ -1,6 +1,5 @@
 import { gql } from '@apollo/client';
-
-//TODO:
+//TODO: add mutations for other updates like goal update, books etc
 
 export const LOGIN = gql`
   mutation login($email: String!, $password: String!) {

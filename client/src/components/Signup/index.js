@@ -60,24 +60,24 @@ function Signup(props) {
   };
 
   return (
-    <div style={styles.main} className="w-4/12 p-4">
+    <div style={styles.main} className="w-4/12 p-4 mt-20">
       <h2 style={styles.title}>Sign Up</h2>
       <form onSubmit={handleFormSubmit}>
         <div className="flex-row space-between my-2">
-          <label htmlFor="userName" class="mr-2">
+          <label htmlFor="myUserName" className="mr-2">
             User Name:
           </label>
           <input
             style={styles.inputBox}
-            placeholder="user name"
-            name="userName"
+            placeholder="Enter your user name"
+            name="MyUserName"
             type="text"
-            id="userName"
+            id="myUserName"
             onChange={handleChange}
           />
         </div>
         <div className="flex-row space-between my-2">
-          <label htmlFor="email" class="mr-2">
+          <label htmlFor="email" className="mr-2">
             Email:
           </label>
           <input
@@ -90,7 +90,7 @@ function Signup(props) {
           />
         </div>
         <div className="flex-row space-between my-2">
-          <label htmlFor="pwd" class="mr-2">
+          <label htmlFor="pwd" className="mr-2">
             Password:
           </label>
           <input
@@ -117,7 +117,7 @@ function Signup(props) {
           <label htmlFor="GoalDate">What is the date for this goal?</label>
           <input
             style={styles.inputBox}
-            placeholder="MM/DD/YYYY"
+            placeholder="MM /DD/YYYY"
             name="goalDate"
             type="Date"
             id="goalDate"

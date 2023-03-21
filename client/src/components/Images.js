@@ -17,7 +17,18 @@ export default function Bob(){
             style={styles.bob}
         />
     )
-};
+}
+
+export function BobLight(){
+    return(
+        <img  
+            className='BobLight'
+            src={require('../assets/images/loginBOB.png')}
+            alt='BOB Light'
+            style={styles.bob}
+        />
+    )
+}
 
 export function Plant(){
     return(

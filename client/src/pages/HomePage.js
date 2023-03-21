@@ -2,18 +2,18 @@
 //import { useQuery } from "@apollo/client";
 import Signup from "../components/Signup";
 import Login from "../components/Login";
-import Bob from "../components/Images";
+//import Bob from "../components/Images";
 
 const styles = {
   bgColor: {
     backgroundColor: "#FCF3EB",
   },
-  nav: {
-    backgroundColor: "#E4CFBC",
-    marginBottom: "-20px",
-    fontFamily: "Italiana",
-    fontSize: "1.25rem",
-  },
+  // nav: {
+  //   backgroundColor: "#E4CFBC",
+  //   marginBottom: "-20px",
+  //   fontFamily: "Italiana",
+  //   fontSize: "1.25rem",
+  // },
   fontCursive: {
     fontFamily: "Italianno",
     fontSize: "1.5rem",
@@ -28,15 +28,16 @@ const styles = {
     top: "-19px",
     left: "8px",
   },
-  navTabs: {
-    paddingLeft: "55rem",
-  },
+  // navTabs: {
+  //   paddingLeft: "55rem",
+  // },
 };
 
 export default function HomePage() {
   return (
     <div style={styles.bgColor}>
-      <div >
+      {/* FIXME: put back in if nav changed */}
+      {/* <div >
         <header>
          <div className="flex flex-row">
               <Bob />
@@ -46,10 +47,13 @@ export default function HomePage() {
             </div>
           </div>
         </header>
-      </div>   
-      <div className="flex flex-row">
-        <Signup />
-        <Login />
+      </div>    */}
+      <div className="flex flex-row items-centered">
+         <div className="flex flex row"> 
+          <Signup />
+          <Login />
+          </div>
+        {/* </div> */}
       </div>
     </div>
   );

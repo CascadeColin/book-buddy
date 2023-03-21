@@ -1,16 +1,18 @@
-import React, { createContext, useContext } from "react";
+//TODO: Remove if don't use
 
-const UserContext = createContext();
-const { Provider } = StoreContext;
+// import React, { createContext, useContext } from "react";
 
-const UserProvider = ({ value = [], ...props }) => {
+// const UserContext = createContext();
+// const { Provider } = StoreContext;
+
+// const UserProvider = ({ value = [], ...props }) => {
   
 
-  return 
-};
+//   return 
+// };
 
-const useStoreContext = () => {
-  return useContext(UserContext);
-};
+// const useStoreContext = () => {
+//   return useContext(UserContext);
+// };
 
-export { UserProvider, useStoreContext };
+// export { UserProvider, useStoreContext };
