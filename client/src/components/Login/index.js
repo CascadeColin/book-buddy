@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { LOGIN } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
-import "../assets/css/fonts.css";
 const styles = {
   main: {
     backgroundColor: "#73557D",
@@ -19,9 +18,9 @@ const styles = {
     fontFamily: "Italianno",
     fontSize: "3rem",
   },
-  loginText: {
-    fontSize: "3rem",
-    fontFamily: "Italianno",
+  inputBox:{
+    color: "black",
+    fontFamily: "Sans-Serif",
   },
   button: {
     fontFamily: "Italianno",
@@ -43,6 +42,7 @@ function Login(props) {
       Auth.login(token);
     } catch (e) {
       console.log(e);
+      console.log("Login failed");
     }
   };
 
@@ -53,19 +53,18 @@ function Login(props) {
       [name]: value,
     });
   };
-  //maybe add back under current div
-  //  <Link to="/signup">← Go to Signup</Link>
+
 
   return (
-    <div style={styles.main} className="container my-1">
-      <h2>Login</h2>
+    <div style={styles.main} className="w-4/12 p-4">
+      <h2 style={styles.title}>Login</h2>
       <form onSubmit={handleFormSubmit}>
         <div className="flex-row space-between my-2">
-          <label style={styles.loginText} htmlFor="email">
+          <label style={styles.loginText} htmlFor="email" class="mr-2">
             Email address:
           </label>
           <input
-            placeholder="youremail@test.com"
+            style={styles.inputBox}
             name="email"
             type="email"
             id="email"
@@ -73,10 +72,11 @@ function Login(props) {
           />
         </div>
         <div className="flex-row space-between my-2">
-          <label style={styles.loginText} htmlFor="pwd">
+          <label htmlFor="pwd" class="mr-2">
             Password:
           </label>
           <input
+            style={styles.inputBox}
             placeholder="******"
             name="password"
             type="password"
@@ -86,13 +86,15 @@ function Login(props) {
         </div>
         {error ? (
           <div>
-            <p style={styles.loginText} className="error-text">
-              The provided credentials are incorrect
-            </p>
+            <p className="error-text">The provided credentials are incorrect</p>
           </div>
         ) : null}
         <div className="flex-row flex-end">
-          <button style={styles.button} type="submit">
+          <button
+            style={styles.button}
+            className="bg-vdarkPurple px-4"
+            type="submit"
+          >
             Login
           </button>
         </div>
@@ -103,23 +105,4 @@ function Login(props) {
 
 export default Login;
 
-// export default function Login() {
-//   return (
-//     <>
-//       <div style={styles.main} className="w-4/12 p-4">
-//         <h1 style={styles.title}>Login</h1>
-//         {/* this syntax will most likely need to be changed once the queries are made */}
-//         <div>
-//           {/* reading goal number query */}
-//           <h2 style={styles.bookNumber}>___ books</h2>
-//           {/* reading goal date query */}
-//           <h2 style={styles.bookDate}>by ___</h2>
-//         </div>
-//         {/*on click, have the 'new reading goal' modal pop up*/}
-//         <button style={styles.button} className="bg-vdarkPurple px-4">
-//           Login
-//         </button>
-//       </div>
-//     </>
-//   );
-// }
+

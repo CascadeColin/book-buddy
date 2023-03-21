@@ -6,8 +6,7 @@ type User {
     email: String
     password: String
     bookGoal: Int
-    # "Date" would be a custom type -> easier to use unix timestamp and convert it
-    goalDate: Int
+    goalDate: String
     bookCompleted: Int
     Books: [Book]
   }

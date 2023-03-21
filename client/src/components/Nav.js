@@ -39,7 +39,7 @@ export default function Nav(){
       <>
         <nav style={styles.nav} className="mx-auto max-w-full">
           <div className="flex flex-row">
-            <Link to="/">
+            <Link to="/profile">
               <Bob />
             </Link>
             <div className="flex flex-col items-center sm:flex-shrink-0 relative top-3">
@@ -65,8 +65,6 @@ export default function Nav(){
                 </Link>
               </li>
               <li>
-                {/*logout*/}
-               {/* <Link to="/">Logout</Link>*/}
                 <a href="/" onClick={() => Auth.logout()}>
                   Logout
                 </a>
