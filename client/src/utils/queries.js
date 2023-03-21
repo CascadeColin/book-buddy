@@ -1,5 +1,21 @@
 import { gql } from '@apollo/client';
 
+export const MY_BOOKS = gql`
+query MY_BOOKS {
+    me {
+      Books {
+        title
+        author
+        desc
+        bookCover
+        isRead
+        isReading
+        toRead
+      }
+    }
+  }
+  `;
+
 //FIXME: 
 
 // export const QUERY_PRODUCTS = gql`
