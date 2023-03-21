@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useState } from 'react';
 
 import {Plant} from './Images';
 
@@ -22,10 +23,11 @@ const styles = {
     },
     purpleBook: {
         backgroundColor: '#7D7CBE',
-        width: "6rem",
+        width: "4rem",
         marginTop: "12px",
         height: "6rem",
-        alignSelf: "end"
+        alignSelf: "end",
+        position: "relative"
 
 
     },
@@ -40,7 +42,17 @@ const styles = {
         marginRight: "auto",
         marginBottom: "10px"
 
-    }
+    },
+    centered: {
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        backgroundColor: '#7D7CBE',
+        transform: "translate(-50%, -50%)",
+        height: "6rem",
+        width: "6rem",
+        fontColor: '#FCF3EB'
+      }
 
 
 }
@@ -84,6 +96,36 @@ const bookData = [
 const x = 0
 console.log(bookData)
 export default function Bookshelfdata(props) {
+
+    function darkBackground(e) {
+        // e.target.display= 'hidden';
+        if((e.target.id) == 0){
+        setIsShown(true)}
+        else if((e.target.id) == 1){
+            setIsShown1(true)}
+            else if((e.target.id) == 2){
+                setIsShown2(true)}
+                else if((e.target.id) == 3){
+                    setIsShown3(true)}
+                    else if((e.target.id) == 4){
+                        setIsShown4(true)}
+                    }
+      function lightBackground(e) {
+        e.target.style.background = '#7D7CBE';
+        if((e.target.id) == 0){
+            setIsShown(false)}
+            else if((e.target.id) == 1){
+                setIsShown1(false)}
+                else if((e.target.id) == 2){
+                    setIsShown2(false)}
+                    else if((e.target.id) == 3){
+                        setIsShown3(false)}
+                        else if((e.target.id) == 4){
+                            setIsShown4(false)}
+      }
+      const [isShown, setIsShown] = useState(false);
+      const [isShown1, setIsShown1] = useState(false);
+      const [isShown2, setIsShown2] = useState(false);
     return(
         <>
             <div style = {styles.bgColor}>
@@ -104,30 +146,29 @@ export default function Bookshelfdata(props) {
                     )
                 })} */}
                
-                <div style = {styles.purpleBook}>
+                <div style = {styles.purpleBook} >
                
-                    {bookData[x+1].cover ? <img style = {styles.bookImg} src={bookData[x+1].cover} alt={`The cover for ${bookData[x+1].title}`}  /> : null}
-
-                <p>
+                    {bookData[x].cover ? <img id = "0" onMouseEnter={darkBackground} onMouseLeave={lightBackground} class = "cursor-pointer" style = {styles.bookImg} src={bookData[x+1].cover} alt={`The cover for ${bookData[x+1].title}`}  /> : null}
+                    {isShown && (
+                <p style = {styles.centered} class = "cursor-pointer text-white justify-center">
                     {bookData[x]
                    ? `${bookData[x].title}`
                     : ''}
-                    </p>
-                    </div>
-                <div style = {styles.purpleBook}>
-                <p>
-                    {bookData[x+1]
-                   ? `${bookData[x+1].title}`
-                    : ''}
-                    </p>
+                </p>
+                     )}
                 </div>
-                <div style = {styles.purpleBook}>
-                <p>
-                    {bookData[x+2]
-                   ? `${bookData[x+2].title}`
-                    : ''}
-                    </p>
-                </div>
+
+            <div style = {styles.purpleBook} >
+               {bookData[x+1] ? <img id = "1" onMouseEnter={darkBackground} onMouseLeave={lightBackground} class = "cursor-pointer" style = {styles.bookImg} src={bookData[x+1].cover} alt={`The cover for ${bookData[x+1].title}`}  /> : null}
+               {isShown1 && (
+                <p style = {styles.centered} class = "cursor-pointer text-white"> {bookData[x+1] ? `${bookData[x+1].title}` : ''} </p>)}
+           </div>
+
+           <div style = {styles.purpleBook} >
+               {bookData[x+2] ? <img id = "2" onMouseEnter={darkBackground} onMouseLeave={lightBackground} class = "cursor-pointer" style = {styles.bookImg} src={bookData[x+2].cover} alt={`The cover for ${bookData[x+2].title}`}  /> : null}
+               {isShown2 && (
+                <p style = {styles.centered} class = "cursor-pointer text-white"> {bookData[x+2] ? `${bookData[x+2].title}` : ''} </p>)}
+           </div>
                 <div style = {styles.purpleBook}>
                     <p>
                     {bookData[x+3]
