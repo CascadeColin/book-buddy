@@ -10,10 +10,6 @@ const styles = {
     body: {
         backgroundColor: '#FCF3EB',
     },
-    position: {
-        position: 'relative',
-        top: '-150px' 
-    }
 }
 
 export default function Profile() {
@@ -25,11 +21,10 @@ export default function Profile() {
                     {/*Book Shelf with randomized saved books*/}
                     <ProfBookShelf />
                 </div>
-                <div style={styles.position}>
+                <div className='flex flex-row justify-around items-center mt-12'>
                     {/*Currently reading section, with book cover, title, author, rating button, finished button*/}
                     <CurrentlyReading />
-                </div>
-                <div style={styles.position} className='flex justify-end'>
+                  
                     {/*Reading goal modal*/}
                     <ReadingGoal />
                 </div>

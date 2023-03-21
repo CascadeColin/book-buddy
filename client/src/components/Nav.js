@@ -29,7 +29,7 @@ const styles = {
         left: '8px',
     },
     navTabs: {
-        paddingLeft: '55rem',
+        paddingLeft: '45rem',
     }
 }
 
@@ -48,6 +48,15 @@ export default function Nav(){
                     </div>
 
                     <ul style={styles.navTabs}className="flex flex-row justify-end items-center md:flex-shrink-0 space-x-20">
+                        <li>
+                            {/*my books page - add routes by Claire to this*/}
+                            <Link to="/">
+                                <h1 style={styles.fontCursive}>
+                                My
+                                </h1>
+                                Profile
+                            </Link>
+                        </li>
                         <li>
                             {/*my books page - add routes by Claire to this*/}
                             <Link to="/mybooks">

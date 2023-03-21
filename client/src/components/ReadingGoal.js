@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
+import Modal from './Modal';
 
 {/*will have to import the queries for reading goal number and reading goal date */}
 
@@ -11,8 +12,6 @@ const styles = {
         textAlign: 'center',
         fontSize: '1.5rem',
         fontFamily: 'Italiana',
-        marginRight: '100px',
-        marginBottom: '50px'
     },
     title: {
         fontFamily: 'Italianno',
@@ -31,19 +30,68 @@ const styles = {
 }
 
 export default function ReadingGoal() {
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormState({
+          ...formState,
+          [name]: value,
+        });
+      };
+    const goal = 'New Goal'
+    const title = 'New Reading Goal:'
+    const add = 'Add Goal'
+    const saveGoal = () => {
+        // this will have to be saved info from query/resolver?
+    }
+    const modalInfo = () =>{
+        return(
+            <>
+                <div>
+                    <p>
+                        How many books do you want to read?
+                    </p>
+                    <input
+                        placeholder="#"
+                        name="bookGoal"
+                        type="bookGoal"
+                        id="bookGoal"
+                        onChange={handleChange}
+                    />
+                    <p>
+                        When do you want to reach your goal?
+                    </p>
+                    <input
+                        placeholder="YYYY-MM-DD"
+                        name="goalDate"
+                        type="goalDate"
+                        id="goalDate"
+                        onChange={handleChange}
+                    />
+                </div>
+            </>
+        )
+    }
     return(
         <>
-            <div style={styles.main} className='w-4/12 p-4'>
+            <div style={styles.main} className='w-4/12 px-10 py-8 mt-12'>
                 <h1 style={styles.title}>Reading Goal:</h1>
                 {/* this syntax will most likely need to be changed once the queries are made */}
-                    <div>
+                    <div className='py-2 pb-2'>
                     {/* reading goal number query */}
                     <h2 style={styles.bookNumber}>___ books</h2>
                     {/* reading goal date query */}
                     <h2 style={styles.bookDate}>by ___</h2>
                     </div>
                 {/*on click, have the 'new reading goal' modal pop up*/}
-                <button style={styles.button} className='bg-vdarkPurple px-4'>New Goal</button>
+                <button style={styles.button} className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                    <Modal 
+                    buttonName={goal} 
+                    modalTitle={title} 
+                    modalFunction={add}
+                    modalInformation={modalInfo}
+                    onClickInfo={saveGoal}
+                    />
+                </button>
             </div>
         </>
     )
