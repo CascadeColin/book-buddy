@@ -15,6 +15,8 @@ const styles = {
     marginBottom: "-20px",
     fontFamily: "Italiana",
     fontSize: "1.25rem",
+    padding: '10px',
+    width: '100vw'
   },
   login: {
     backgroundColor: "#FCF3EB",
@@ -47,7 +49,7 @@ function Nav(){
     if (Auth.loggedIn()) {
       return (
       <>
-        <nav style={styles.nav} className="mx-auto max-w-full">
+        <nav style={styles.nav} className="w-screen">
           <div className="flex flex-row">
             <Link to="/profile">
               <Bob />

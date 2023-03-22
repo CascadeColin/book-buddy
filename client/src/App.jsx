@@ -52,7 +52,11 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/mybooks" element={<MyBooks />} />
-            <Route path="/addbooks" element={<AddBooks />} />
+            
+            <Route path="/addbooks" element={<AddBooks />} 
+            className="bg-vdarkPurple"
+            />
+            
             <Route path="/profile" element={<Profile />} />
             {/* <Route 
             path='*'

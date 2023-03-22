@@ -90,25 +90,25 @@ const modalInfo = (desc) =>{
     )
 }
 
-const bookData = [
-    {
-            title: 'mybook',
-            cover: 'https://covers.openlibrary.org/b/id/8653332-L.jpg',
-            desc: 'here is the description',
-            isRead: true,
-            hasRead: false,
-            toRead: true
-        },
-         {
-            title: 'mybook2',
-            cover: 'https://covers.openlibrary.org/b/id/8653332-L.jpg',
-            desc: 'here is the 2 description',
-            isRead: false,
-            hasRead: true,
-            toRead: true
-        }
+// const bookData = [
+//     {
+//             title: 'mybook',
+//             cover: 'https://covers.openlibrary.org/b/id/8653332-L.jpg',
+//             desc: 'here is the description',
+//             isRead: true,
+//             hasRead: false,
+//             toRead: true
+//         },
+//          {
+//             title: 'mybook2',
+//             cover: 'https://covers.openlibrary.org/b/id/8653332-L.jpg',
+//             desc: 'here is the 2 description',
+//             isRead: false,
+//             hasRead: true,
+//             toRead: true
+//         }
 
-]
+// ]
     // book1: {
     //     title: 'mybook',
     //     cover: 'img',
@@ -127,8 +127,8 @@ const bookData = [
     // },
 
 const x = 0
-console.log(bookData)
-export default function Bookshelfdata(props) {
+// console.log(bookData)
+export default function Bookshelfdata( {bookData, shelfname} ) {
 
     function darkBackground(e) {
         // e.target.display= 'hidden';
@@ -161,7 +161,10 @@ export default function Bookshelfdata(props) {
       const [isShown2, setIsShown2] = useState(false);
       const [isShown3, setIsShown3] = useState(false);
       const [isShown4, setIsShown4] = useState(false);
+    //   let bookData = props.bookData
+
     return(
+  
         <>
             <div style = {styles.bgColor}>
                 <div class = "flex justify-between mt-12 mb-0 ml-24 items-baseline">
@@ -171,19 +174,39 @@ export default function Bookshelfdata(props) {
                 {/* <div class = "flex-justify-between"> */}
                 {/* <p>book1</p> */}
 
+  
                 {/* {bookData.map((book) => {
-                    console.log(book.title)
-                    return(
+                    return (
 
-                        <div style = {styles.purpleBook}>
-                            <p>{book.title}</p>
-                         </div>    
-                    )
-                })} */}
+                        <div style = {styles.purpleBook} >
+               
+                    { book.cover ? <img id = "0" onMouseEnter={darkBackground} onMouseLeave={lightBackground} class = "cursor-pointer" style = {styles.bookImg} src={book.cover} alt={`The cover for ${book.title}`}  /> : null}
+                    {isShown && (
+                <p style = {styles.centered} class = "cursor-pointer text-white justify-center">
+                    {/* {props.bookData[x] */}
+                    {/* `${book.title}` */}
+                    {/* // : ''} */}
+                {/* </p>
+                        
+                     )}
+            <button style={styles.bookModal} className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                        <Modal 
+                        buttonName={book.title} 
+                        // buttonName={"View"}
+                        modalTitle={book.title} 
+                        // modalFunction={"add"}
+                        modalInformation= {() => modalInfo(book.desc)}
+                        onClickInfo={"more"}
+                        />
+                    </button>
+                </div>
+
+                    ) */} 
+                {/* })} */}
                
                 <div style = {styles.purpleBook} >
                
-                    {bookData[x].cover ? <img id = "0" onMouseEnter={darkBackground} onMouseLeave={lightBackground} class = "cursor-pointer" style = {styles.bookImg} src={bookData[x+1].cover} alt={`The cover for ${bookData[x+1].title}`}  /> : null}
+                    { bookData[x].cover ? <img id = "0" onMouseEnter={darkBackground} onMouseLeave={lightBackground} class = "cursor-pointer" style = {styles.bookImg} src={bookData[x+1].cover} alt={`The cover for ${bookData[x+1].title}`}  /> : null}
                     {isShown && (
                 <p style = {styles.centered} class = "cursor-pointer text-white justify-center">
                     {bookData[x]
@@ -270,7 +293,7 @@ export default function Bookshelfdata(props) {
                 <p class = "mr-24 mt-12">&gt;</p>
                 {/* </div> */}
                 </div>
-                <p style = {styles.greenShelf} class = "text-center text-white m-12 mb-0 mt-4 p-0">{props.shelfname}</p>
+                <p style = {styles.greenShelf} class = "text-center text-white m-12 mb-0 mt-4 p-0">{shelfname}</p>
             <div class = "flex justify-between">
                 <div class = "bg-gray-300 m-0 w-16 h-8 ml-32 text-center"></div>
                 <div class = "bg-gray-300 m-0 w-16 h-8 mr-32 text-center"></div>
