@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import Modal from './Modal';
+// import { ADD_USER } from "../../utils/"
+// import { UPDATE_GOAL } from "../../utils/mutations";
 
 {/*will have to import the queries for reading goal number and reading goal date */}
 
@@ -30,6 +32,23 @@ const styles = {
 }
 
 export default function ReadingGoal() {
+    // const [updateGoal] = useMutation(UPDATE_GOAL);
+
+    const saveGoal = async (event) => {
+        event.preventDefault();
+       let myDate= Date.parse(formState.goalDate);
+       console.log(typeof myDate, myDate);
+        const mutationResponse = await addUser({
+          variables: {
+            bookGoal: parseInt(formState.bookGoal),
+            goalDate: formState.goalDate,
+          },
+        });
+        const token = mutationResponse.data.updateUser.token;
+        Auth.login(token);
+        <Link to="/profile"></Link>;
+      };
+
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormState({
@@ -40,20 +59,18 @@ export default function ReadingGoal() {
     const goal = 'New Goal'
     const title = 'New Reading Goal:'
     const add = 'Add Goal'
-    const saveGoal = () => {
-        // this will have to be saved info from query/resolver?
-    }
+     
     const modalInfo = () =>{
         return(
             <>
-                <div>
+                <form onSubmit={saveGoal}>
                     <p>
                         How many books do you want to read?
                     </p>
                     <input
                         placeholder="#"
                         name="bookGoal"
-                        type="bookGoal"
+                        type="number"
                         id="bookGoal"
                         onChange={handleChange}
                     />
@@ -63,11 +80,11 @@ export default function ReadingGoal() {
                     <input
                         placeholder="YYYY-MM-DD"
                         name="goalDate"
-                        type="goalDate"
+                        type="Date"
                         id="goalDate"
                         onChange={handleChange}
                     />
-                </div>
+                </form>
             </>
         )
     }
@@ -78,9 +95,10 @@ export default function ReadingGoal() {
                 {/* this syntax will most likely need to be changed once the queries are made */}
                     <div className='py-2 pb-2'>
                     {/* reading goal number query */}
-                    <h2 style={styles.bookNumber}>___ books</h2>
+                    <h2 style={styles.bookNumber}>
+                        books</h2>
                     {/* reading goal date query */}
-                    <h2 style={styles.bookDate}>by ___</h2>
+                    <h2 style={styles.bookDate}>by</h2>
                     </div>
                 {/*on click, have the 'new reading goal' modal pop up*/}
                 <button style={styles.button} className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
@@ -89,7 +107,7 @@ export default function ReadingGoal() {
                     modalTitle={title} 
                     modalFunction={add}
                     modalInformation={modalInfo}
-                    onClickInfo={saveGoal}
+                    // onClickInfo={saveGoal}
                     />
                 </button>
             </div>
