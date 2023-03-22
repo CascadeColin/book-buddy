@@ -81,6 +81,7 @@ const resolvers = {
       return { token, user };
     },
 
+    // TODO: updateBookGoals - combine with addGoalDate
     addBookGoal: async (parent, { userName, bookGoal }, context) => {
       console.log(userName, bookGoal);
       if (context.user) {
@@ -104,6 +105,7 @@ const resolvers = {
       });
     },
 
+    // TODO: updateBookGoals - combine with addBookGoal
     addGoalDate: async (parent, { userName, goalDate }, context) => {
       console.log(userName, goalDate);
       if (context.user) {

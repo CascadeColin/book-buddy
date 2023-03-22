@@ -70,3 +70,24 @@ export const ADD_BOOK = gql`
     }
   }
 `;
+
+export const UPDATE_GOAL_DATE = gql`
+  mutation AddGoalDate($userName: String!, $goalDate: String!) {
+    addGoalDate(userName: $userName, goalDate: $goalDate) {
+      _id
+      userName
+      bookGoal
+      goalDate
+    }
+  }
+`;
+
+export const UPDATE_BOOK_GOAL = gql`
+  mutation AddBookGoal($userName: String!, $bookGoal: Int!) {
+    addBookGoal(userName: $userName, bookGoal: $bookGoal) {
+      _id
+      bookGoal
+      goalDate
+    }
+  }
+`;

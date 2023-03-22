@@ -10,6 +10,22 @@ export const MY_BOOKS = gql`
   }
 `;
 
+// TODO: update this once reducers can be implemented, it works for presentation
+export const USER_INFO = gql`
+  query getUsers {
+    users {
+      userName
+      goalDate
+      email
+      books {
+        _id
+      }
+      bookGoal
+      bookCompleted
+    }
+  }
+`;
+
 //FIXME:
 
 // export const QUERY_PRODUCTS = gql`
