@@ -94,7 +94,7 @@ function Login(props) {
         <div className="flex-row flex-end">
           <button
             style={styles.button}
-            className="bg-vdarkPurple px-4"
+            className="bg-vdarkPurple px-4 hover:bg-medPurple rounded shadow hover:shadow-lg"
             type="submit"
           >
             Login

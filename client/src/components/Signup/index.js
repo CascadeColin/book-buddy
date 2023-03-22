@@ -126,13 +126,16 @@ function Signup(props) {
         </div>
         {error ? (
           <div>
-            <p className="error-text">Verify email/password(min8) are unique and all fields are filled in please!</p>
+            <p className="error-text">
+              Verify email/password(min8) are unique and all fields are filled
+              in please!
+            </p>
           </div>
         ) : null}
         <div className="flex-row flex-end">
           <button
             style={styles.button}
-            className="bg-vdarkPurple px-4"
+            className="bg-vdarkPurple px-4 hover:bg-medPurple rounded shadow hover:shadow-lg"
             type="submit"
           >
             Create Account
