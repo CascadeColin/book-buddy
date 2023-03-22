@@ -3,6 +3,19 @@ import { useMutation } from "@apollo/client";
 import { ADD_BOOK } from "../utils/mutations";
 import Auth from "../utils/auth";
 import { bookTitleStrToURL, regexGen, addDesc } from "../utils/helpers";
+import Modal from './Modal';
+
+import '../assets/css/fonts.css';
+const styles = {
+  cursive: {
+    fontFamily: 'Italianno',
+  },
+  cursiveHeader: {
+    fontFamily: 'Italianno',
+    fontSize:'1.75rem',
+    paddingRight: '10px'
+  }
+}
 
 const SearchForBooks = () => {
   // TODO: URLs are for development only.  will need to figure out the proper URL paths for Heroku
@@ -109,10 +122,12 @@ const SearchForBooks = () => {
     <>
       <div className="text-white">
         <div>
-          <h1>Search for Books</h1>
-          <form onSubmit={handleFormSubmit}>
+          <h1 className="text-5xl text-center flex flex-row justify-center pt-5">S e a r c h 
+          <h2 style={styles.cursive} className="px-11 ">for</h2> 
+          B o o k s</h1>
+          <form onSubmit={handleFormSubmit} className='text-center text-xl mt-6 ml-20'>
             <input
-              className="text-black"
+              className="text-black "
               type="text"
               size="lg"
               name="searchInput"
@@ -120,37 +135,45 @@ const SearchForBooks = () => {
               placeholder="What Book Awaits You?"
               onChange={(e) => setSearchInput(e.target.value)}
             />
-            <button type="submit" variant="success" size="lg">
+            <button type="submit" variant="success" size="lg" className="ml-3">
               Submit
             </button>
           </form>
         </div>
       </div>
 
-      <div className="text-white">
+      <div className="text-white flex items-center flex-col">
         <h2>
           {searchBooks.length
             ? `Viewing ${searchBooks.length} results:`
-            : "Search for a book to begin"}
+            : ""}
         </h2>
         <h3 className="text-red-500">
           {searchError ? searchError : ''}
         </h3>
-        <div>
-          <h1>
-            <br />
-            Your new book!
-          </h1>
+        <div className="text-center object-center text-lg">
           {searchBooks.map((book) => {
             
             return (
-              <li key={1}>
+
+              // <>
+              //   <Modal 
+              //   buttonName={()=>}
+              //   />
+
+              // </>
+              <li key={1} >
                 <img
                   src={book.bookCover}
                   alt={`Book Cover for ${book.title}`} 
+                  className='inline-flex align-middle'
                 /> 
-                <p>Title: {book.title}</p> 
-                <p>Author: {book.author}</p> 
+                <p className="flex flex-row justify-center">
+                  <h1 style={styles.cursiveHeader}>Title:</h1>
+                  {book.title}</p> 
+                <p className="flex flex-row justify-center">
+                  <h1 style={styles.cursiveHeader}>Author:</h1>
+                  {book.author}</p> 
                 {/* I hardcoded the description 'type' into addDesc() on the server side - no need to add it here  */}
                 <p>{book.desc}</p> 
                 {/* apparently you can convert a boolean to a string using toString() - was a total guess lol  */}
