@@ -12,10 +12,10 @@ export default function RatingModal() {
     // rating state has information
     const [rating, setRating] = useState(0)
   
-        const handleRating = (rate: number) => {
+        const handleRating = (rate) => {
           setRating(rate)
         }
-        const onPointerMove = (value: number, index: number) => console.log(value, index)
+        const onPointerMove = (value, index) => console.log(value, index)
 
         const styles = {
           display: 'flex',
