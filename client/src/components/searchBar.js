@@ -13,6 +13,7 @@ const SearchForBooks = () => {
   const [searchBooks, setSearchBooks] = useState([]);
   // variable for performing a search
   const [searchInput, setSearchInput] = useState("");
+  const [searchError, setSearchError] = useState('')
 
   // pulls all user's books from the DB on page re-render.
   // putting `searchInput` in the dependency array forces a re-render when that variable's state changes
@@ -98,7 +99,9 @@ const SearchForBooks = () => {
       }
       setSearchInput("");
     } catch (err) {
-      console.log(err);
+      setSearchError('Error finding book - please try again later')
+      setSearchInput('')
+      console.log('api down')
     }
   };
 
@@ -130,6 +133,9 @@ const SearchForBooks = () => {
             ? `Viewing ${searchBooks.length} results:`
             : "Search for a book to begin"}
         </h2>
+        <h3 className="text-red-500">
+          {searchError ? searchError : ''}
+        </h3>
         <div>
           <h1>
             <br />
