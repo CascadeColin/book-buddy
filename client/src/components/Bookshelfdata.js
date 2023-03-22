@@ -206,7 +206,7 @@ export default function Bookshelfdata( {bookData, shelfname} ) {
                
                 <div style = {styles.purpleBook} >
                
-                    { bookData[x].cover ? <img id = "0" onMouseEnter={darkBackground} onMouseLeave={lightBackground} class = "cursor-pointer" style = {styles.bookImg} src={bookData[x+1].cover} alt={`The cover for ${bookData[x+1].title}`}  /> : null}
+                    { bookData[x] ? <img id = "0" onMouseEnter={darkBackground} onMouseLeave={lightBackground} class = "cursor-pointer" style = {styles.bookImg} src={bookData[x].bookCover} alt={`The cover for ${bookData[x].title}`}  /> : null}
                     {isShown && (
                 <p style = {styles.centered} class = "cursor-pointer text-white justify-center">
                     {bookData[x]
@@ -215,25 +215,25 @@ export default function Bookshelfdata( {bookData, shelfname} ) {
                 </p>
                         
                      )}
-            <button style={styles.bookModal} className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+         {bookData[x] ? <button  style={styles.bookModal} className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                         <Modal 
-                        buttonName={bookData[x].title} 
+                        buttonName={"Open"} 
                         // buttonName={"View"}
                         modalTitle={bookData[x].title} 
                         // modalFunction={"add"}
                         modalInformation= {() => modalInfo(bookData[x].desc)}
                         onClickInfo={"more"}
                         />
-                    </button>
+                    </button>  : ''}
                 </div>
                 
             <div style = {styles.purpleBook} >
-               {bookData[x+1] ? <img id = "1" onMouseEnter={darkBackground} onMouseLeave={lightBackground} class = "cursor-pointer" style = {styles.bookImg} src={bookData[x+1].cover} alt={`The cover for ${bookData[x+1].title}`}  /> : null}
+               {bookData[x+1] ? <img id = "1" onMouseEnter={darkBackground} onMouseLeave={lightBackground} class = "cursor-pointer" style = {styles.bookImg} src={bookData[x+1].bookCover} alt={`The cover for ${bookData[x+1].title}`}  /> : null}
                {isShown1 && (
                 <p style = {styles.centered} class = "cursor-pointer text-white"> {bookData[x+1] ? `${bookData[x+1].title}` : ''} </p>)}
                {bookData[x+1] ? <button style={styles.bookModal} className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                         <Modal 
-                        buttonName={bookData[x+1].title} 
+                        buttonName={"Open"} 
                         // buttonName={"View"}
                         modalTitle={bookData[x+1].title} 
                         // modalFunction={"add"}
@@ -249,7 +249,7 @@ export default function Bookshelfdata( {bookData, shelfname} ) {
                 <p style = {styles.centered} class = "cursor-pointer text-white"> {bookData[x+2] ? `${bookData[x+2].title}` : ''} </p>)}
                 {bookData[x+2] ? <button style={styles.bookModal} className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                         <Modal 
-                        buttonName={bookData[x+2].title} 
+                        buttonName={"Open"} 
                         // buttonName={"View"}
                         modalTitle={bookData[x+2].title} 
                         // modalFunction={"add"}
@@ -265,7 +265,7 @@ export default function Bookshelfdata( {bookData, shelfname} ) {
                 <p style = {styles.centered} class = "cursor-pointer text-white"> {bookData[x+3] ? `${bookData[x+3].title}` : ''} </p>)}
                    {bookData[x+3] ? <button style={styles.bookModal} className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                         <Modal 
-                        buttonName={bookData[x+3].title} 
+                        buttonName={"Open"} 
                         // buttonName={"View"}
                         modalTitle={bookData[x+3].title} 
                         // modalFunction={"add"}
@@ -280,7 +280,7 @@ export default function Bookshelfdata( {bookData, shelfname} ) {
                 <p style = {styles.centered} class = "cursor-pointer text-white"> {bookData[x+4] ? `${bookData[x+4].title}` : ''} </p>)}
                    {bookData[x+4] ? <button style={styles.bookModal} className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                         <Modal 
-                        buttonName={bookData[x+4].title} 
+                        buttonName={"Open"} 
                         // buttonName={"View"}
                         modalTitle={bookData[x+4].title} 
                         // modalFunction={"add"}
