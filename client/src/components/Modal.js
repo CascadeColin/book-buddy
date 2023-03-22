@@ -1,14 +1,14 @@
 import React from "react";
 
 const styles = {
-    main: {
-        fontFamily: 'Italiana'
-    },
-    button: {
-        fontFamily: 'Italianno',
-        color: 'white',
-    }
-}
+  main: {
+    fontFamily: "Italiana",
+  },
+  button: {
+    fontFamily: "Italianno",
+    color: "white",
+  },
+};
 
 export default function Modal(props) {
   const [showModal, setShowModal] = React.useState(false);
@@ -23,7 +23,8 @@ export default function Modal(props) {
       </button>
       {showModal ? (
         <>
-          <div style={styles.main}
+          <div
+            style={styles.main}
             className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
           >
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
@@ -63,12 +64,19 @@ export default function Modal(props) {
                   <button
                     className="bg-medPurple text-white hover:bg-vdarkPurple font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => {
+                      props.onClickInfo();
+                      setShowModal(false);
+                    }}
                   >
                     {/* FINAL BUTTON (SAVE INFORMATION?) does this need to be a submit? */}
                     <h1
-                    onClick={() => {props.onClickInfo()}}
-                    >{props.modalFunction}</h1>
+                      onClick={() => {
+                        props.onClickInfo();
+                      }}
+                    >
+                      {props.modalFunction}
+                    </h1>
                   </button>
                 </div>
               </div>
