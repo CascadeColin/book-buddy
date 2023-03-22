@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useQuery, useMutation } from "@apollo/client";
-import { Link } from "react-router-dom";
+// import React, { useState, useEffect } from "react";
+// import { useQuery, useMutation } from "@apollo/client";
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+//import { Link } from "react-router-dom";
 import { LOGIN } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
@@ -42,7 +44,6 @@ function Login(props) {
       Auth.login(token);
     } catch (e) {
       console.log(e);
-      console.log("Login failed");
     }
   };
 
