@@ -10,12 +10,6 @@ export const MY_BOOKS = gql`
   }
 `;
 
-
-const array = Object.data.me.books
-const arr2 = array.map(obj => obj._id)
-// run a query mapping the book ids to render books
-
-
 //FIXME:
 
 // export const QUERY_PRODUCTS = gql`
