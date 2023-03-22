@@ -48,11 +48,11 @@ type User {
   type Mutation {
     addUser(userName: String!, email: String!, password: String!, bookGoal: Int, goalDate: String , books:[ID]): Auth
     addBookGoal(userName:String!, bookGoal:Int!): User
-    addGoalDate(goalDate:String): Auth
+    addGoalDate(userName:String!, goalDate:String!): User
     login(email: String!, password: String!): Auth
     addBook(title: String!, author:String!, desc: String, bookCover:String, isbn:String, isRead:Boolean, toRead:Boolean, isReading:Boolean, bookRating:Int!): Book
     addBookComment(bookId: ID!, commentText: String!): Book
-    removeBook(title: String): User
+    removeBook(bookID:ID!): User
     removeBookComment(bookId: ID!, commentText: String!): Book
     updateBookRating(bookId: ID!, bookRating:Int): Book 
     updateIsRead(bookId:ID!, isRead:Boolean): Book

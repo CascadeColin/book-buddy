@@ -152,12 +152,27 @@ const resolvers = {
       });
     },
 
-    addGoalDate: async (parent, args, context) => {
+    addGoalDate: async (parent, {userName, goalDate }, context) => {
+      console.log(userName, goalDate)
       if (context.user) {
-        return await User.findByIdAndUpdate(context.user._id, args, {
-          new: true,
-        });
+        return User.findOneAndUpdate(
+          {userName},
+          {
+            $set: {
+              goalDate: goalDate,
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
       }
+      throw new GraphQLError("Please log in to Add/Remove to your Bookcase!", {
+        extensions: {
+          code: "UNAUTHENTICATED",
+        },
+      });
     },
 
     // updateToRead: async (parent, args, content) => {
@@ -371,15 +386,16 @@ const resolvers = {
     //   });
     // },
 
-    removeBook: async (parent, { bookId }, context) => {
+    removeBook: async (parent, { userName, bookId }, context) => {
+      
       if (context.user) {
         const book = await Book.findOneAndDelete({
-          _id: bookId,
-          createdBy: context.user.userName,
+          bookId
         });
-
+        console.log(userName, bookId)
+        console.log(context.user)
         await User.findOneAndDelete(
-          { _id: context.user._id },
+          { userName },
           { $pull: { books: book._id } }
         );
 
