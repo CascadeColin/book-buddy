@@ -3,6 +3,7 @@
 import Signup from "../components/Signup";
 import Login from "../components/Login";
 //import Bob from "../components/Images";
+import MyStars from "../components/stars.js";
 
 const styles = {
   bgColor: {
@@ -35,10 +36,10 @@ const styles = {
 
 export default function HomePage() {
   return (
-    <div style={styles.bgColor} className="vh-fit">
+    <div style={styles.bgColor} >
       <div className="flex flex-row justify-center pt-5 ">
-          <Signup />
-          <Login />
+        <Signup />
+        <Login />
       </div>
     </div>
   );
