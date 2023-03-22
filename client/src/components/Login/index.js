@@ -14,6 +14,7 @@ const styles = {
     fontSize: "1.5rem",
     fontFamily: "Italiana",
     marginBottom: "50px",
+    marginRight: "100px",
   },
   title: {
     fontFamily: "Italianno",
@@ -57,7 +58,7 @@ function Login(props) {
 
 
   return (
-    <div style={styles.main} className="w-4/12 p-4 mt-20">
+    <div style={styles.main} className="w-4/12 p-4 mt-5">
       <div flex flex-row >
         <h2 style={styles.title}>Login</h2>
       </div>

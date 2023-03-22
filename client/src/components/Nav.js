@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import Bob from './Images';
-//import AddBooks from '../pages/AddBooks';
 import { Link } from 'react-router-dom';
 import {BobLight} from './Images';
 import Auth from "../utils/auth";
@@ -15,8 +14,8 @@ const styles = {
     marginBottom: "-20px",
     fontFamily: "Italiana",
     fontSize: "1.25rem",
-    padding: '10px',
-    width: '100vw'
+    padding: "10px",
+    width: "100vw",
   },
   login: {
     backgroundColor: "#FCF3EB",
@@ -34,6 +33,13 @@ const styles = {
   tab: {
     fontFamily: "Italianno",
     fontSize: "2.5rem",
+    position: "relative",
+    top: "-19px",
+    left: "8px",
+  },
+  buddy: {
+    fontFamily: "Italianno",
+    fontSize: "5rem",
     position: "relative",
     top: "-19px",
     left: "8px",
@@ -95,19 +101,22 @@ function Nav(){
       }else{
       
         return (
-          <nav style={styles.login} className="mx-auto max-w-full items-center">
-            <div className="flex flex-row">
-              
-                <div className="flex flex-col">
+          <nav
+            style={styles.login}
+            className="mx-auto max-w-full"
+          >
+            <div className="flex flex-col justify-center">
+              <div className="flex flex-row justify-center" >
                 <Link to="/">
                   <BobLight />
                 </Link>
-                </div>
+
                 <div className="flex flex-col items-center sm:flex-shrink-0 relative top-3">
-                  <h1 className="text-3xl">B o o k</h1>
-                  <h2 style={styles.tab}>Buddy</h2>
+                  <h1 className="text-6xl">B o o k</h1>
+                  <h2 style={styles.buddy}>Buddy</h2>
                 </div>
-              <div className="flex flex-col ">
+              </div>
+              <div className="flex justify-center ">
                 <p>Welcome - Login or Sign Up to Access Your Profile</p>
               </div>
             </div>
