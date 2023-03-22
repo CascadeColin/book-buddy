@@ -25,6 +25,7 @@ const styles = {
   button: {
     fontFamily: "Italianno",
     color: "white",
+    fontSize: "2rem",
   },
 };
 

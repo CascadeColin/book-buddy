@@ -20,13 +20,14 @@ const styles = {
     fontFamily: "Italianno",
     fontSize: "3rem",
   },
-  inputBox:{
+  inputBox: {
     color: "black",
     fontFamily: "Sans-Serif",
   },
   button: {
     fontFamily: "Italianno",
     color: "white",
+    fontSize: "2rem",
   },
 };
 
@@ -62,7 +63,7 @@ function Login(props) {
       <form onSubmit={handleFormSubmit}>
         <div className="flex-row space-between my-2">
           <label style={styles.loginText} htmlFor="email" className="mr-2">
-            Email address:
+            Email:
           </label>
           <input
             style={styles.inputBox}
