@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useQuery } from '@apollo/client';
-import Rating from './Rating';
+import RatingModal from './Rating.tsx';
 import Modal from './Modal';
 
 import '../assets/css/fonts.css';
@@ -63,7 +63,7 @@ export default function CurrentlyReading() {
                         {/* pop up the rating modal! */}
                         <button type='button' 
                         className="bg-vdarkPurple text-white hover:bg-medPurple font-bold uppercase text-md px-2 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
-                            <Rating />
+                            <RatingModal />
                         </button>
                     </div>
             </div>
