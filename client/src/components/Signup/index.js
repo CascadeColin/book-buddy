@@ -11,7 +11,7 @@ const styles = {
     textAlign: "center",
     fontSize: "1.5rem",
     fontFamily: "Italiana",
-    marginRight: "100px",
+  
     marginBottom: "50px",
   },
   inputBox: {
@@ -61,7 +61,7 @@ function Signup(props) {
   };
 
   return (
-    <div style={styles.main} className="w-4/12 p-4 mt-20">
+    <div style={styles.main} className="w-4/12 p-4 mt-5">
       <h2 style={styles.title}>Sign Up</h2>
       <form onSubmit={handleFormSubmit}>
         <div className="flex-row space-between my-2">
