@@ -7,3 +7,8 @@
 body {
  background-color: #FCF3EB;
 }
+
+/* corrects react-simple-star-rating display - our CSS was cascading into the package and applying flex instead */
+svg.star-svg {
+    display: inline;
+}

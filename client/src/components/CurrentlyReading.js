@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import RatingModal from './Rating.tsx';
+import RatingModal from './Rating.js';
 import Modal from './Modal';
 
 import '../assets/css/fonts.css';
