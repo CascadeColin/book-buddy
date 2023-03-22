@@ -47,15 +47,17 @@ type User {
 
   type Mutation {
     addUser(userName: String!, email: String!, password: String!, bookGoal: Int, goalDate: String , books:[ID]): Auth
-    addBookGoal(bookGoal:Int): Auth
-    addGoalDate(bookGoal:String): Auth
+    addBookGoal(userName:String!, bookGoal:Int!): User
+    addGoalDate(goalDate:String): Auth
     login(email: String!, password: String!): Auth
     addBook(title: String!, author:String!, desc: String, bookCover:String, isbn:String, isRead:Boolean, toRead:Boolean, isReading:Boolean, bookRating:Int!): Book
     addBookComment(bookId: ID!, commentText: String!): Book
-    updateBookStatus(bookId:ID!, bookStatusValue:String): Book
-    removeBook(title: String!): Book
+    removeBook(title: String): User
     removeBookComment(bookId: ID!, commentText: String!): Book
-    updateBookRating(bookRating: Int): Book 
+    updateBookRating(bookId: ID!, bookRating:Int): Book 
+    updateIsRead(bookId:ID!, isRead:Boolean): Book
+    updateIsReading(bookId:ID!, isRead:Boolean): Book
+    updateToRead(bookId:ID!, isRead:Boolean): Book
   }
 `;
 //TODO: Need a way to update book boolean fields -  mutation

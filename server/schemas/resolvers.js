@@ -129,12 +129,27 @@ const resolvers = {
       return { token, user };
     },
 
-    addBookGoal: async (parent, args, context) => {
+    addBookGoal: async (parent, {userName, bookGoal}, context) =>  {
+      console.log(userName, bookGoal)
       if (context.user) {
-        return await User.findByIdAndUpdate(context.user._id, args, {
-          new: true,
-        });
+        return User.findOneAndUpdate(
+          {userName},
+          {
+            $set: {
+              bookGoal: bookGoal,
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
       }
+      throw new GraphQLError("Please log in to Add/Remove to your Bookcase!", {
+        extensions: {
+          code: "UNAUTHENTICATED",
+        },
+      });
     },
 
     addGoalDate: async (parent, args, context) => {
@@ -158,56 +173,116 @@ const resolvers = {
     //   )
 
     // }
-
-    updateBookStatus: async (parent, { bookId, bookStatusValue }, context) => {
+    updateIsRead: async (parent, { bookId, isRead }, context) => {
       if (context.user) {
-        const updateBook = {
-          toRead: true,
-          isReading: false,
-          isRead: false,
-        };
-        if (bookStatusValue === "isReading") {
-          updateBook.toRead = false;
-          updateBook.isRead = false;
-          updateBook.isReading = true;
-        }
-        if (bookStatusValue === "isRead") {
-          updateBook.isReading = false;
-          updateBook.toRead = false;
-          updateBook.isRead = true;
-        }
-        return Book.findOneAndUpdate(
-          { _id: bookId },
-          {},
+        return await Book.findByIdAndUpdate(
+          {_id:bookId},
           {
-            $Set: {
-              updateBook,
-            },
+            isRead
           },
           {
             new: true,
             runValidators: true,
           }
-        );
+          );
+        }
+        throw new GraphQLError("Please log in to Add/Remove to your Bookcase!", {
+          extensions: {
+            code: "UNAUTHENTICATED",
+          },
+        });
+      },
 
-        throw new GraphQLError(
-          "Please log in to Add/Remove to your Bookcase!",
-          {
+      updateIsReading: async (parent, { bookId, isReading }, context) => {
+        if (context.user) {
+          return await Book.findByIdAndUpdate(
+            {_id:bookId},
+            {
+              isReading
+            },
+            {
+              new: true,
+              runValidators: true,
+            }
+            );
+          }
+          throw new GraphQLError("Please log in to Add/Remove to your Bookcase!", {
             extensions: {
               code: "UNAUTHENTICATED",
             },
-          }
-        );
-      }
-    },
+          });
+        },
 
-    updateBookRating: async (parent, { bookRating }, context) => {
+        updateToRead: async (parent, { bookId, toRead }, context) => {
+          if (context.user) {
+            return await Book.findByIdAndUpdate(
+              {_id:bookId},
+              {
+                toRead
+              },
+              {
+                new: true,
+                runValidators: true,
+              }
+              );
+            }
+            throw new GraphQLError("Please log in to Add/Remove to your Bookcase!", {
+              extensions: {
+                code: "UNAUTHENTICATED",
+              },
+            });
+          },
+
+    // updateBookStatus: async (parent, { bookId, bookStatusValue }, context) => {
+    //   if (context.user) {
+    //     const updateBook = {
+    //       toRead: true,
+    //       isReading: false,
+    //       isRead: false,
+    //     };
+    //     if (bookStatusValue === "isReading") {
+    //       updateBook.toRead = false;
+    //       updateBook.isRead = false;
+    //       updateBook.isReading = true;
+    //     }
+    //     if (bookStatusValue === "isRead") {
+    //       updateBook.isReading = false;
+    //       updateBook.toRead = false;
+    //       updateBook.isRead = true;
+    //     }
+    //     return Book.findOneAndUpdate(
+    //       { _id: bookId },
+    //       {},
+    //       {
+    //         $push: {
+    //           updateBook,
+    //         },
+    //       },
+    //       {
+    //         new: true,
+    //         runValidators: true,
+    //       }
+    //     );
+
+    //     throw new GraphQLError(
+    //       "Please log in to Add/Remove to your Bookcase!",
+    //       {
+    //         extensions: {
+    //           code: "UNAUTHENTICATED",
+    //         },
+    //       }
+    //     );
+    //   }
+    // },
+
+    updateBookRating: async (parent, { bookId, bookRating }, context) => {
+      console.log(bookId, bookRating)
       if (context.user) {
         return Book.findOneAndUpdate(
-          { _id: bookId },
+          { bookId },
           {
-            $addToSet: {
-              bookRating: {},
+            $set: {
+              bookRating:bookRating
             },
           },
           {
@@ -271,30 +346,30 @@ const resolvers = {
       });
     },
 
-    addBookComment: async (parent, { bookId, commentText }, context) => {
-      if (context.user) {
-        return Book.findOneAndUpdate(
-          { _id: bookId },
-          {
-            $addToSet: {
-              bookComment: {
-                commentText,
-                bookCommentCreator: context.user.userName,
-              },
-            },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
-      }
-      throw new GraphQLError("Please log in to Add/Remove to your Bookcase!", {
-        extensions: {
-          code: "UNAUTHENTICATED",
-        },
-      });
-    },
+    // addBookComment: async (parent, { bookId, commentText }, context) => {
+    //   if (context.user) {
+    //     return Book.findOneAndUpdate(
+    //       { _id: bookId },
+    //       {
+    //         $addToSet: {
+    //           bookComment: {
+    //             commentText,
+    //             bookCommentCreator: context.user.userName,
+    //           },
+    //         },
+    //       },
+    //       {
+    //         new: true,
+    //         runValidators: true,
+    //       }
+    //     );
+    //   }
+    //   throw new GraphQLError("Please log in to Add/Remove to your Bookcase!", {
+    //     extensions: {
+    //       code: "UNAUTHENTICATED",
+    //     },
+    //   });
+    // },
 
     removeBook: async (parent, { bookId }, context) => {
       if (context.user) {
@@ -303,7 +378,7 @@ const resolvers = {
           createdBy: context.user.userName,
         });
 
-        await User.findOneAndUpdate(
+        await User.findOneAndDelete(
           { _id: context.user._id },
           { $pull: { books: book._id } }
         );
@@ -317,27 +392,27 @@ const resolvers = {
       });
     },
 
-    removeBookComment: async (parent, { bookId, bookcommentId }, context) => {
-      if (context.user) {
-        return Book.findOneAndUpdate(
-          { _id: bookId },
-          {
-            $pull: {
-              bookComments: {
-                _id: bookcommentId,
-                bookCommentCreator: context.user.userName,
-              },
-            },
-          },
-          { new: true }
-        );
-      }
-      throw new GraphQLError("Please log in to Add/Remove to your Bookcase!", {
-        extensions: {
-          code: "UNAUTHENTICATED",
-        },
-      });
-    },
+    // removeBookComment: async (parent, { bookId, bookcommentId }, context) => {
+    //   if (context.user) {
+    //     return Book.findOneAndUpdate(
+    //       { _id: bookId },
+    //       {
+    //         $pull: {
+    //           bookComments: {
+    //             _id: bookcommentId,
+    //             bookCommentCreator: context.user.userName,
+    //           },
+    //         },
+    //       },
+    //       { new: true }
+    //     );
+    //   }
+    //   throw new GraphQLError("Please log in to Add/Remove to your Bookcase!", {
+    //     extensions: {
+    //       code: "UNAUTHENTICATED",
+    //     },
+    //   });
+    // },
   },
 };
 
