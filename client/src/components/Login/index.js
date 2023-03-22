@@ -13,7 +13,6 @@ const styles = {
     textAlign: "center",
     fontSize: "1.5rem",
     fontFamily: "Italiana",
-    marginRight: "100px",
     marginBottom: "50px",
   },
   title: {
@@ -59,8 +58,12 @@ function Login(props) {
 
   return (
     <div style={styles.main} className="w-4/12 p-4 mt-20">
-      <h2 style={styles.title}>Login</h2>
+      <div flex flex-row >
+        <h2 style={styles.title}>Login</h2>
+      </div>
+  
       <form onSubmit={handleFormSubmit}>
+        <div flex flex-row>
         <div className="flex-row space-between my-2">
           <label style={styles.loginText} htmlFor="email" className="mr-2">
             Email:
@@ -92,6 +95,8 @@ function Login(props) {
             <p className="error-text">The provided credentials are incorrect</p>
           </div>
         ) : null}
+        </div>
+        <div flex flex-row>
         <div className="flex-row flex-end">
           <button
             style={styles.button}
@@ -101,8 +106,9 @@ function Login(props) {
             Login
           </button>
         </div>
+        </div>
       </form>
-    </div>
+      </div>
   );
 }
 
