@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const bodyParser = require('body-parser')
 // Import the ApolloServer class
@@ -8,6 +9,7 @@ const {
 } = require("@apollo/server/plugin/drainHttpServer");
 const http = require("http");
 const routes = require("./controllers");
+require('dotenv').config()
 
 const { authMiddleware } = require("./utils/auth");
 

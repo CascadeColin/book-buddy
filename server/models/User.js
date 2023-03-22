@@ -29,14 +29,17 @@ const userSchema = new Schema({
     default: 0,
   },
   goalDate: {
-    type: Date,
+    type: String,
     required: false,
   },
   bookCompleted: {
     type: Number,
     default: 0,
   },
-  books: [Book.schema],
+  books: [{
+      type: Schema.Types.ObjectId,
+      ref: "Book"
+  }],
 });
 
 // pre-save middle ware for password creation

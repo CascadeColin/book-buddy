@@ -36,6 +36,7 @@ const styles = {
 
 }
 
+
 export default function Bookshelf(props) {
     return(
         <>
@@ -46,6 +47,9 @@ export default function Bookshelf(props) {
                 </div> */}
                 {/* <div class = "flex-justify-between"> */}
                 {/* <p>book1</p> */}
+
+
+
                 <div style = {styles.purpleBook}></div>
                 <div style = {styles.purpleBook}></div>
                 <div style = {styles.purpleBook}></div>
