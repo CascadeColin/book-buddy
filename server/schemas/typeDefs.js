@@ -60,6 +60,6 @@ type User {
     updateToRead(bookId:ID!, isRead:Boolean): Book
   }
 `;
-//TODO: Need a way to update book boolean fields -  mutation
+
 //FIXME: probably should make DATE a string and validate it using REGEX
 module.exports = typeDefs;

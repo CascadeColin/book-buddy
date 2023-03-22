@@ -4,39 +4,9 @@ const { User, Book } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
-  // Query: {
-  //   // Do we need a query for multiple users, or even user if we just need to Auth "me"? I'll add to make sure it doesnt cause issues
-  //     users: async () => {
-  //       return User.find().populate(
 
-  //       "books"
-  //       );
-  //     },
-  //     user: async (parent, {userName}) => {
-  //       return User.findOne({userName}).populate("books");
-  //     },
-  //     books: async (parent, {userName}) => {
-  //       const params = userName ? {userName} : {};
-  //       return Book.find(params);//how to sort via alpha or whatever the group wants//
-  //     },
-  //     book: async (parent, {bookId}) => {
-  //       return Book.findOne({_id: bookId});
-  //     },
-  //     me: async (parent, args, context) => {
-  //       if (context.user) {
-  //       return User.findOne({_id: context.user_id }).populate("books");
-  //       }
-  //       throw new GraphQLError("Please log in to view your Bookcase!", {
-  //         extensions: {
-  //           code: "UNAUTHENTICATED"
-  //         }
-  //       })
-  //     },
-
-  //   },
 
   Query: {
-    // Do we need a query for multiple users, or even user if we just need to Auth "me"? I'll add to make sure it doesnt cause issues
     users: async () => {
       return await User.find().populate("books");
     },
@@ -49,22 +19,6 @@ const resolvers = {
       const params = userName ? { userName } : {};
       return await Book.find(params);
     },
-    //how to sort via alpha or whatever the group wants//
-    // books: async (parent, {user, userName}) => {
-    //   console.log(user, userName)
-    //   const params = {};
-    //   if (user) {
-    //     params.createdBy = userName;
-    //   }
-
-    //   if (userName) {
-    //     params.createdBy = {
-    //       $regex: userName,
-    //     };
-    //   }
-
-    //   return await Book.find(params).populate("books")
-    // },
 
     book: async (parent, { bookId }) => {
       return Book.findOne({ _id: bookId });
@@ -175,19 +129,7 @@ const resolvers = {
       });
     },
 
-    // updateToRead: async (parent, args, content) => {
-    //   Book.find({"book._id": id}).where("isReading").equals(false).updateOne(
-    //     {
-    //       $set {
-    //         "isReading": true,
-    //       }
-    //     },(err,msg) => {
-    //       if(err) throw err;
-    //       res.send(msg);
-    //     }
-    //   )
 
-    // }
     updateIsRead: async (parent, { bookId, isRead }, context) => {
       if (context.user) {
         return await Book.findByIdAndUpdate(
@@ -248,47 +190,6 @@ const resolvers = {
             });
           },
 
-    // updateBookStatus: async (parent, { bookId, bookStatusValue }, context) => {
-    //   if (context.user) {
-    //     const updateBook = {
-    //       toRead: true,
-    //       isReading: false,
-    //       isRead: false,
-    //     };
-    //     if (bookStatusValue === "isReading") {
-    //       updateBook.toRead = false;
-    //       updateBook.isRead = false;
-    //       updateBook.isReading = true;
-    //     }
-    //     if (bookStatusValue === "isRead") {
-    //       updateBook.isReading = false;
-    //       updateBook.toRead = false;
-    //       updateBook.isRead = true;
-    //     }
-    //     return Book.findOneAndUpdate(
-    //       { _id: bookId },
-    //       {},
-    //       {
-    //         $push: {
-    //           updateBook,
-    //         },
-    //       },
-    //       {
-    //         new: true,
-    //         runValidators: true,
-    //       }
-    //     );
-
-    //     throw new GraphQLError(
-    //       "Please log in to Add/Remove to your Bookcase!",
-    //       {
-    //         extensions: {
-    //           code: "UNAUTHENTICATED",
-    //         },
-    //       }
-    //     );
-    //   }
-    // },
 
     updateBookRating: async (parent, { bookId, bookRating }, context) => {
       console.log(bookId, bookRating)
@@ -361,6 +262,7 @@ const resolvers = {
       });
     },
 
+    //TODO: add/remove comment have been postponed for future
     // addBookComment: async (parent, { bookId, commentText }, context) => {
     //   if (context.user) {
     //     return Book.findOneAndUpdate(
@@ -386,28 +288,33 @@ const resolvers = {
     //   });
     // },
 
-    removeBook: async (parent, { userName, bookId }, context) => {
-      
-      if (context.user) {
-        const book = await Book.findOneAndDelete({
-          bookId
-        });
-        console.log(userName, bookId)
-        console.log(context.user)
-        await User.findOneAndDelete(
-          { userName },
-          { $pull: { books: book._id } }
-        );
+//TODO: removeBook not 100 percent
+    // removeBook: async (parent, { bookId } , context) => {
+    //   //   const removeBook = Book.find(removeBook => removeBook.bookId===bookId);
+    //   //   if (removeBook) {
+    //   //     Book = Book.filter(removeBook => removeBook.bookId===bookId)
+    //   //   }
+    //   console.log(context.user)
+    //    if (context.user) {
+    //     const book = await Book.findOneAndDelete({
+    //      _id:bookId
+    //     });
 
-        return book;
-      }
-      throw new GraphQLError("Please log in to Add/Remove to your Bookcase!", {
-        extensions: {
-          code: "UNAUTHENTICATED",
-        },
-      });
-    },
+    //     await User.findOneAndUpdate(
+    //       { userName: context.user.userName },
+    //       { $pull: { books: bookId } },
+    //     );
 
+    //     // return book;
+    //     throw new GraphQLError("Please log in to Add/Remove to your Bookcase!", {
+    //       extensions: {
+    //         code: "UNAUTHENTICATED",
+    //       },
+    //     });
+    //   }
+    // },
+
+//TODO: add/remove comment have been postponed for future
     // removeBookComment: async (parent, { bookId, bookcommentId }, context) => {
     //   if (context.user) {
     //     return Book.findOneAndUpdate(
