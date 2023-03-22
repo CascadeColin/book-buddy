@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { useState } from 'react';
-
+import Modal from './Modal';
 import {Plant} from './Images';
 
 
@@ -52,9 +52,42 @@ const styles = {
         height: "6rem",
         width: "6rem",
         fontColor: '#FCF3EB'
+      },
+      bookModal: {
+        height: "2rem",
+        width: "4rem",
+        marginTop: "0px"
       }
 
 
+}
+
+const modalInfo = (desc) =>{
+    console.log(desc)
+    return(
+        <>
+            <div>
+
+                {/* <input
+                    placeholder="#"
+                    name="bookGoal"
+                    type="bookGoal"
+                    id="bookGoal"
+                    // onChange={handleChange}
+                /> */}
+                <p>
+                    {desc}
+                </p>
+                {/* <input
+                    placeholder="YYYY-MM-DD"
+                    name="goalDate"
+                    type="goalDate"
+                    id="goalDate"
+                    // onChange={handleChange}
+                /> */}
+            </div>
+        </>
+    )
 }
 
 const bookData = [
@@ -126,6 +159,8 @@ export default function Bookshelfdata(props) {
       const [isShown, setIsShown] = useState(false);
       const [isShown1, setIsShown1] = useState(false);
       const [isShown2, setIsShown2] = useState(false);
+      const [isShown3, setIsShown3] = useState(false);
+      const [isShown4, setIsShown4] = useState(false);
     return(
         <>
             <div style = {styles.bgColor}>
@@ -155,34 +190,82 @@ export default function Bookshelfdata(props) {
                    ? `${bookData[x].title}`
                     : ''}
                 </p>
+                        
                      )}
+            <button style={styles.bookModal} className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                        <Modal 
+                        buttonName={bookData[x].title} 
+                        // buttonName={"View"}
+                        modalTitle={bookData[x].title} 
+                        // modalFunction={"add"}
+                        modalInformation= {() => modalInfo(bookData[x].desc)}
+                        onClickInfo={"more"}
+                        />
+                    </button>
                 </div>
-
+                
             <div style = {styles.purpleBook} >
                {bookData[x+1] ? <img id = "1" onMouseEnter={darkBackground} onMouseLeave={lightBackground} class = "cursor-pointer" style = {styles.bookImg} src={bookData[x+1].cover} alt={`The cover for ${bookData[x+1].title}`}  /> : null}
                {isShown1 && (
                 <p style = {styles.centered} class = "cursor-pointer text-white"> {bookData[x+1] ? `${bookData[x+1].title}` : ''} </p>)}
+               {bookData[x+1] ? <button style={styles.bookModal} className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                        <Modal 
+                        buttonName={bookData[x+1].title} 
+                        // buttonName={"View"}
+                        modalTitle={bookData[x+1].title} 
+                        // modalFunction={"add"}
+                        modalInformation= {() => modalInfo(bookData[x+1].desc)}
+                        onClickInfo={"more"}
+                        />
+                    </button> :''}
            </div>
 
            <div style = {styles.purpleBook} >
                {bookData[x+2] ? <img id = "2" onMouseEnter={darkBackground} onMouseLeave={lightBackground} class = "cursor-pointer" style = {styles.bookImg} src={bookData[x+2].cover} alt={`The cover for ${bookData[x+2].title}`}  /> : null}
                {isShown2 && (
                 <p style = {styles.centered} class = "cursor-pointer text-white"> {bookData[x+2] ? `${bookData[x+2].title}` : ''} </p>)}
+                {bookData[x+2] ? <button style={styles.bookModal} className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                        <Modal 
+                        buttonName={bookData[x+2].title} 
+                        // buttonName={"View"}
+                        modalTitle={bookData[x+2].title} 
+                        // modalFunction={"add"}
+                        modalInformation= {() => modalInfo(bookData[x+2].desc)}
+                        onClickInfo={"more"}
+                        />
+                    </button> :''}
+                    
            </div>
-                <div style = {styles.purpleBook}>
-                    <p>
-                    {bookData[x+3]
-                   ? `${bookData[x+3].title}`
-                    : ''}
-                    </p>
-                </div>
-                <div style = {styles.purpleBook}>
-                <p>
-                    {bookData[x+4]
-                   ? `${bookData[x+4].title}`
-                    : ''}
-                    </p>
-                </div>
+           <div style = {styles.purpleBook} >
+               {bookData[x+3] ? <img id = "3" onMouseEnter={darkBackground} onMouseLeave={lightBackground} class = "cursor-pointer" style = {styles.bookImg} src={bookData[x+3].cover} alt={`The cover for ${bookData[x+3].title}`}  /> : null}
+               {isShown3 && (
+                <p style = {styles.centered} class = "cursor-pointer text-white"> {bookData[x+3] ? `${bookData[x+3].title}` : ''} </p>)}
+                   {bookData[x+3] ? <button style={styles.bookModal} className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                        <Modal 
+                        buttonName={bookData[x+3].title} 
+                        // buttonName={"View"}
+                        modalTitle={bookData[x+3].title} 
+                        // modalFunction={"add"}
+                        modalInformation= {() => modalInfo(bookData[x+3].desc)}
+                        onClickInfo={"more"}
+                        />
+                    </button> :''}
+           </div>
+           <div style = {styles.purpleBook} >
+               {bookData[x+4] ? <img id = "4" onMouseEnter={darkBackground} onMouseLeave={lightBackground} class = "cursor-pointer" style = {styles.bookImg} src={bookData[x+4].cover} alt={`The cover for ${bookData[x+4].title}`}  /> : null}
+               {isShown4 && (
+                <p style = {styles.centered} class = "cursor-pointer text-white"> {bookData[x+4] ? `${bookData[x+4].title}` : ''} </p>)}
+                   {bookData[x+4] ? <button style={styles.bookModal} className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                        <Modal 
+                        buttonName={bookData[x+4].title} 
+                        // buttonName={"View"}
+                        modalTitle={bookData[x+4].title} 
+                        // modalFunction={"add"}
+                        modalInformation= {() => modalInfo(bookData[x+4].desc)}
+                        onClickInfo={"more"}
+                        />
+                    </button> :''}
+           </div>
                 {/* w32 */}
                 <p class = "mr-24 mt-12">&gt;</p>
                 {/* </div> */}

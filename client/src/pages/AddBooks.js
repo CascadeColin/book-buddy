@@ -11,6 +11,7 @@ const styles = {
 }
 
 export default function AddBooks() {
+  document.body.style.backgroundColor="#251A45"
   return(
     <>
       <div style={styles.main} className='bg-vdarkPurple'>

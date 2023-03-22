@@ -7,6 +7,7 @@ import Modal from './Modal';
 {/*will have to import the queries for reading goal number and reading goal date */}
 
 import '../assets/css/fonts.css';
+import Bookshelf from './Bookshelf';
 const styles = {
     main: {
         backgroundColor: '#73557D',
@@ -95,8 +96,10 @@ export default function ReadingGoal() {
                 {/* this syntax will most likely need to be changed once the queries are made */}
                     <div className='py-2 pb-2'>
                     {/* reading goal number query */}
-                    <h2 style={styles.bookNumber}>
-                        books</h2>
+                    {/* <Card key={mutationResponse.bookGoal} style={styles.bookNumber}>
+                        
+                    <h2 > {book.bookGoal} books</h2>
+                    </Card> */}
                     {/* reading goal date query */}
                     <h2 style={styles.bookDate}>by</h2>
                     </div>

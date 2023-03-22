@@ -35,25 +35,10 @@ const styles = {
 
 export default function HomePage() {
   return (
-    <div style={styles.bgColor}>
-      {/* FIXME: put back in if nav changed */}
-      {/* <div >
-        <header>
-         <div className="flex flex-row">
-              <Bob />
-            <div className="flex flex-col items-center sm:flex-shrink-0 relative top-3">
-              <h1 className="text-3xl">B o o k</h1>
-              <h2 style={styles.tab}>Buddy</h2>
-            </div>
-          </div>
-        </header>
-      </div>    */}
-      <div className="flex flex-row items-centered">
-         <div className="flex flex row"> 
+    <div style={styles.bgColor} className="vh-fit">
+      <div className="flex flex-row justify-center pt-5 ">
           <Signup />
           <Login />
-          </div>
-        {/* </div> */}
       </div>
     </div>
   );
