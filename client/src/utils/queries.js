@@ -1,22 +1,22 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const MY_BOOKS = gql`
-query MY_BOOKS {
-    me {
-      Books {
-        title
-        author
-        desc
-        bookCover
-        isRead
-        isReading
-        toRead
+  query Query($userName: String!) {
+    me(userName: $userName) {
+      books {
+        _id
       }
     }
   }
-  `;
+`;
 
-//FIXME: 
+
+const array = Object.data.me.books
+const arr2 = array.map(obj => obj._id)
+// run a query mapping the book ids to render books
+
+
+//FIXME:
 
 // export const QUERY_PRODUCTS = gql`
 //   query getProducts($category: ID) {

@@ -8,7 +8,7 @@ type User {
     bookGoal: Int
     goalDate: String
     bookCompleted: Int
-    Books: [Book]
+    books: [Book]
   }
   
   type Book {
@@ -46,7 +46,7 @@ type User {
   }
 
   type Mutation {
-    addUser(userName: String!, email: String!, password: String!, bookGoal: Int, goalDate: String , Books:[ID]): Auth
+    addUser(userName: String!, email: String!, password: String!, bookGoal: Int, goalDate: String , books:[ID]): Auth
     addBookGoal(bookGoal:Int): Auth
     addGoalDate(bookGoal:String): Auth
     login(email: String!, password: String!): Auth
