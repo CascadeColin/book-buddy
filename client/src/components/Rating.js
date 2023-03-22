@@ -49,3 +49,35 @@ export default function RatingModal() {
         </>
     )
 }
+
+export function BookRating() {
+   // rating state has information
+   const [rating, setRating] = useState(0)
+  
+   const handleRating = (rate) => {
+     setRating(rate)
+   }
+   const onPointerMove = (value, index) => console.log(value, index)
+
+   const styles = {
+     display: 'flex',
+     flexDirection: 'row'
+   }
+
+   return(
+      <div
+        style={{
+          direction: 'ltr',
+          fontFamily: 'sans-serif',
+          touchAction: 'none'
+        }}
+        >
+        <Rating
+          initialValue={3}
+          onClick={handleRating}
+          onPointerMove={onPointerMove}
+          readonly
+        />
+      </div>
+   )
+}

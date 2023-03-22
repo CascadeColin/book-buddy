@@ -8,6 +8,7 @@ import { MY_BOOKS } from '../utils/queries';
 // import { SAVE_BOOK } from '../utils/mutations';
 import {Plant} from './../components/Images';
 const SearchBooks = () => {
+  document.body.style.backgroundColor="#FCF3EB"
   const { loading, error, data } = useQuery(MY_BOOKS);
   const bookData = data?.me.Books || []
 const shelf1 = "To Read"

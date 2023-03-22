@@ -13,6 +13,7 @@ const styles = {
 }
 
 export default function Profile() {
+    document.body.style.backgroundColor="#FCF3EB"
     return (
         <>
             <div style={styles.body} className='max-h-screen'>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import RatingModal from './Rating.js';
+import RatingModal, { BookRating } from './Rating.js';
 import Modal from './Modal';
 
 import '../assets/css/fonts.css';
@@ -18,7 +18,7 @@ const styles = {
         fontFamily: 'Italianno',
         fontSize: '1.5rem',
         position: 'relative',
-        top: '70px',
+        top: '30px',
         left: '325px',
         color: 'white',
     },
@@ -36,6 +36,9 @@ const styles = {
 
 
 export default function CurrentlyReading() {
+
+
+
     return (
         <>
             <div 
@@ -44,15 +47,18 @@ export default function CurrentlyReading() {
                     <h1 style={styles.title}>C u r r e n t l y - R e a d i n g</h1> 
 
                     {/* insert currentlyReadingCover */}
-                    <img />
+                    <img 
+                    
+                    />
 
                     <div style={styles.bookInfo}>
                         {/* insert title */}
                         <h2 style={styles.bookTitle}>Title</h2>
                         {/* insert author */}
                         <h2 style={styles.bookAuthor}>Author</h2>
-                        {/* insert given rating or comment(?) */}
-                        <h2>Ratings/Comments</h2>
+                        {/* connect rating to save rating - also do an if statement, only show rating if it has been rated...if not show 'not rated yet' */}
+                        <h2>My Rating:</h2>
+                            <BookRating />
                     </div>
 
                     <div style={styles.button} className="space-x-4">
