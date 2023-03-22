@@ -41,7 +41,7 @@ const styles = {
   },
 };
 
-// {/*Add Login authentication...function showNav() if(Auth.loggedin)*/}
+
 function Nav(){
      function showNavigation() {
     if (Auth.loggedIn()) {

@@ -25,17 +25,18 @@ const styles = {
   button: {
     fontFamily: "Italianno",
     color: "white",
+    fontSize: "2rem",
   },
 };
 
 function Signup(props) {
   const [formState, setFormState] = useState({userName: "", email: "", password: "", bookGoal:"", goalDate:"" });
-  const [addUser] = useMutation(ADD_USER);
+  const [addUser,{error}] = useMutation(ADD_USER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-   let myDate= Date.parse(formState.goalDate);
-   console.log(typeof myDate, myDate);
+
+
     const mutationResponse = await addUser({
       variables: {
         userName: formState.userName,
@@ -124,10 +125,18 @@ function Signup(props) {
             onChange={handleChange}
           />
         </div>
+        {error ? (
+          <div>
+            <p className="error-text">
+              Verify email/password(min8) are unique and all fields are filled
+              in please!
+            </p>
+          </div>
+        ) : null}
         <div className="flex-row flex-end">
           <button
             style={styles.button}
-            className="bg-vdarkPurple px-4"
+            className="bg-vdarkPurple px-4 hover:bg-medPurple rounded shadow hover:shadow-lg"
             type="submit"
           >
             Create Account
