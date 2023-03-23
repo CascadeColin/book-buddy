@@ -9,6 +9,7 @@ body {
 }
 
 /* corrects react-simple-star-rating display - our CSS was cascading into the package and applying flex instead */
+/* DO NOT TOUCH: Rating Stars will break if you do! */
 svg.star-svg {
     display: inline;
 }

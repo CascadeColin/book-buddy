@@ -18,8 +18,12 @@ export function addDesc(book) {
   const excerpts = book?.excerpts;
   // string containing a note on the book
   const notes = book?.notes;
-
+console.log(excerpts, notes)
   // returns the string that is a note describing the book, if it exists
+  if (excerpts === undefined && notes === undefined) {
+    return `No description available!`;
+  }
+
   if (notes) {
     console.log(`Notes: ${notes}`);
     return `${notes}`;
@@ -39,7 +43,5 @@ export function addDesc(book) {
       return `Excerpt: ${excerpts[0].text}`;
     }
   }
-
-  // should only reach if neither if statement fires
-  return `No description available!`;
+  return `something went wrong!`
 }
