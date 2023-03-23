@@ -56,8 +56,8 @@ type User {
     removeBookComment(bookId: ID!, commentText: String!): Book
     updateBookRating(bookId: ID!, bookRating:Int): Book 
     updateIsRead(bookId:ID!, isRead:Boolean): Book
-    updateIsReading(bookId:ID!, isRead:Boolean): Book
-    updateToRead(bookId:ID!, isRead:Boolean): Book
+    updateIsReading(bookId:ID!, isReading:Boolean): Book
+    updateToRead(bookId:ID!, toRead:Boolean): Book
   }
 `;
 

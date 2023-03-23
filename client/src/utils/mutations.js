@@ -35,6 +35,15 @@ export const ADD_USER = gql`
   }
 `;
 
+export const UPDATE_BOOK_RATING = gql`
+  mutation Mutation($bookId: ID!, $bookRating: Int) {
+    updateBookRating(bookId: $bookId, bookRating: $bookRating) {
+      _id
+      bookRating
+    }
+  }
+`;
+
 export const ADD_BOOK = gql`
   mutation Mutation(
     $title: String!
@@ -93,25 +102,28 @@ export const UPDATE_BOOK_GOAL = gql`
 `;
 
 export const UPDATE_TO_READ = gql`
-  mutation UpdateToRead($bookId: ID!) {
-    updateToRead(bookId: $bookId) {
+  mutation UpdateToRead($bookId: ID!, $toRead: Boolean) {
+    updateToRead(bookId: $bookId, toRead: $toRead) {
       toRead
+      _id
     }
   }
 `;
 
 export const UPDATE_IS_READING = gql`
-  mutation UpdateIsReading($bookId: ID!) {
-    updateIsReading(bookId: $bookId) {
+  mutation UpdateIsReading($bookId: ID!, $isReading: Boolean) {
+    updateIsReading(bookId: $bookId, isReading: $isReading) {
       isReading
+      _id
     }
   }
 `;
 
 export const UPDATE_IS_READ = gql`
-  mutation Mutation($bookId: ID!) {
-    updateIsRead(bookId: $bookId) {
+  mutation Mutation($bookId: ID!, $isRead: Boolean) {
+    updateIsRead(bookId: $bookId, isRead: $isRead) {
       isRead
+      _id
     }
   }
 `;

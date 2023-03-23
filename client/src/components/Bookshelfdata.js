@@ -95,7 +95,7 @@ export default function Bookshelfdata({ bookData, shelfname }) {
           <div className="mb-5">
           
 
-          <p>Title: {props.title}</p>
+          {/* <p>Title: {props.title}</p> */}
           <p>Author: {props.author}</p>
           <p>Description: {props.desc}</p>
           </div>
@@ -214,7 +214,7 @@ export default function Bookshelfdata({ bookData, shelfname }) {
                   <Modal
                     bookInfo={book}
                     buttonName={"More Info"}
-                    modalTitle={"Update your book!"}
+                    modalTitle={`${book.title}`}
                     modalFunction={"Confirm"}
                     modalInformation={modalInfo}
                     onClickInfo={saveChanges}
