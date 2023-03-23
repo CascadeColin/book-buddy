@@ -50,6 +50,11 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
 
+// attempt to fix heroku routing problems
+app.get('*', function(req,res){
+  res.sendFile(path.join(__dirname, '..', 'build/index.html'));
+});
+
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
