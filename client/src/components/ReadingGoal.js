@@ -46,8 +46,6 @@ export default function ReadingGoal() {
 
   const userData = data?.users || [];
 
-  console.log(goalDate, bookGoal);
-
   const saveGoal = async () => {
     await updateBookGoal({
       variables: {
@@ -61,14 +59,14 @@ export default function ReadingGoal() {
         goalDate: goalDate,
       },
     });
-    console.log(mutation.data.addGoalDate);
+
     setBookGoal(mutation.data.addGoalDate.bookGoal);
     setGoalDate(mutation.data.addGoalDate.goalDate);
-    reloadPage()
+    reloadPage();
   };
 
   function reloadPage() {
-    window.location.reload()
+    window.location.reload();
   }
 
   const goal = "New Goal";
@@ -107,9 +105,17 @@ export default function ReadingGoal() {
           <div>Loading...</div>
         ) : (
           <>
-            <h1 style={styles.title}>{userData[0].bookGoal ? `Reading Goal: ${userData[0].bookGoal}` : `Click "New Goal to set a book goal!"` }</h1>
+            <h1 style={styles.title}>
+              {userData[0].bookGoal
+                ? `Reading Goal: ${userData[0].bookGoal}`
+                : `Click "New Goal to set a book goal!"`}
+            </h1>
             <div className="py-2 pb-2">
-              <h2 style={styles.bookDate}>{userData[0].goalDate ? `by ${userData[0].goalDate}` : `Click "New Goal to set a goal date!"`}</h2>
+              <h2 style={styles.bookDate}>
+                {userData[0].goalDate
+                  ? `by ${userData[0].goalDate}`
+                  : `Click "New Goal to set a goal date!"`}
+              </h2>
             </div>
             {/*on click, have the 'new reading goal' modal pop up*/}
             <button
