@@ -78,6 +78,7 @@ export default function ReadingGoal() {
     return (
       <>
         <form onSubmit={saveGoal}>
+          <div className="bg-medPurple text-black p-10">
           <p>How many books do you want to read?</p>
           <input
             placeholder="#"
@@ -94,6 +95,7 @@ export default function ReadingGoal() {
             id="goalDate"
             onChange={(e) => setGoalDate(e.target.value)}
           />
+          </div>
         </form>
       </>
     );

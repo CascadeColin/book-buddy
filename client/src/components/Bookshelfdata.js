@@ -64,33 +64,61 @@ const styles = {
 
 const modalInfo = (desc) =>{
     console.log(desc)
-    return(
-        <>
-            <div>
-
-                {/* <input
+    return (
+      <>
+        <div className="bg-vdarkPurple text-white p-5">
+          <div className="mb-5">
+            {/* <input
                     placeholder="#"
                     name="bookGoal"
                     type="bookGoal"
                     id="bookGoal"
                     // onChange={handleChange}
                 /> */}
-                <p>
-                    {desc}
-                </p>
-                {/* <input
+            <p>{desc}</p>
+            {/* <input
                     placeholder="YYYY-MM-DD"
                     name="goalDate"
                     type="goalDate"
                     id="goalDate"
                     // onChange={handleChange}
                 /> */}
-                <div>
-                    
-                </div>
+          </div>
+          <div className="flex flex-row content-center ">
+            <div className="flex flex-col content-center mr-20 ml-5">
+              <label htmlFor="toRead">To Read</label>
+              <input
+                name="toRead"
+                type="checkbox"
+                id="toRead"
+                //onChange={handleChange}
+              />
             </div>
-        </>
-    )
+            <div className="flex flex-col content-center mr-20">
+              <label htmlFor="isReading">Reading</label>
+              <input
+                name="isReading"
+                type="checkbox"
+                id="isReading"
+                //onChange={handleChange}
+              />
+            </div>
+            <div className="flex flex-col content-center mr-20">
+              <label htmlFor="isRead">Read</label>
+              <input
+                name="isRead"
+                type="checkbox"
+                id="isRead"
+                //onChange={handleChange}
+              />
+            </div>
+            <button className="bg-medPurple p-2 m-2 rounded-md hover:text-black">
+              Delete Book
+            </button>
+          </div>
+        </div>
+      </>
+    );
 }
 
 // const bookData = [
