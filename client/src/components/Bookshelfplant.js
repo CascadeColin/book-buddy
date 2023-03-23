@@ -17,8 +17,7 @@ const styles = {
     },
     greenShelf: {
         fontFamily: 'Italiana',
-        backgroundColor: '#4F5939'
-
+        backgroundColor: '#4F5939',
     },
     purpleBook: {
         backgroundColor: '#7D7CBE',

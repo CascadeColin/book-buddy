@@ -6,7 +6,7 @@ import { UPDATE_BOOK_RATING } from "../utils/mutations";
 import Auth from '../utils/auth'
 
 export default function RatingModal(props) {
-  console.log("props: ",props)
+
   const button = "Rate Me!";
   const ratingTitle = "Rate This Book:";
   const rateIt = "Rate It!";
@@ -39,7 +39,6 @@ export default function RatingModal(props) {
         bookRating: rating
       }
     })
-    console.log("new rating: ", a)
     // window.location.reload();
   };
 
@@ -68,7 +67,7 @@ export default function RatingModal(props) {
   );
 }
 
-export function BookRating() {
+export function BookRating(props) {
   // rating state has information
   const [rating, setRating] = useState(0);
 
@@ -93,10 +92,9 @@ export function BookRating() {
     >
       {/* read only rating stars */}
       <Rating
-        initialValue={3}
+        initialValue={props.book.bookRating}
         onClick={handleRating}
         onPointerMove={onPointerMove}
-        readonly
       />
     </div>
   );

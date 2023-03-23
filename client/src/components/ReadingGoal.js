@@ -74,7 +74,7 @@ export default function ReadingGoal() {
 
     setBookGoal(mutation.data.addGoalDate.bookGoal);
     setGoalDate(mutation.data.addGoalDate.goalDate);
-    reloadPage();
+    // reloadPage();
   };
 
   function reloadPage() {

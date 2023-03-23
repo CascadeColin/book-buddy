@@ -2,7 +2,12 @@ import React from "react";
 import { useState } from "react";
 import Modal from "./Modal";
 import { Plant } from "./Images";
-import {UPDATE_TO_READ, UPDATE_IS_READING, UPDATE_IS_READ, REMOVE_BOOK} from '../utils/mutations'
+import {
+  UPDATE_TO_READ,
+  UPDATE_IS_READING,
+  UPDATE_IS_READ,
+  REMOVE_BOOK,
+} from "../utils/mutations";
 import { useMutation } from "@apollo/client";
 
 import "../assets/css/fonts.css";
@@ -61,44 +66,39 @@ const styles = {
 };
 
 export default function Bookshelfdata({ bookData, shelfname }) {
+  const [updateToRead, { e1 }] = useMutation(UPDATE_TO_READ);
+  const [updateIsReading, { e2 }] = useMutation(UPDATE_IS_READING);
+  const [updateIsRead, { e3 }] = useMutation(UPDATE_IS_READ);
+  const [removeBook, { e4 }] = useMutation(REMOVE_BOOK);
 
-  const [updateToRead, {e1} ] = useMutation(UPDATE_TO_READ)
-  const [updateIsReading, {e2} ] = useMutation(UPDATE_IS_READING)
-  const [updateIsRead, {e3} ] = useMutation(UPDATE_IS_READ)
-  const [removeBook, {e4} ] = useMutation(REMOVE_BOOK)
-
-  const [isRead, setIsRead] = useState(false)
-  const [isReading, setIsReading] = useState(false)
-  const [toRead, setToRead] = useState(false)
-  console.log(isRead, isReading, toRead)
+  const [isRead, setIsRead] = useState(false);
+  const [isReading, setIsReading] = useState(false);
+  const [toRead, setToRead] = useState(false);
+  console.log(isRead, isReading, toRead);
 
   function handleIsReadChange() {
-    const bool = isRead
-    setIsRead(!bool)
-    
+    const bool = isRead;
+    setIsRead(!bool);
   }
 
   function handleIsReadingChange() {
-    const bool = isReading
-    setIsReading(!bool)
+    const bool = isReading;
+    setIsReading(!bool);
   }
 
   function handleToReadChange() {
-    const bool = toRead
-    setToRead(!bool)
+    const bool = toRead;
+    setToRead(!bool);
   }
 
   const modalInfo = (props) => {
-    console.log('does modalInfo get bookData: ', props)
+    console.log("does modalInfo get bookData: ", props);
     return (
       <>
         <div className="bg-vdarkPurple text-white p-5">
           <div className="mb-5">
-          
-
-          {/* <p>Title: {props.title}</p> */}
-          <p>Author: {props.author}</p>
-          <p>Description: {props.desc}</p>
+            <p>Author: {props.author}</p>
+            <p>Description: {props.desc}</p>
           </div>
           <div className="flex flex-row content-center ">
             <div className="flex flex-col content-center mr-20 ml-5">
@@ -128,7 +128,10 @@ export default function Bookshelfdata({ bookData, shelfname }) {
                 onChange={handleIsReadChange}
               />
             </div>
-            <button onClick={() => handleRemoveBook(props)} className="bg-medPurple p-2 m-2 rounded-md hover:text-black">
+            <button
+              onClick={() => handleRemoveBook(props)}
+              className="bg-medPurple p-2 m-2 rounded-md hover:text-black"
+            >
               Delete Book
             </button>
           </div>
@@ -141,29 +144,29 @@ export default function Bookshelfdata({ bookData, shelfname }) {
     await updateIsRead({
       variables: {
         bookId: props._id,
-        isRead: isRead
-      }
-    })
+        isRead: isRead,
+      },
+    });
     await updateIsReading({
       variables: {
         bookId: props._id,
-        isReading: isReading
-      }
-    })
+        isReading: isReading,
+      },
+    });
     await updateToRead({
       variables: {
         bookId: props._id,
-        toRead: toRead
-      }
-    })
+        toRead: toRead,
+      },
+    });
   }
 
   async function handleRemoveBook(props) {
     await removeBook({
       variables: {
         bookId: props._id,
-      }
-    })
+      },
+    });
     window.location.reload();
   }
 
@@ -424,7 +427,7 @@ export default function Bookshelfdata({ bookData, shelfname }) {
         </div>
         <p
           style={styles.greenShelf}
-          class="text-center text-white m-12 mb-0 mt-4 p-0"
+          class="text-center text-2xl text-white m-12 mb-0 mt-4 p-0"
         >
           {shelfname}
         </p>
