@@ -46,7 +46,7 @@ const styles = {
     // left: "8px",
   },
   navTabs: {
-    paddingLeft: "45rem",
+    paddingLeft: "4rem",
   },
 };
 
@@ -67,8 +67,8 @@ function Nav(){
             </div>
 
             <ul
-              style={styles.navTabs}
-              className="flex flex-row justify-end items-center md:flex-shrink-0 space-x-20"
+              // style={styles.navTabs}
+              className="flex flex-row justify-end items-center md:flex-shrink-0 space-x-20 xs:space-x-2 sm:space-x-10 ml-auto "
             >
               <li>
                 <Link to="/profile">
