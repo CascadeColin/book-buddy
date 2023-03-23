@@ -35,6 +35,15 @@ export const ADD_USER = gql`
   }
 `;
 
+export const UPDATE_BOOK_RATING = gql`
+  mutation Mutation($bookId: ID!, $bookRating: Int) {
+    updateBookRating(bookId: $bookId, bookRating: $bookRating) {
+      _id
+      bookRating
+    }
+  }
+`;
+
 export const ADD_BOOK = gql`
   mutation Mutation(
     $title: String!
