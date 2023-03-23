@@ -2,8 +2,8 @@ import React from "react";
 import { useState } from "react";
 import Modal from "./Modal";
 import { Plant } from "./Images";
-import {UPDATE_TO_READ, UPDATE_IS_READING, UPDATE_IS_READ} from '../utils/mutations'
-import { useQuery, useMutation } from "@apollo/client";
+import {UPDATE_TO_READ, UPDATE_IS_READING, UPDATE_IS_READ, REMOVE_BOOK} from '../utils/mutations'
+import { useMutation } from "@apollo/client";
 
 import "../assets/css/fonts.css";
 const styles = {
@@ -65,6 +65,7 @@ export default function Bookshelfdata({ bookData, shelfname }) {
   const [updateToRead, {e1} ] = useMutation(UPDATE_TO_READ)
   const [updateIsReading, {e2} ] = useMutation(UPDATE_IS_READING)
   const [updateIsRead, {e3} ] = useMutation(UPDATE_IS_READ)
+  const [removeBook, {e4} ] = useMutation(REMOVE_BOOK)
 
   const [isRead, setIsRead] = useState(false)
   const [isReading, setIsReading] = useState(false)
@@ -127,7 +128,7 @@ export default function Bookshelfdata({ bookData, shelfname }) {
                 onChange={handleIsReadChange}
               />
             </div>
-            <button className="bg-medPurple p-2 m-2 rounded-md hover:text-black">
+            <button onClick={() => handleRemoveBook(props)} className="bg-medPurple p-2 m-2 rounded-md hover:text-black">
               Delete Book
             </button>
           </div>
@@ -155,6 +156,15 @@ export default function Bookshelfdata({ bookData, shelfname }) {
         toRead: toRead
       }
     })
+  }
+
+  async function handleRemoveBook(props) {
+    await removeBook({
+      variables: {
+        bookId: props._id,
+      }
+    })
+    window.location.reload();
   }
 
   function darkBackground(e) {
