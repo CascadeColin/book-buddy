@@ -72,6 +72,7 @@ export function BookRating() {
           touchAction: 'none'
         }}
         >
+          {/* read only rating stars */}
         <Rating
           initialValue={3}
           onClick={handleRating}
