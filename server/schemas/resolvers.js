@@ -193,8 +193,8 @@ const resolvers = {
     updateBookRating: async (parent, { bookId, bookRating }, context) => {
       console.log(bookId, bookRating);
       if (context.user) {
-        return Book.findOneAndUpdate(
-          { bookId },
+        return await Book.findByIdAndUpdate(
+          { _id: bookId },
           {
             $set: {
               bookRating: bookRating,

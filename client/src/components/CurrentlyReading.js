@@ -116,7 +116,7 @@ if(myBooks[x]){
                   type="button"
                   className="bg-vdarkPurple text-white hover:bg-medPurple font-bold uppercase text-md px-2 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 >
-                  <RatingModal />
+                  <RatingModal book={myBooks[x]}/>
                 </button>
               </div>
             </div>
