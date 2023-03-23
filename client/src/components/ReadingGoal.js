@@ -125,7 +125,7 @@ export default function ReadingGoal() {
                 <h1 style={styles.bookNumber}>
                     {userData.bookGoal
                          ? `${userData.bookGoal}`
-                         : `Click "New Goal" to set a book goal!`} 
+                         : `0`} 
                 </h1>
                 <h2 className="text-3xl">books</h2>
             </div>
@@ -133,7 +133,7 @@ export default function ReadingGoal() {
               <h2 style={styles.bookDate}>
                 {userData.goalDate
                   ? `by ${userData.goalDate}`
-                  : `Click "New Goal" to set a goal date!`}
+                  : `Set a goal date!`}
               </h2>
             </div>
             {/*on click, have the 'new reading goal' modal pop up*/}
