@@ -125,7 +125,7 @@ export default function Bookshelfplantdata({ bookData, shelfname }) {
             <Plant />
           </div>
 
-          <div style={styles.purpleBook}>
+          <div style={styles.purpleBook} >
             {bookData[x] ? (
               <img
                 id="0"

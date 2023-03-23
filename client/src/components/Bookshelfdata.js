@@ -57,6 +57,7 @@ const styles = {
   button: {
     fontFamily: "Italianno",
     color: "white",
+    
   },
 };
 
@@ -207,7 +208,7 @@ export default function Bookshelfdata({ bookData, shelfname }) {
         <div class="flex justify-between mt-12 mb-0 ml-24 items-baseline">
           {bookData.map((book) => {
             return (
-              <div className="" key={book._id}>
+              <div className="flex flex-col-reverse" key={book._id}>
                 <img
                   id="0"
                   onMouseEnter={darkBackground}
