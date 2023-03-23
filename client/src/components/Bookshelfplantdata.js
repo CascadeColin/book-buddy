@@ -148,7 +148,8 @@ export default function Bookshelfplantdata({ bookData, shelfname }) {
             {bookData[x] ? (
               <button
                 style={styles.bookModal}
-                className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                className="bg-vdarkPurple text-white hover:bg-medPurple text-md px-1 py-1 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                // className="bg-vdarkPurple text-white hover:bg-medPurple text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
               >
                 <Modal
                   buttonName={"Open"}
