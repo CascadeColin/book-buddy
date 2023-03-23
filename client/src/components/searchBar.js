@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_BOOK } from "../utils/mutations";
 import Auth from "../utils/auth";
-import { bookTitleStrToURL, regexGen, addDesc } from "../utils/helpers";
+import { bookTitleStrToURL, regexGen, addDesc, bookCoverErrorHandler } from "../utils/helpers";
 import Modal from './Modal';
 
 import '../assets/css/fonts.css';
@@ -65,7 +65,7 @@ const SearchForBooks = () => {
       const isbnArr = data.docs[0].isbn;
       // removes all indexes after 20 - eliminates edge case where page would hang due to iterating through hundreds of array indexes
       isbnArr.splice(20, Infinity);
-
+        // console.log(isbnArr)
 
       let i = 0;
       while (i < isbnArr.length) {
@@ -87,17 +87,22 @@ const SearchForBooks = () => {
         // if it passes regex check, create a new Book
         if (search.match(regex)) {
           const weHaveAWinner = bookRes[dynamicISBN];
+
           const dataStoreObj = {
             title: weHaveAWinner.title,
             author: weHaveAWinner.authors[0].name,
             desc: addDesc(weHaveAWinner),
-            bookCover: weHaveAWinner.cover.large,
+            // bookCover: weHaveAWinner ? weHaveAWinner.cover.large : bookCoverErrorHandler(weHaveAWinner),
+            // bookCover: weHaveAWinner.cover.large,
+            // bookCover: "https://via.placeholder.com/400x600",
+            bookCover: bookCoverErrorHandler(weHaveAWinner),
             isbn: isbnArr[i],
             isRead: false,
             toRead: true,
             isReading: false,
             bookRating: 0,
           };
+          console.log(dataStoreObj)
           const newestBook = await addBook({
             variables: dataStoreObj,
           });
@@ -152,7 +157,7 @@ const SearchForBooks = () => {
         </h3>
         <div className="text-center object-center text-lg">
           {searchBooks.map((book) => {
-            
+            console.log(book.bookCover)
             return (
               
               <li key={1} >
