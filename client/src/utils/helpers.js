@@ -22,7 +22,7 @@ export function addDesc(book) {
   // returns the string that is a note describing the book, if it exists
   if (notes) {
     console.log(`Notes: ${notes}`);
-    return `Notes: ${notes}`;
+    return `${notes}`;
   }
 
   if (excerpts.length > 0) {

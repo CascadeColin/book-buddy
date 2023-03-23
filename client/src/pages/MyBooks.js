@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import Bookshelf from './../components/Bookshelf';
-import Bookshelfplant from '../components/Bookshelfplant';
+import Bookshelfplantdata from '../components/Bookshelfplantdata';
 import Bookshelfdata from '../components/Bookshelfdata';
 import { ME } from '../utils/queries';
 import getProfile from '../utils/auth';
@@ -84,7 +84,7 @@ if (error) {
     <div class = "w-32 m-0">
     {/* <Plant /> */}
     </div>
-    <Bookshelfplant bookData = {isRead} shelfname={shelf1} />
+    <Bookshelfplantdata bookData = {isRead} shelfname={shelf1} />
     <Bookshelfdata bookData = {isReading} shelfname ={shelf2}/>
     <Bookshelfdata bookData = {toRead} shelfname ={shelf3} />
   </div>

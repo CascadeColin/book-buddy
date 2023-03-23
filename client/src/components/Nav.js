@@ -16,6 +16,7 @@ const styles = {
     fontSize: "1.25rem",
     padding: "10px",
     width: "100vw",
+    marginLeft: '-4px'
   },
   login: {
     backgroundColor: "#FCF3EB",
@@ -42,7 +43,7 @@ const styles = {
     fontSize: "5rem",
     position: "relative",
     top: "-19px",
-    left: "8px",
+    // left: "8px",
   },
   navTabs: {
     paddingLeft: "45rem",

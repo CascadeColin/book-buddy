@@ -1,18 +1,23 @@
 import React from 'react';
 
-const styles ={
-    bob: {
-        maxWidth: '100px',
-        maxHeight: '70px',
-        marginTop: '5px'
-    },
+const styles = {
+  bob: {
+    maxWidth: "100px",
+    maxHeight: "70px",
+    marginTop: "5px",
+  },
 
-     bobLight: {
+  bobLight: {
     maxWidth: "150px",
     maxHeight: "150px",
     marginTop: "20px",
   },
-}
+  loginPlant: {
+    maxWidth: "150px",
+    maxHeight: "150px",
+    marginTop: "100px",
+  }
+};
 
 export default function Bob(){
     return(
@@ -44,4 +49,15 @@ export function Plant(){
         alt='NavBar Plant'
     />
     )
+}
+
+export function LoginPlant() {
+  return (
+    <img
+      className="ShelfPlant"
+      src={require("../assets/images/loginPlant.png")}
+      alt="login Plant"
+      style={styles.loginPlant}
+    />
+  );
 }

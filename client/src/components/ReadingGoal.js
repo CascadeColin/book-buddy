@@ -26,10 +26,11 @@ const styles = {
     fontSize: "3rem",
   },
   bookNumber: {
-    fontSize: "3rem",
+    fontSize: "5rem",
+    textWeight: 'bold'
   },
   bookDate: {
-    fontSize: "2.5rem",
+    fontSize: "2rem",
   },
   button: {
     fontFamily: "Italianno",
@@ -79,6 +80,7 @@ console.log(test)
     return (
       <>
         <form onSubmit={saveGoal}>
+          <div className="bg-medPurple text-black p-10">
           <p>How many books do you want to read?</p>
           <input
             placeholder="#"
@@ -95,23 +97,28 @@ console.log(test)
             id="goalDate"
             onChange={(e) => setGoalDate(e.target.value)}
           />
+          </div>
         </form>
       </>
     );
   };
   return (
     <>
-      <div style={styles.main} className="w-4/12 px-10 py-8 mt-12">
+      <div style={styles.main} className="w-4/12 px-10 py-6 mt-12">
         {/* TODO: useQuery to get this data reading goal number query */}
         {loading ? (
           <div>Loading...</div>
         ) : (
           <>
-            <h1 style={styles.title}>
-              {userData[0].bookGoal
-                ? `Reading Goal: ${userData[0].bookGoal}`
-                : `Click "New Goal" to set a book goal!`}
-            </h1>
+          <h1 style={styles.title}>Reading Goal:</h1>
+            <div className="flex flex-row space-x-3 justify-center items-baseline">
+                <h1 style={styles.bookNumber}>
+                    {userData[0].bookGoal
+                        ? `${userData[0].bookGoal}`
+                        : `Click "New Goal" to set a book goal!`}
+                </h1>
+                <h2 className="text-3xl">books</h2>
+            </div>
             <div className="py-2 pb-2">
               <h2 style={styles.bookDate}>
                 {userData[0].goalDate

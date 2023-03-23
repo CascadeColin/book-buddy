@@ -64,30 +64,61 @@ const styles = {
 
 const modalInfo = (desc) =>{
     console.log(desc)
-    return(
-        <>
-            <div>
-
-                {/* <input
+    return (
+      <>
+        <div className="bg-vdarkPurple text-white p-5">
+          <div className="mb-5">
+            {/* <input
                     placeholder="#"
                     name="bookGoal"
                     type="bookGoal"
                     id="bookGoal"
                     // onChange={handleChange}
                 /> */}
-                <p>
-                    {desc}
-                </p>
-                {/* <input
+            <p>{desc}</p>
+            {/* <input
                     placeholder="YYYY-MM-DD"
                     name="goalDate"
                     type="goalDate"
                     id="goalDate"
                     // onChange={handleChange}
                 /> */}
+          </div>
+          <div className="flex flex-row content-center ">
+            <div className="flex flex-col content-center mr-20 ml-5">
+              <label htmlFor="toRead">To Read</label>
+              <input
+                name="toRead"
+                type="checkbox"
+                id="toRead"
+                //onChange={handleChange}
+              />
             </div>
-        </>
-    )
+            <div className="flex flex-col content-center mr-20">
+              <label htmlFor="isReading">Reading</label>
+              <input
+                name="isReading"
+                type="checkbox"
+                id="isReading"
+                //onChange={handleChange}
+              />
+            </div>
+            <div className="flex flex-col content-center mr-20">
+              <label htmlFor="isRead">Read</label>
+              <input
+                name="isRead"
+                type="checkbox"
+                id="isRead"
+                //onChange={handleChange}
+              />
+            </div>
+            <button className="bg-medPurple p-2 m-2 rounded-md hover:text-black">
+              Delete Book
+            </button>
+          </div>
+        </div>
+      </>
+    );
 }
 
 // const bookData = [
@@ -163,19 +194,17 @@ export default function Bookshelfdata( {bookData, shelfname} ) {
       const [isShown4, setIsShown4] = useState(false);
     //   let bookData = props.bookData
 
-    return(
-  
-        <>
-            <div style = {styles.bgColor}>
-                <div class = "flex justify-between mt-12 mb-0 ml-24 items-baseline">
-                    {/* <div class = " mb-0 w-32 ml-24">
+    return (
+      <>
+        <div style={styles.bgColor}>
+          <div class="flex justify-between mt-12 mb-0 ml-24 items-baseline">
+            {/* <div class = " mb-0 w-32 ml-24">
                 <Plant/>
                 </div> */}
-                {/* <div class = "flex-justify-between"> */}
-                {/* <p>book1</p> */}
+            {/* <div class = "flex-justify-between"> */}
+            {/* <p>book1</p> */}
 
-  
-                {/* {bookData.map((book) => {
+            {/* {bookData.map((book) => {
                     return (
 
                         <div style = {styles.purpleBook} >
@@ -184,9 +213,9 @@ export default function Bookshelfdata( {bookData, shelfname} ) {
                     {isShown && (
                 <p style = {styles.centered} class = "cursor-pointer text-white justify-center">
                     {/* {props.bookData[x] */}
-                    {/* `${book.title}` */}
-                    {/* // : ''} */}
-                {/* </p>
+            {/* `${book.title}` */}
+            {/* // : ''} */}
+            {/* </p>
                         
                      )}
             <button style={styles.bookModal} className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
@@ -201,104 +230,208 @@ export default function Bookshelfdata( {bookData, shelfname} ) {
                     </button>
                 </div>
 
-                    ) */} 
-                {/* })} */}
-               
-                <div style = {styles.purpleBook} >
-               
-                    { bookData[x] ? <img id = "0" onMouseEnter={darkBackground} onMouseLeave={lightBackground} class = "cursor-pointer" style = {styles.bookImg} src={bookData[x].bookCover} alt={`The cover for ${bookData[x].title}`}  /> : null}
-                    {isShown && (
-                <p style = {styles.centered} class = "cursor-pointer text-white justify-center">
-                    {bookData[x]
-                   ? `${bookData[x].title}`
-                    : ''}
-                </p>
-                        
-                     )}
-         {bookData[x] ? <button  style={styles.bookModal} className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
-                        <Modal 
-                        buttonName={"Open"} 
-                        // buttonName={"View"}
-                        modalTitle={bookData[x].title} 
-                        // modalFunction={"add"}
-                        modalInformation= {() => modalInfo(bookData[x].desc)}
-                        onClickInfo={"more"}
-                        />
-                    </button>  : ''}
-                </div>
-                
-            <div style = {styles.purpleBook} >
-               {bookData[x+1] ? <img id = "1" onMouseEnter={darkBackground} onMouseLeave={lightBackground} class = "cursor-pointer" style = {styles.bookImg} src={bookData[x+1].bookCover} alt={`The cover for ${bookData[x+1].title}`}  /> : null}
-               {isShown1 && (
-                <p style = {styles.centered} class = "cursor-pointer text-white"> {bookData[x+1] ? `${bookData[x+1].title}` : ''} </p>)}
-               {bookData[x+1] ? <button style={styles.bookModal} className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
-                        <Modal 
-                        buttonName={"Open"} 
-                        // buttonName={"View"}
-                        modalTitle={bookData[x+1].title} 
-                        // modalFunction={"add"}
-                        modalInformation= {() => modalInfo(bookData[x+1].desc)}
-                        onClickInfo={"more"}
-                        />
-                    </button> :''}
-           </div>
+                    ) */}
+            {/* })} */}
 
-           <div style = {styles.purpleBook} >
-               {bookData[x+2] ? <img id = "2" onMouseEnter={darkBackground} onMouseLeave={lightBackground} class = "cursor-pointer" style = {styles.bookImg} src={bookData[x+2].cover} alt={`The cover for ${bookData[x+2].title}`}  /> : null}
-               {isShown2 && (
-                <p style = {styles.centered} class = "cursor-pointer text-white"> {bookData[x+2] ? `${bookData[x+2].title}` : ''} </p>)}
-                {bookData[x+2] ? <button style={styles.bookModal} className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
-                        <Modal 
-                        buttonName={"Open"} 
-                        // buttonName={"View"}
-                        modalTitle={bookData[x+2].title} 
-                        // modalFunction={"add"}
-                        modalInformation= {() => modalInfo(bookData[x+2].desc)}
-                        onClickInfo={"more"}
-                        />
-                    </button> :''}
-                    
-           </div>
-           <div style = {styles.purpleBook} >
-               {bookData[x+3] ? <img id = "3" onMouseEnter={darkBackground} onMouseLeave={lightBackground} class = "cursor-pointer" style = {styles.bookImg} src={bookData[x+3].cover} alt={`The cover for ${bookData[x+3].title}`}  /> : null}
-               {isShown3 && (
-                <p style = {styles.centered} class = "cursor-pointer text-white"> {bookData[x+3] ? `${bookData[x+3].title}` : ''} </p>)}
-                   {bookData[x+3] ? <button style={styles.bookModal} className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
-                        <Modal 
-                        buttonName={"Open"} 
-                        // buttonName={"View"}
-                        modalTitle={bookData[x+3].title} 
-                        // modalFunction={"add"}
-                        modalInformation= {() => modalInfo(bookData[x+3].desc)}
-                        onClickInfo={"more"}
-                        />
-                    </button> :''}
-           </div>
-           <div style = {styles.purpleBook} >
-               {bookData[x+4] ? <img id = "4" onMouseEnter={darkBackground} onMouseLeave={lightBackground} class = "cursor-pointer" style = {styles.bookImg} src={bookData[x+4].cover} alt={`The cover for ${bookData[x+4].title}`}  /> : null}
-               {isShown4 && (
-                <p style = {styles.centered} class = "cursor-pointer text-white"> {bookData[x+4] ? `${bookData[x+4].title}` : ''} </p>)}
-                   {bookData[x+4] ? <button style={styles.bookModal} className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
-                        <Modal 
-                        buttonName={"Open"} 
-                        // buttonName={"View"}
-                        modalTitle={bookData[x+4].title} 
-                        // modalFunction={"add"}
-                        modalInformation= {() => modalInfo(bookData[x+4].desc)}
-                        onClickInfo={"more"}
-                        />
-                    </button> :''}
-           </div>
-                {/* w32 */}
-                <p class = "mr-24 mt-12">&gt;</p>
-                {/* </div> */}
-                </div>
-                <p style = {styles.greenShelf} class = "text-center text-white m-12 mb-0 mt-4 p-0">{shelfname}</p>
-            <div class = "flex justify-between">
-                <div class = "bg-gray-300 m-0 w-16 h-8 ml-32 text-center"></div>
-                <div class = "bg-gray-300 m-0 w-16 h-8 mr-32 text-center"></div>
+            <div className="flex flex-col-reverse" style={styles.purpleBook}>
+              {bookData[x] ? (
+                <img
+                  id="0"
+                  onMouseEnter={darkBackground}
+                  onMouseLeave={lightBackground}
+                  class="cursor-pointer"
+                  style={styles.bookImg}
+                  src={bookData[x].bookCover}
+                  alt={`The cover for ${bookData[x].title}`}
+                />
+              ) : null}
+              {isShown && (
+                <p
+                  style={styles.centered}
+                  class="cursor-pointer text-white justify-center"
+                >
+                  {bookData[x] ? `${bookData[x].title}` : ""}
+                </p>
+              )}
+              {bookData[x] ? (
+                <button
+                  style={styles.bookModal}
+                  className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                >
+                  <Modal
+                    buttonName={"Open"}
+                    // buttonName={"View"}
+                    modalTitle={bookData[x].title}
+                    // modalFunction={"add"}
+                    modalInformation={() => modalInfo(bookData[x].desc)}
+                    onClickInfo={"more"}
+                  />
+                </button>
+              ) : (
+                ""
+              )}
             </div>
+
+            <div style={styles.purpleBook}>
+              {bookData[x + 1] ? (
+                <img
+                  id="1"
+                  onMouseEnter={darkBackground}
+                  onMouseLeave={lightBackground}
+                  class="cursor-pointer"
+                  style={styles.bookImg}
+                  src={bookData[x + 1].bookCover}
+                  alt={`The cover for ${bookData[x + 1].title}`}
+                />
+              ) : null}
+              {isShown1 && (
+                <p style={styles.centered} class="cursor-pointer text-white">
+                  {" "}
+                  {bookData[x + 1] ? `${bookData[x + 1].title}` : ""}{" "}
+                </p>
+              )}
+              {bookData[x + 1] ? (
+                <button
+                  style={styles.bookModal}
+                  className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                >
+                  <Modal
+                    buttonName={"Open"}
+                    // buttonName={"View"}
+                    modalTitle={bookData[x + 1].title}
+                    // modalFunction={"add"}
+                    modalInformation={() => modalInfo(bookData[x + 1].desc)}
+                    onClickInfo={"more"}
+                  />
+                </button>
+              ) : (
+                ""
+              )}
+            </div>
+
+            <div style={styles.purpleBook}>
+              {bookData[x + 2] ? (
+                <img
+                  id="2"
+                  onMouseEnter={darkBackground}
+                  onMouseLeave={lightBackground}
+                  class="cursor-pointer"
+                  style={styles.bookImg}
+                  src={bookData[x + 2].cover}
+                  alt={`The cover for ${bookData[x + 2].title}`}
+                />
+              ) : null}
+              {isShown2 && (
+                <p style={styles.centered} class="cursor-pointer text-white">
+                  {" "}
+                  {bookData[x + 2] ? `${bookData[x + 2].title}` : ""}{" "}
+                </p>
+              )}
+              {bookData[x + 2] ? (
+                <button
+                  style={styles.bookModal}
+                  className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                >
+                  <Modal
+                    buttonName={"Open"}
+                    // buttonName={"View"}
+                    modalTitle={bookData[x + 2].title}
+                    // modalFunction={"add"}
+                    modalInformation={() => modalInfo(bookData[x + 2].desc)}
+                    onClickInfo={"more"}
+                  />
+                </button>
+              ) : (
+                ""
+              )}
+            </div>
+            <div style={styles.purpleBook}>
+              {bookData[x + 3] ? (
+                <img
+                  id="3"
+                  onMouseEnter={darkBackground}
+                  onMouseLeave={lightBackground}
+                  class="cursor-pointer"
+                  style={styles.bookImg}
+                  src={bookData[x + 3].cover}
+                  alt={`The cover for ${bookData[x + 3].title}`}
+                />
+              ) : null}
+              {isShown3 && (
+                <p style={styles.centered} class="cursor-pointer text-white">
+                  {" "}
+                  {bookData[x + 3] ? `${bookData[x + 3].title}` : ""}{" "}
+                </p>
+              )}
+              {bookData[x + 3] ? (
+                <button
+                  style={styles.bookModal}
+                  className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                >
+                  <Modal
+                    buttonName={"Open"}
+                    // buttonName={"View"}
+                    modalTitle={bookData[x + 3].title}
+                    // modalFunction={"add"}
+                    modalInformation={() => modalInfo(bookData[x + 3].desc)}
+                    onClickInfo={"more"}
+                  />
+                </button>
+              ) : (
+                ""
+              )}
+            </div>
+            <div style={styles.purpleBook}>
+              {bookData[x + 4] ? (
+                <img
+                  id="4"
+                  onMouseEnter={darkBackground}
+                  onMouseLeave={lightBackground}
+                  class="cursor-pointer"
+                  style={styles.bookImg}
+                  src={bookData[x + 4].cover}
+                  alt={`The cover for ${bookData[x + 4].title}`}
+                />
+              ) : null}
+              {isShown4 && (
+                <p style={styles.centered} class="cursor-pointer text-white">
+                  {" "}
+                  {bookData[x + 4] ? `${bookData[x + 4].title}` : ""}{" "}
+                </p>
+              )}
+              {bookData[x + 4] ? (
+                <button
+                  style={styles.bookModal}
+                  className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                >
+                  <Modal
+                    buttonName={"Open"}
+                    // buttonName={"View"}
+                    modalTitle={bookData[x + 4].title}
+                    // modalFunction={"add"}
+                    modalInformation={() => modalInfo(bookData[x + 4].desc)}
+                    onClickInfo={"more"}
+                  />
+                </button>
+              ) : (
+                ""
+              )}
+            </div>
+            {/* w32 */}
+            <p class="mr-24 mt-12">&gt;</p>
+            {/* </div> */}
           </div>
-           </>
-    )
+          <p
+            style={styles.greenShelf}
+            class="text-center text-white m-12 mb-0 mt-4 p-0"
+          >
+            {shelfname}
+          </p>
+          <div class="flex justify-between">
+            <div class="bg-gray-300 m-0 w-16 h-8 ml-32 text-center"></div>
+            <div class="bg-gray-300 m-0 w-16 h-8 mr-32 text-center"></div>
+          </div>
+        </div>
+      </>
+    );
 }
