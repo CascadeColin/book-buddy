@@ -5,7 +5,13 @@ const styles ={
         maxWidth: '100px',
         maxHeight: '70px',
         marginTop: '5px'
-    }
+    },
+
+     bobLight: {
+    maxWidth: "150px",
+    maxHeight: "150px",
+    marginTop: "20px",
+  },
 }
 
 export default function Bob(){
@@ -17,7 +23,18 @@ export default function Bob(){
             style={styles.bob}
         />
     )
-};
+}
+
+export function BobLight(){
+    return (
+      <img
+        className="BobLight"
+        src={require("../assets/images/loginBOB.png")}
+        alt="BOB Light"
+        style={styles.bobLight}
+      />
+    );
+}
 
 export function Plant(){
     return(

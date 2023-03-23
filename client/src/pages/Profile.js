@@ -13,6 +13,7 @@ const styles = {
 }
 
 export default function Profile() {
+    document.body.style.backgroundColor="#FCF3EB"
     return (
         <>
             <div style={styles.body} className='max-h-screen'>
@@ -21,7 +22,7 @@ export default function Profile() {
                     {/*Book Shelf with randomized saved books*/}
                     <ProfBookShelf />
                 </div>
-                <div className='flex flex-row justify-around items-center mt-12'>
+                <div className='flex flex-row justify-around items-center mt-12 flex-wrap'>
                     {/*Currently reading section, with book cover, title, author, rating button, finished button*/}
                     <CurrentlyReading />
                   
@@ -33,4 +34,5 @@ export default function Profile() {
             </div>
         </>
     )
+
 }

@@ -1,29 +1,83 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import Modal from './Modal';
+import { Rating } from 'react-simple-star-rating';
 
 
-export default function Rating() {
+export default function RatingModal() {
     const button = 'Rate Me!'
     const ratingTitle = 'Rate This Book:'
     const rateIt = 'Rate It!'
-    const ratingInfo = () => {
-        
-    }
+
+    // rating state has information
+    const [rating, setRating] = useState(0)
+  
+        const handleRating = (rate) => {
+          setRating(rate)
+        }
+        const onPointerMove = (value, index) => console.log(value, index)
+
+        const styles = {
+          display: 'flex',
+          flexDirection: 'row'
+        }
+      
     const saveRating = () => {
 
     }
     return(
         <>
-            <div>
             <Modal
                 buttonName={button}
                 modalTitle={ratingTitle}
                 modalFunction={rateIt}
-                modalInformation={ratingInfo}
+                modalInformation={() => (
+                <div 
+                style={{
+                  display: 'inline'
+                }}
+                >
+                  <Rating
+                    onClick={handleRating}
+                    onPointerMove={onPointerMove}
+                    // style={styles}
+                  />
+                </div>
+                )}
                 onClickInfo={saveRating}
                 />
-            </div>
         </>
     )
+}
+
+export function BookRating() {
+   // rating state has information
+   const [rating, setRating] = useState(0)
+  
+   const handleRating = (rate) => {
+     setRating(rate)
+   }
+   const onPointerMove = (value, index) => console.log(value, index)
+
+   const styles = {
+     display: 'flex',
+     flexDirection: 'row'
+   }
+
+   return(
+      <div
+        style={{
+          direction: 'ltr',
+          fontFamily: 'sans-serif',
+          touchAction: 'none'
+        }}
+        >
+        <Rating
+          initialValue={3}
+          onClick={handleRating}
+          onPointerMove={onPointerMove}
+          readonly
+        />
+      </div>
+   )
 }

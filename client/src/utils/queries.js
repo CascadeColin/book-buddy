@@ -1,6 +1,41 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
-//FIXME: 
+export const ME = gql`
+query me($userName: String!) {
+  me(userName: $userName) {
+    books {
+      _id
+      author
+      bookCover
+      bookRating
+      desc
+      isRead
+      isReading
+      isbn
+      title
+      toRead
+    }
+  }
+}
+`;
+
+// TODO: update this once reducers can be implemented, it works for presentation
+export const USER_INFO = gql`
+  query getUsers {
+    users {
+      userName
+      goalDate
+      email
+      books {
+        _id
+      }
+      bookGoal
+      bookCompleted
+    }
+  }
+`;
+
+//FIXME:
 
 // export const QUERY_PRODUCTS = gql`
 //   query getProducts($category: ID) {

@@ -1,19 +1,24 @@
-import { test } from './style'
+import { test } from "./style";
 
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink, } from '@apollo/client';
+import React, { Profiler } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  ApolloClient,
+  ApolloProvider,
+  InMemoryCache,
+  createHttpLink,
+} from "@apollo/client";
 //import myBooks from './pages/myBooks';
-import MyBooks from './pages/MyBooks';
-import Profile from './pages/Profile';
-import Navbar from './components/Nav';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import AddBooks from './pages/AddBooks';
-import { setContext } from '@apollo/client/link/context';
+import MyBooks from "./pages/MyBooks";
+import Profile from "./pages/Profile";
+import Navbar from "./components/Nav";
+import HomePage from "./pages/HomePage";
+import AddBooks from "./pages/AddBooks";
+import { setContext } from "@apollo/client/link/context";
+
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: "/graphql",
 });
 
 // const client = new ApolloClient({
@@ -23,12 +28,12 @@ const httpLink = createHttpLink({
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
-  const token = localStorage.getItem('id_token');
+  const token = localStorage.getItem("id_token");
   // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -41,43 +46,28 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-    <Router>
-      <>
-        <Navbar />
-        <Routes>
-          <Route 
-            path='/' 
-            element={<Profile />} 
-          />
-          <Route 
-            path='/mybooks' 
-            element={<MyBooks />} 
-          />
-          <Route 
-            path='/addbooks' 
-            element={<AddBooks />} 
-          />
-          <Route 
-            path="/login" 
-            element={<Login />} 
-          />
-          <Route 
-            path="/signup" 
-            element={<Signup />} 
-          />
-          {/* <Route 
+      <Router>
+        <>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/mybooks" element={<MyBooks />} />
+            
+            <Route path="/addbooks" element={<AddBooks />} 
+            className="bg-vdarkPurple"
+            />
+            
+            <Route path="/profile" element={<Profile />} />
+            {/* <Route 
             path='*'
             element={<h1 className='display-2'>Wrong page!</h1>}
           /> */}
-        </Routes>
-      </>
-    </Router>
+          </Routes>
+        </>
+      </Router>
     </ApolloProvider>
   );
 }
-
-
-
 
 // function App() {
 //   return (
