@@ -13,34 +13,37 @@ import { USER_INFO } from "../utils/queries";
 
 import "../assets/css/fonts.css";
 import Bookshelf from "./Bookshelf";
-const styles = {
-  main: {
-    backgroundColor: "#73557D",
-    color: "white",
-    textAlign: "center",
-    fontSize: "1.5rem",
-    fontFamily: "Italiana",
-  },
-  title: {
-    fontFamily: "Italianno",
-    fontSize: "3rem",
-  },
-  bookNumber: {
-    fontSize: "5rem",
-    textWeight: 'bold'
-  },
-  bookDate: {
-    fontSize: "2rem",
-  },
-  button: {
-    fontFamily: "Italianno",
-    color: "white",
-  },
-};
+
 
 export default function ReadingGoal() {
   const [goalDate, setGoalDate] = useState("");
   const [bookGoal, setBookGoal] = useState(0);
+
+  const styles = {
+    main: {
+      backgroundColor: "#73557D",
+      color: "white",
+      textAlign: "center",
+      fontSize: "1.5rem",
+      fontFamily: "Italiana",
+    },
+    title: {
+      fontFamily: "Italianno",
+      fontSize: "3rem",
+    },
+    bookNumber: {
+      fontSize: "5rem",
+      textWeight: 'bold'
+    },
+    bookDate: {
+      fontSize: "2rem",
+    },
+    button: {
+      fontFamily: "Italianno",
+      color: "white",
+    }
+  };
+
   const test = Auth.getProfile()
 console.log(test)
   const { loading, data } = useQuery(USER_INFO);
@@ -123,7 +126,7 @@ console.log(test)
               <h2 style={styles.bookDate}>
                 {userData[0].goalDate
                   ? `by ${userData[0].goalDate}`
-                  : `Click "New Goal" to set a goal date!`}
+                  : `Add a goal date!`}
               </h2>
             </div>
             {/*on click, have the 'new reading goal' modal pop up*/}
