@@ -3,13 +3,9 @@ import { useQuery, useMutation } from "@apollo/client";
 import Modal from "./Modal";
 // import { ADD_USER } from "../../utils/"
 import { UPDATE_GOAL_DATE, UPDATE_BOOK_GOAL } from "../utils/mutations";
+import { USER } from "../utils/queries";
 import { Link } from "react-router-dom";
 import Auth from '../utils/auth'
-
-{
-  /*will have to import the queries for reading goal number and reading goal date */
-}
-import { USER_INFO } from "../utils/queries";
 
 import "../assets/css/fonts.css";
 import Bookshelf from "./Bookshelf";
@@ -41,24 +37,37 @@ const styles = {
 export default function ReadingGoal() {
   const [goalDate, setGoalDate] = useState("");
   const [bookGoal, setBookGoal] = useState(0);
-  const test = Auth.getProfile()
-console.log(test)
-  const { loading, data } = useQuery(USER_INFO);
+  const activeUser = Auth.getProfile()
+  console.log(activeUser.data.userName)
+
+  const { loading, data } = useQuery(USER, {
+    variables: {userName: activeUser.data.userName }
+  });
   const [updateBookGoal, { bookGoalError }] = useMutation(UPDATE_BOOK_GOAL);
   const [updateGoalDate, { goalDateError }] = useMutation(UPDATE_GOAL_DATE);
 
-  const userData = data?.users || [];
+  const userData = data?.user || [];
+
+  if (!userData) {
+    console.log("nobooks")
+    return false;
+  }
+
+  // use this setTimeout to display userData if needed - hacky way of accessing async data
+  // setTimeout(() => {
+  //   console.log(userData)
+  // }, 2000)
 
   const saveGoal = async () => {
     await updateBookGoal({
       variables: {
-        userName: userData[0].userName,
+        userName: userData.userName,
         bookGoal: bookGoal,
       },
     });
     const mutation = await updateGoalDate({
       variables: {
-        userName: userData[0].userName,
+        userName: userData.userName,
         goalDate: goalDate,
       },
     });
@@ -108,21 +117,22 @@ console.log(test)
         {/* TODO: useQuery to get this data reading goal number query */}
         {loading ? (
           <div>Loading...</div>
-        ) : (
+        ) :
+        (
           <>
           <h1 style={styles.title}>Reading Goal:</h1>
             <div className="flex flex-row space-x-3 justify-center items-baseline">
                 <h1 style={styles.bookNumber}>
-                    {userData[0].bookGoal
-                        ? `${userData[0].bookGoal}`
-                        : `Click "New Goal" to set a book goal!`}
+                    {userData.bookGoal
+                         ? `${userData.bookGoal}`
+                         : `Click "New Goal" to set a book goal!`} 
                 </h1>
                 <h2 className="text-3xl">books</h2>
             </div>
             <div className="py-2 pb-2">
               <h2 style={styles.bookDate}>
-                {userData[0].goalDate
-                  ? `by ${userData[0].goalDate}`
+                {userData.goalDate
+                  ? `by ${userData.goalDate}`
                   : `Click "New Goal" to set a goal date!`}
               </h2>
             </div>
@@ -140,7 +150,8 @@ console.log(test)
               />
             </button>
           </>
-        )}
+        )
+        }
       </div>
     </>
   );

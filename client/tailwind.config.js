@@ -12,6 +12,9 @@ module.exports = {
         darkPurple: '#73557D',
         vdarkPurple: '#251A45',
         lightGreen: '#C3C6BD',
+      },
+      screens: {
+        "xs": "200px"
       }
     },
   },
