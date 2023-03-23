@@ -4,6 +4,7 @@ import Modal from "./Modal";
 // import { ADD_USER } from "../../utils/"
 import { UPDATE_GOAL_DATE, UPDATE_BOOK_GOAL } from "../utils/mutations";
 import { Link } from "react-router-dom";
+import Auth from '../utils/auth'
 
 {
   /*will have to import the queries for reading goal number and reading goal date */
@@ -40,7 +41,8 @@ const styles = {
 export default function ReadingGoal() {
   const [goalDate, setGoalDate] = useState("");
   const [bookGoal, setBookGoal] = useState(0);
-
+  const test = Auth.getProfile()
+console.log(test)
   const { loading, data } = useQuery(USER_INFO);
   const [updateBookGoal, { bookGoalError }] = useMutation(UPDATE_BOOK_GOAL);
   const [updateGoalDate, { goalDateError }] = useMutation(UPDATE_GOAL_DATE);

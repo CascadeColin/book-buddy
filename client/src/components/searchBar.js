@@ -65,7 +65,7 @@ const SearchForBooks = () => {
       const isbnArr = data.docs[0].isbn;
       // removes all indexes after 20 - eliminates edge case where page would hang due to iterating through hundreds of array indexes
       isbnArr.splice(20, Infinity);
-  
+
 
       let i = 0;
       while (i < isbnArr.length) {
@@ -98,7 +98,6 @@ const SearchForBooks = () => {
             isReading: false,
             bookRating: 0,
           };
-          
           const newestBook = await addBook({
             variables: dataStoreObj,
           });
