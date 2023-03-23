@@ -143,11 +143,11 @@ const SearchForBooks = () => {
       </div>
 
       <div className="text-white flex items-center flex-col">
-        <h2>
+        {/* <h2>
           {searchBooks.length
-            ? `Viewing ${searchBooks.length} results:`
+            ? `${book.title} has been added to your My Books page`
             : ""}
-        </h2>
+        </h2> */}
         <h3 className="text-red-500">
           {searchError ? searchError : ''}
         </h3>
@@ -155,19 +155,20 @@ const SearchForBooks = () => {
           {searchBooks.map((book) => {
             
             return (
-
-              // <>
-              //   <Modal 
-              //   buttonName={()=>}
-              //   />
-
-              // </>
+              
               <li key={1} >
+                  <h2 className="py-2">
+                    {searchBooks.length
+                      ? `${book.title} has been added to your My Books page`
+                      : ""}
+                  </h2>
+              <div className="flex flex-row space-x-4 items-center pt-6">
                 <img
                   src={book.bookCover}
                   alt={`Book Cover for ${book.title}`} 
                   className='inline-flex align-middle'
                 /> 
+              <div className="flex flex-col space-y-4 items-start">
                 <p className="flex flex-row justify-center">
                   <h1 style={styles.cursiveHeader}>Title:</h1>
                   {book.title}</p> 
@@ -175,12 +176,19 @@ const SearchForBooks = () => {
                   <h1 style={styles.cursiveHeader}>Author:</h1>
                   {book.author}</p> 
                 {/* I hardcoded the description 'type' into addDesc() on the server side - no need to add it here  */}
-                <p>{book.desc}</p> 
+                <p className="flex flex-row justify-center">
+                  <h1 style={styles.cursiveHeader}>Description:</h1>
+                  {book.desc}</p> 
+              </div>
                 {/* apparently you can convert a boolean to a string using toString() - was a total guess lol  */}
-                <p>Have I read it? {book.isRead.toString()}</p> 
-                <p>Am I reading it now? {book.isReading.toString()}</p> 
-                <p>Will I read it in the future? {book.toRead.toString()}</p> 
+                  <div className="hidden">
+                    <p>Have I read it? {book.isRead.toString()}</p> 
+                    <p>Am I reading it now? {book.isReading.toString()}</p> 
+                    <p>Will I read it in the future? {book.toRead.toString()}</p> 
+                  </div>
+              </div>
               </li> 
+
             ); 
           })} 
 
