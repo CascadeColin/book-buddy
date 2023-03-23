@@ -107,9 +107,9 @@ export default function ReadingGoal() {
           <div>Loading...</div>
         ) : (
           <>
-            <h1 style={styles.title}>{`Reading Goal: ${userData[0].bookGoal}`}</h1>
+            <h1 style={styles.title}>{userData[0].bookGoal ? `Reading Goal: ${userData[0].bookGoal}` : `Click "New Goal to set a book goal!"` }</h1>
             <div className="py-2 pb-2">
-              <h2 style={styles.bookDate}>{`by ${userData[0].goalDate}`}</h2>
+              <h2 style={styles.bookDate}>{userData[0].goalDate ? `by ${userData[0].goalDate}` : `Click "New Goal to set a goal date!"`}</h2>
             </div>
             {/*on click, have the 'new reading goal' modal pop up*/}
             <button
