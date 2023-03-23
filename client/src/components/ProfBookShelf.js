@@ -33,15 +33,16 @@ const token = Auth.loggedIn() ? Auth.getToken() : null;
         return false;
       }
     // this should take in all books and randomize them, the to read books are a placeholder right no
-    const myBooks = bookData.filter(book => book.toRead == true)
+    //just gonna show all books for now so that if one ends up on zero shelves on myBooks you can still access it
+    //also keeps from have zero books here if toRead shelf is blank but still have other books
+   // const myBooks = bookData.filter(book => book.toRead == true)
 
-    return(
-        <>
-            <div 
-            style={styles.bookShelf}
-            className='m-4'>
-                <Bookshelfplantdata bookData = {myBooks} shelfname={mainShelf}/>
-            </div>
-        </>
-    )
+    return (
+      <>
+        <div style={styles.bookShelf} className="m-4">
+          <Bookshelfplantdata bookData={bookData} shelfname={mainShelf} />
+          {/* <Bookshelfplantdata bookData={myBooks} shelfname={mainShelf} /> */}
+        </div>
+      </>
+    );
 }
