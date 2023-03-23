@@ -38,6 +38,7 @@ function Signup(props) {
 
 
     const mutationResponse = await addUser({
+  
       variables: {
         userName: formState.userName,
         email: formState.email,
@@ -53,11 +54,15 @@ function Signup(props) {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+    console.log({name}, {value});
+    if ({name} === bookGoal && {value} == "null"){value = 0};
     setFormState({
       ...formState,
       [name]: value,
     });
-    console.log("formState.goalDate: " + formState.goalDate);
+        // if (!formState.bookGoal) {
+        //   formstate.bookGoal = 0;
+        // }
   };
 
   return (
