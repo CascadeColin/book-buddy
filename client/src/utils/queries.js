@@ -1,25 +1,40 @@
 import { gql } from "@apollo/client";
 
 export const ME = gql`
-query me($userName: String!) {
-  me(userName: $userName) {
-    books {
-      _id
-      author
-      bookCover
-      bookRating
-      desc
-      isRead
-      isReading
-      isbn
-      title
-      toRead
+  query me($userName: String!) {
+    me(userName: $userName) {
+      books {
+        _id
+        author
+        bookCover
+        bookRating
+        desc
+        isRead
+        isReading
+        isbn
+        title
+        toRead
+      }
     }
   }
-}
 `;
 
-// TODO: update this once reducers can be implemented, it works for presentation
+export const USER = gql`
+  query Query($userName: String!) {
+    user(userName: $userName) {
+      userName
+      goalDate
+      email
+      books {
+        _id
+      }
+      bookGoal
+      bookCompleted
+      _id
+    }
+  }
+`;
+
 export const USER_INFO = gql`
   query getUsers {
     users {
