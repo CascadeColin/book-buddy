@@ -18,14 +18,14 @@ export function addDesc(book) {
   const excerpts = book?.excerpts;
   // string containing a note on the book
   const notes = book?.notes;
-console.log(excerpts, notes)
+
   // returns the string that is a note describing the book, if it exists
   if (excerpts === undefined && notes === undefined) {
     return `No description available!`;
   }
 
   if (notes) {
-    console.log(`Notes: ${notes}`);
+
     return `${notes}`;
   }
 
@@ -35,11 +35,11 @@ console.log(excerpts, notes)
     );
     if (firstSentence.length > 0) {
       // in theory, this will return the first sentence of the book, if available
-      console.log(`First Sentence: ${firstSentence[0].text}`);
+
       return `First Sentence: ${firstSentence[0].text}`;
     } else {
       // return whatever is populating the text property (always a string, so far)
-      console.log(`Excerpt: ${excerpts[0].text}`);
+
       return `Excerpt: ${excerpts[0].text}`;
     }
   }

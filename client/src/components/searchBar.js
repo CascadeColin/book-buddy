@@ -87,8 +87,6 @@ const SearchForBooks = () => {
         // if it passes regex check, create a new Book
         if (search.match(regex)) {
           const weHaveAWinner = bookRes[dynamicISBN];
-          console.log(weHaveAWinner)
-          console.log(addDesc(weHaveAWinner))
           const dataStoreObj = {
             title: weHaveAWinner.title,
             author: weHaveAWinner.authors[0].name,
