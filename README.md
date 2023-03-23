@@ -42,7 +42,7 @@ Colin Marshall: colin.marshall94@gmail.com / [github.com/CascadeColin](https://g
 MIT
 
 ## Deployed
-<!-- deployed link -->
+https://bookbuddy.herokuapp.com/
 
 ## Image
 ![](./client/public/book-buddy-capture.PNG)
