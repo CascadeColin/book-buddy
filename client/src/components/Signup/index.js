@@ -68,45 +68,50 @@ function Signup(props) {
   return (
     <div style={styles.main} className="w-4/12 p-4 mt-5">
       <h2 style={styles.title}>Sign Up</h2>
+
       <form onSubmit={handleFormSubmit}>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="myUserName" className="mr-2">
-            User Name:
-          </label>
-          <input
-            style={styles.inputBox}
-            placeholder="Enter your user name"
-            name="userName"
-            type="text"
-            id="userName"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="email" className="mr-2">
-            Email:
-          </label>
-          <input
-            style={styles.inputBox}
-            placeholder="youremail@email.com"
-            name="email"
-            type="email"
-            id="email"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="pwd" className="mr-2">
-            Password:
-          </label>
-          <input
-            style={styles.inputBox}
-            placeholder="********"
-            name="password"
-            type="password"
-            id="pwd"
-            onChange={handleChange}
-          />
+        <div className="flex content-center">
+          <div className="flex flex-col items-end ">
+            <div className="flex-row  my-2">
+              <label htmlFor="email" className="mr-2">
+                Email:
+              </label>
+              <input
+                style={styles.inputBox}
+                placeholder="youremail@email.com"
+                name="email"
+                type="email"
+                id="email"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="flex-row  my-2">
+              <label htmlFor="pwd" className="mr-2">
+                Password:
+              </label>
+              <input
+                style={styles.inputBox}
+                placeholder="********"
+                name="password"
+                type="password"
+                id="pwd"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="flex-row  my-2">
+              <label htmlFor="myUserName" className="mr-2">
+                User Name:
+              </label>
+              <input
+                style={styles.inputBox}
+                placeholder="Enter your user name"
+                name="userName"
+                type="text"
+                id="userName"
+                onChange={handleChange}
+              />
+            </div>
+          </div>
         </div>
         <div className="flex-row space-between my-2">
           <label htmlFor="bookGoal">How many books do you plan to read?</label>
