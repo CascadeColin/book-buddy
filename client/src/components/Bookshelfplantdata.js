@@ -2,6 +2,13 @@ import React from "react";
 import { useState } from "react";
 import Modal from "./Modal";
 import { Plant } from "./Images";
+import {
+  UPDATE_TO_READ,
+  UPDATE_IS_READING,
+  UPDATE_IS_READ,
+  REMOVE_BOOK,
+} from "../utils/mutations";
+import { useMutation } from "@apollo/client";
 
 import "../assets/css/fonts.css";
 const styles = {
@@ -54,34 +61,112 @@ const styles = {
   },
 };
 
-const modalInfo = (desc) => {
-  console.log(desc);
-  return (
-    <>
-      <div>
-        {/* <input
-                    placeholder="#"
-                    name="bookGoal"
-                    type="bookGoal"
-                    id="bookGoal"
-                    // onChange={handleChange}
-                /> */}
-        <p>{desc}</p>
-        {/* <input
-                    placeholder="YYYY-MM-DD"
-                    name="goalDate"
-                    type="goalDate"
-                    id="goalDate"
-                    // onChange={handleChange}
-                /> */}
-      </div>
-    </>
-  );
-};
-
 const x = 0;
 // console.log(bookData)
 export default function Bookshelfplantdata({ bookData, shelfname }) {
+  const [updateToRead, { e1 }] = useMutation(UPDATE_TO_READ);
+  const [updateIsReading, { e2 }] = useMutation(UPDATE_IS_READING);
+  const [updateIsRead, { e3 }] = useMutation(UPDATE_IS_READ);
+  const [removeBook, { e4 }] = useMutation(REMOVE_BOOK);
+
+  const [isRead, setIsRead] = useState(false);
+  const [isReading, setIsReading] = useState(false);
+  const [toRead, setToRead] = useState(false);
+
+  function handleIsReadChange() {
+    const bool = isRead;
+    setIsRead(!bool);
+  }
+
+  function handleIsReadingChange() {
+    const bool = isReading;
+    setIsReading(!bool);
+  }
+
+  function handleToReadChange() {
+    const bool = toRead;
+    setToRead(!bool);
+  }
+
+  const modalInfo = (props) => {
+    console.log("does modalInfo get bookData: ", props);
+    return (
+      <>
+        <div className="bg-vdarkPurple text-white p-5">
+          <div className="mb-5">
+            <p>Author: {props.author}</p>
+            <p>Description: {props.desc}</p>
+          </div>
+          <div className="flex flex-row content-center ">
+            <div className="flex flex-col content-center mr-20 ml-5">
+              <label htmlFor="toRead">To Read</label>
+              <input
+                name="toRead"
+                type="checkbox"
+                id="toRead"
+                onChange={handleToReadChange}
+              />
+            </div>
+            <div className="flex flex-col content-center mr-20">
+              <label htmlFor="isReading">Reading</label>
+              <input
+                name="isReading"
+                type="checkbox"
+                id="isReading"
+                onChange={handleIsReadingChange}
+              />
+            </div>
+            <div className="flex flex-col content-center mr-20">
+              <label htmlFor="isRead">Read</label>
+              <input
+                name="isRead"
+                type="checkbox"
+                id="isRead"
+                onChange={handleIsReadChange}
+              />
+            </div>
+            <button
+              onClick={() => handleRemoveBook(props)}
+              className="bg-medPurple p-2 m-2 rounded-md hover:text-black"
+            >
+              Delete Book
+            </button>
+          </div>
+        </div>
+      </>
+    );
+  };
+
+  async function saveChanges(props) {
+    await updateIsRead({
+      variables: {
+        bookId: props._id,
+        isRead: isRead,
+      },
+    });
+    await updateIsReading({
+      variables: {
+        bookId: props._id,
+        isReading: isReading,
+      },
+    });
+    await updateToRead({
+      variables: {
+        bookId: props._id,
+        toRead: toRead,
+      },
+    });
+  }
+
+  async function handleRemoveBook(props) {
+    await removeBook({
+      variables: {
+        bookId: props._id,
+      },
+    });
+    window.location.reload();
+  }
+
   function darkBackground(e) {
     // e.target.display= 'hidden';
     if (e.target.id == 0) {
@@ -124,8 +209,37 @@ export default function Bookshelfplantdata({ bookData, shelfname }) {
           <div class=" mb-0 w-32">
             <Plant />
           </div>
+          {bookData.map((book) => {
+            return (
+              <div className="" key={book._id}>
+                <img
+                  id="0"
+                  onMouseEnter={darkBackground}
+                  onMouseLeave={lightBackground}
+                  class="cursor-pointer"
+                  style={styles.bookImg}
+                  src={book.bookCover}
+                  alt={`The cover for ${book.title}`}
+                />
+                <button
+                  style={styles.button}
+                  className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                >
+                  <Modal
+                    bookInfo={book}
+                    buttonName={"More Info"}
+                    modalTitle={`${book.title}`}
+                    modalFunction={"Confirm"}
+                    modalInformation={modalInfo}
+                    onClickInfo={saveChanges}
+                  />
+                </button>
+              </div>
+            );
+          })}
+          <p class="mr-24 mt-12">&gt;</p>
 
-          <div style={styles.purpleBook} >
+          {/* <div style={styles.purpleBook}>
             {bookData[x] ? (
               <img
                 id="0"
@@ -148,8 +262,7 @@ export default function Bookshelfplantdata({ bookData, shelfname }) {
             {bookData[x] ? (
               <button
                 style={styles.bookModal}
-                className="bg-vdarkPurple text-white hover:bg-medPurple text-md px-1 py-1 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                // className="bg-vdarkPurple text-white hover:bg-medPurple text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
               >
                 <Modal
                   buttonName={"Open"}
@@ -163,8 +276,8 @@ export default function Bookshelfplantdata({ bookData, shelfname }) {
             ) : (
               ""
             )}
-          </div>
-
+          </div> */}
+{/* 
           <div style={styles.purpleBook}>
             {bookData[x + 1] ? (
               <img
@@ -200,8 +313,8 @@ export default function Bookshelfplantdata({ bookData, shelfname }) {
             ) : (
               ""
             )}
-          </div>
-
+          </div> */}
+{/* 
           <div style={styles.purpleBook}>
             {bookData[x + 2] ? (
               <img
@@ -237,8 +350,8 @@ export default function Bookshelfplantdata({ bookData, shelfname }) {
             ) : (
               ""
             )}
-          </div>
-          <div style={styles.purpleBook}>
+          </div> */}
+          {/* <div style={styles.purpleBook}>
             {bookData[x + 3] ? (
               <img
                 id="3"
@@ -273,7 +386,7 @@ export default function Bookshelfplantdata({ bookData, shelfname }) {
             ) : (
               ""
             )}
-          </div>
+          </div> */}
           {/* <div style = {styles.purpleBook} >
                {bookData[x+4] ? <img id = "4" onMouseEnter={darkBackground} onMouseLeave={lightBackground} class = "cursor-pointer" style = {styles.bookImg} src={bookData[x+4].cover} alt={`The cover for ${bookData[x+4].title}`}  /> : null}
                {isShown4 && (
@@ -290,12 +403,12 @@ export default function Bookshelfplantdata({ bookData, shelfname }) {
                     </button> :''}
            </div> */}
           {/* w32 */}
-          <p class="mr-24 mt-12">&gt;</p>
+          {/* <p class="mr-24 mt-12">&gt;</p> */}
           {/* </div> */}
         </div>
         <p
           style={styles.greenShelf}
-          class="text-center text-white m-12 mb-0 mt-4 p-0"
+          class="text-center text-2xl text-white m-12 mb-0 mt-4 p-0"
         >
           {shelfname}
         </p>
