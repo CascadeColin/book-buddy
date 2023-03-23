@@ -78,7 +78,7 @@ export default function ReadingGoal() {
   };
 
   function reloadPage() {
-    window.location.reload();
+    // window.location.reload();
   }
 
   const goal = "New Goal";

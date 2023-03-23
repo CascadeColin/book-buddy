@@ -424,7 +424,7 @@ export default function Bookshelfdata({ bookData, shelfname }) {
         </div>
         <p
           style={styles.greenShelf}
-          class="text-center text-white m-12 mb-0 mt-4 p-0"
+          class="text-center text-2xl text-white m-12 mb-0 mt-4 p-0"
         >
           {shelfname}
         </p>
