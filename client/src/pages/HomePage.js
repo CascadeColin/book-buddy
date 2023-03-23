@@ -1,6 +1,7 @@
 
 import Signup from "../components/Signup";
 import Login from "../components/Login";
+import Auth from "../utils/auth";
 
 const styles = {
   bgColor: {
@@ -23,7 +24,12 @@ const styles = {
 };
 
 export default function HomePage() {
+  if (Auth.loggedIn()) {
   return (
+    window.location.assign('/profile')
+  );
+      }else{
+    return(
     <div style={styles.bgColor}>
       <div className="flex flex-row justify-center pt-5 ">
         <Login />
@@ -31,4 +37,5 @@ export default function HomePage() {
       </div>
     </div>
   );
+    } 
 }

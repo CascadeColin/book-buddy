@@ -15,6 +15,7 @@ const styles = {
     fontFamily: "Italiana",
     fontSize: "1.25rem",
     padding: "10px",
+    paddingRight: "50px",
     width: "100vw",
     marginLeft: '-4px'
   },
@@ -85,7 +86,7 @@ function Nav(){
               </li>
               <li>
                 <Link to="/addbooks">
-                  <h1 style={styles.fontCursive}>Add</h1>
+                  <h1 style={styles.fontCursive} className="hover:color-white">Add</h1>
                   Books
                 </Link>
               </li>

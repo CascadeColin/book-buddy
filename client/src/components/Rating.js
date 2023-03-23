@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import Modal from './Modal';
 import { Rating } from 'react-simple-star-rating';
+import {UPDATE_BOOK_RATING} from "../utils/mutations";
 
 
 export default function RatingModal() {
