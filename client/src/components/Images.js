@@ -16,7 +16,12 @@ const styles = {
     maxWidth: "150px",
     maxHeight: "150px",
     marginTop: "100px",
-  }
+  },
+  profileBob: {
+    maxWidth: "300px",
+    maxHeight: "300px",
+    marginTop: "20px",
+  },
 };
 
 export default function Bob(){
@@ -40,7 +45,16 @@ export function BobLight(){
       />
     );
 }
-
+export function ProfileBob(){
+    return (
+      <img
+        className="ProfileBob"
+        src={require("../assets/images/loginBOB.png")}
+        alt="Profile Bob"
+        style={styles.profileBob}
+      />
+    );
+}
 export function Plant(){
     return(
         <img  
