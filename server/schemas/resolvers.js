@@ -150,6 +150,7 @@ const resolvers = {
     },
 
     updateIsReading: async (parent, { bookId, isReading }, context) => {
+      console.log(bookId)
       if (context.user) {
         return await Book.findByIdAndUpdate(
           { _id: bookId },
