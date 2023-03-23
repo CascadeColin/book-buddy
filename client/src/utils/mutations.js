@@ -136,10 +136,10 @@ export const UPDATE_IS_READ = gql`
   }
 `;
 
-export const UPDATE_BOOK_RATING = gql`
-  mutation Mutation($bookId: ID!) {
-    updateBookRating(bookId: $bookId) {
-      bookRating
-    }
-  }
-`;
+// export const UPDATE_BOOK_RATING = gql`
+//   mutation Mutation($bookId: ID!) {
+//     updateBookRating(bookId: $bookId) {
+//       bookRating
+//     }
+//   }
+// `;
