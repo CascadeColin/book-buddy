@@ -1,11 +1,9 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import RatingModal, { BookRating } from './Rating.js';
-//import Modal from './Modal';
 import { ME } from "../utils/queries";
-//import Bookshelfplantdata from "./Bookshelfplantdata";
 import Auth from "../utils/auth";
-import { ProfileBob } from "./Images";
+import { ProfileBob } from "../components/Images";
 
 import '../assets/css/fonts.css';
 const styles = {
