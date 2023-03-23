@@ -44,6 +44,14 @@ export const UPDATE_BOOK_RATING = gql`
   }
 `;
 
+export const REMOVE_BOOK = gql`
+  mutation Mutation($bookId: ID!) {
+    removeBook(bookID: $bookId) {
+      _id
+    }
+  }
+`;
+
 export const ADD_BOOK = gql`
   mutation Mutation(
     $title: String!
