@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import RatingModal, { BookRating } from './Rating.js';
 import Modal from './Modal';
+import { USER_INFO } from "../utils/queries";
 
 import '../assets/css/fonts.css';
 const styles = {
