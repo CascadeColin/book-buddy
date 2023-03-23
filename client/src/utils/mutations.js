@@ -91,3 +91,27 @@ export const UPDATE_BOOK_GOAL = gql`
     }
   }
 `;
+
+export const UPDATE_TO_READ = gql`
+  mutation UpdateToRead($bookId: ID!) {
+    updateToRead(bookId: $bookId) {
+      toRead
+    }
+  }
+`;
+
+export const UPDATE_IS_READING = gql`
+  mutation UpdateIsReading($bookId: ID!) {
+    updateIsReading(bookId: $bookId) {
+      isReading
+    }
+  }
+`;
+
+export const UPDATE_IS_READ = gql`
+  mutation Mutation($bookId: ID!) {
+    updateIsRead(bookId: $bookId) {
+      isRead
+    }
+  }
+`;

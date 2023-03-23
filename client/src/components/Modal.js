@@ -13,6 +13,7 @@ const styles = {
 
 export default function Modal(props) {
   const [showModal, setShowModal] = React.useState(false);
+
   return (
     <>
       <button
@@ -50,7 +51,7 @@ export default function Modal(props) {
                 <div className="relative p-6 flex-auto">
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
                     {/* MODAL INFORMATION (MAIN BODY) */}
-                    {props.modalInformation()}
+                    {props.modalInformation(props.bookInfo)}
                   </p>
                 </div>
                 {/*footer*/}
@@ -66,14 +67,14 @@ export default function Modal(props) {
                     className="bg-medPurple text-white hover:bg-vdarkPurple font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                     onClick={() => {
-                      props.onClickInfo();
+                      props.onClickInfo(props.bookInfo);
                       setShowModal(false);
                     }}
                   >
                     {/* FINAL BUTTON (SAVE INFORMATION?) does this need to be a submit? */}
                     <h1
                       onClick={() => {
-                        props.onClickInfo();
+                        props.onClickInfo(props.bookInfo);
                       }}
                     >
                       {props.modalFunction}
