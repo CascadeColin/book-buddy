@@ -11,6 +11,15 @@ export function regexGen(str) {
   };
 }
 
+// return a placeholder if no cover available
+export function bookCoverErrorHandler(book) {
+  if (!book.cover) {
+    return "https://via.placeholder.com/400x600";
+  } else {
+    return `${book.cover.large}`
+  }
+}
+
 // dynamically assigns a book description based on what data is available
 export function addDesc(book) {
   // array containing object {text: '', comment: ''} - text is more useful
@@ -25,7 +34,6 @@ export function addDesc(book) {
   }
 
   if (notes) {
-
     return `${notes}`;
   }
 
@@ -43,5 +51,5 @@ export function addDesc(book) {
       return `Excerpt: ${excerpts[0].text}`;
     }
   }
-  return `something went wrong!`
+  return `something went wrong!`;
 }
