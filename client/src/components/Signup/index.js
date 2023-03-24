@@ -26,6 +26,7 @@ const styles = {
     fontFamily: "Italianno",
     color: "white",
     fontSize: "2rem",
+    marginTop: "10px",
   },
 };
 

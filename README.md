@@ -8,6 +8,7 @@
 * [Install](#install)
 * [Contribution](#contribution)
 * [Usage](#usage)
+* [Technology](#technology)
 * [Testing](#testing)
 * [Questions](#questions)
 * [License](#license)
@@ -27,6 +28,17 @@ please review package-lock.json for contribution
 ## Usage
 Public
 
+## Technology
+* MERN Stack
+* GraphQL with Apollo
+* TailwindCSS
+* JSON Web Tokens (JWT)
+* Bcrypt
+* Mongoose
+* Open Library API
+* JSX
+
+
 ## Testing
 NaN
 
@@ -45,4 +57,4 @@ MIT
 https://bookbuddy.herokuapp.com/
 
 ## Image
-![](./client/public/book-buddy-capture.PNG)
+![](screenshot-profile-page.png)
