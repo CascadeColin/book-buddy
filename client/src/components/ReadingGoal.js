@@ -9,49 +9,40 @@ import Auth from '../utils/auth'
 
 import "../assets/css/fonts.css";
 import Bookshelf from "./Bookshelf";
-
+const styles = {
+  main: {
+    backgroundColor: "#73557D",
+    color: "white",
+    textAlign: "center",
+    fontSize: "1.5rem",
+    fontFamily: "Italiana",
+  },
+  title: {
+    fontFamily: "Italianno",
+    fontSize: "3rem",
+  },
+  bookNumber: {
+    fontSize: "5rem",
+    textWeight: 'bold'
+  },
+  bookDate: {
+    fontSize: "2rem",
+  },
+  button: {
+    fontFamily: "Italianno",
+    color: "white",
+  },
+};
 
 export default function ReadingGoal() {
   const [goalDate, setGoalDate] = useState("");
   const [bookGoal, setBookGoal] = useState(0);
-<<<<<<< HEAD
-
-  const styles = {
-    main: {
-      backgroundColor: "#73557D",
-      color: "white",
-      textAlign: "center",
-      fontSize: "1.5rem",
-      fontFamily: "Italiana",
-    },
-    title: {
-      fontFamily: "Italianno",
-      fontSize: "3rem",
-    },
-    bookNumber: {
-      fontSize: "5rem",
-      textWeight: 'bold'
-    },
-    bookDate: {
-      fontSize: "2rem",
-    },
-    button: {
-      fontFamily: "Italianno",
-      color: "white",
-    }
-  };
-
-  const test = Auth.getProfile()
-console.log(test)
-  const { loading, data } = useQuery(USER_INFO);
-=======
   const activeUser = Auth.getProfile()
   console.log(activeUser.data.userName)
 
   const { loading, data } = useQuery(USER, {
     variables: {userName: activeUser.data.userName }
   });
->>>>>>> develop
   const [updateBookGoal, { bookGoalError }] = useMutation(UPDATE_BOOK_GOAL);
   const [updateGoalDate, { goalDateError }] = useMutation(UPDATE_GOAL_DATE);
 
@@ -87,7 +78,7 @@ console.log(test)
   };
 
   function reloadPage() {
-    window.location.reload();
+    // window.location.reload();
   }
 
   const goal = "New Goal";
@@ -140,15 +131,9 @@ console.log(test)
             </div>
             <div className="py-2 pb-2">
               <h2 style={styles.bookDate}>
-<<<<<<< HEAD
-                {userData[0].goalDate
-                  ? `by ${userData[0].goalDate}`
-                  : `Add a goal date!`}
-=======
                 {userData.goalDate
                   ? `by ${userData.goalDate}`
                   : `Click "New Goal" to set a goal date!`}
->>>>>>> develop
               </h2>
             </div>
             {/*on click, have the 'new reading goal' modal pop up*/}
