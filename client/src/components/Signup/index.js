@@ -126,6 +126,8 @@ function Signup(props) {
         </div>
         <div className="flex-row space-between my-2">
           <label htmlFor="GoalDate">What is the date for this goal?</label>
+          </div>
+          <div>
           <input
             style={styles.inputBox}
             placeholder="MM /DD/YYYY"
