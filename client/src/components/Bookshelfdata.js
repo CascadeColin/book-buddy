@@ -204,7 +204,7 @@ export default function Bookshelfdata({ bookData, shelfname }) {
   return (
     <>
       <div style={styles.bgColor}>
-        <div class="flex justify-between mt-12 mb-0 ml-24 items-baseline">
+        <div class="flex justify-between  mb-0 ml-24 items-baseline">
           {bookData.map((book) => {
             return (
               <div className="flex flex-col-reverse" key={book._id}>
@@ -233,7 +233,7 @@ export default function Bookshelfdata({ bookData, shelfname }) {
               </div>
             );
           })}
-          <p class="mr-24 mt-12">&gt;</p>
+          <p class="mr-24 ">&gt;</p>
           {/* <div className="flex flex-col-reverse" style={styles.purpleBook}>
             {bookData[x] ? (
               <img
