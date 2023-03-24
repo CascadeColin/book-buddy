@@ -113,7 +113,7 @@ export default function ReadingGoal() {
   };
   return (
     <>
-      <div style={styles.main} className="w-4/12 px-10 py-6 mt-12">
+      <div style={styles.main} className="w-4/12 px-10 py-6 mt-5 mr-10">
         {/* TODO: useQuery to get this data reading goal number query */}
         {loading ? (
           <div>Loading...</div>
@@ -125,7 +125,7 @@ export default function ReadingGoal() {
                 <h1 style={styles.bookNumber}>
                     {userData.bookGoal
                          ? `${userData.bookGoal}`
-                         : `Click "New Goal" to set a book goal!`} 
+                         : `0`} 
                 </h1>
                 <h2 className="text-3xl">books</h2>
             </div>
@@ -133,7 +133,7 @@ export default function ReadingGoal() {
               <h2 style={styles.bookDate}>
                 {userData.goalDate
                   ? `by ${userData.goalDate}`
-                  : `Click "New Goal" to set a goal date!`}
+                  : `Set a goal date!`}
               </h2>
             </div>
             {/*on click, have the 'new reading goal' modal pop up*/}
