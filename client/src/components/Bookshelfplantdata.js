@@ -205,13 +205,13 @@ export default function Bookshelfplantdata({ bookData, shelfname }) {
   return (
     <>
       <div style={styles.bgColor}>
-        <div class="flex justify-between mt-12 mb-0 ml-24 items-baseline">
+        <div class="flex justify-between pt-4 mb-0 ml-24 items-center">
           <div class=" mb-0 w-32">
             <Plant />
           </div>
           {bookData.map((book) => {
             return (
-              <div className="" key={book._id}>
+              <div className="flex flex-col-reverse" key={book._id}>
                 <img
                   id="0"
                   onMouseEnter={darkBackground}
