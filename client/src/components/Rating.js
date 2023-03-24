@@ -94,6 +94,7 @@ export function BookRating(props) {
       <Rating
         initialValue={props.book.bookRating}
         onClick={handleRating}
+        readonly
         onPointerMove={onPointerMove}
       />
     </div>
