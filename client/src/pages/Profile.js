@@ -22,7 +22,7 @@ export default function Profile() {
                     {/*Book Shelf with randomized saved books*/}
                     <ProfBookShelf />
                 </div>
-                <div className='flex flex-row justify-around items-center mt-12 flex-wrap'>
+                <div className='flex flex-row justify-around items-center mt-5 flex-wrap'>
                     {/*Currently reading section, with book cover, title, author, rating button, finished button*/}
                     <CurrentlyReading />
                   

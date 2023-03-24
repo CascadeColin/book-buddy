@@ -113,7 +113,7 @@ export default function ReadingGoal() {
   };
   return (
     <>
-      <div style={styles.main} className="w-4/12 px-10 py-6 mt-12">
+      <div style={styles.main} className="w-4/12 px-10 py-6 mt-5 mr-10">
         {/* TODO: useQuery to get this data reading goal number query */}
         {loading ? (
           <div>Loading...</div>

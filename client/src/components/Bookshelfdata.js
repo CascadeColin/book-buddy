@@ -204,7 +204,7 @@ export default function Bookshelfdata({ bookData, shelfname }) {
   return (
     <>
       <div style={styles.bgColor}>
-        <div class="flex justify-between mt-12 mb-0 ml-24 items-baseline">
+        <div class="flex justify-between mt-0 mb-0 ml-24 items-baseline">
           {bookData.map((book) => {
             return (
               <div className="flex flex-col-reverse" key={book._id}>
