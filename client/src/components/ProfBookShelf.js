@@ -9,7 +9,7 @@ const mainShelf = 'My Books';
 const styles = {
     bookShelf: {
         position: 'relative',
-        top: '50px',
+        top: '10px',
     }
 }
 

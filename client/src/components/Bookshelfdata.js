@@ -204,7 +204,7 @@ export default function Bookshelfdata({ bookData, shelfname }) {
   return (
     <>
       <div style={styles.bgColor}>
-        <div class="flex justify-between mb-0 ml-24 items-baseline">
+        <div class="flex justify-between mt-0 mb-0 ml-24 items-baseline">
           {bookData.map((book) => {
             return (
               <div className="flex flex-col-reverse" key={book._id}>
@@ -219,7 +219,7 @@ export default function Bookshelfdata({ bookData, shelfname }) {
                 />
                 <button
                   style={styles.button}
-                  className="bg-vdarkPurple text-white hover:bg-medPurple font-bold text-md px-2 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                  className="bg-vdarkPurple text-white hover:bg-medPurple text-md px-1 py-1 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 >
                   <Modal
                     bookInfo={book}
@@ -233,7 +233,7 @@ export default function Bookshelfdata({ bookData, shelfname }) {
               </div>
             );
           })}
-          <p class="mr-24 mt-12">&gt;</p>
+          <p class="mr-24 mt-5">&gt;</p>
           {/* <div className="flex flex-col-reverse" style={styles.purpleBook}>
             {bookData[x] ? (
               <img
