@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
+require('dotenv').config()
 
-//FIXME: put secret in .env
-const secret = "mysupersecretsssooosss"
+const secret = process.env.JWTsecret
 const exp = "6h"
 
 module.exports = {
