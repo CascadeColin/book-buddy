@@ -23,12 +23,12 @@ const styles = {
     fontSize: "1.5rem",
     position: "relative",
     top: "30px",
-    left: "325px",
+    left: "25px",
     color: "white",
   },
   bookInfo: {
     position: "relative",
-    left: "325px",
+    left: "25px",
   },
   bookTitle: {
     fontSize: "2.5rem",
@@ -101,7 +101,7 @@ if(myBooks[x]){
                 </h2>
                 {/* connect rating to save rating - also do an if statement, only show rating if it has been rated...if not show 'not rated yet' */}
                 <h2>My Rating:</h2>
-                <BookRating />
+                <BookRating book={myBooks[x]} />
               </div>
               <div style={styles.button} className="space-x-4">
                 {/* automatically move this book to the 'already read' book shelf. Also, if they've finsihed, do we want to prompt them to choose their next book?*/}
